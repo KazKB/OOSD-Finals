@@ -279,6 +279,149 @@ public class User {
         }
     }
 
+    public void removeFromJuiceList(String stock) {
+        int k = 0;
+
+        if (this.userType.equalsIgnoreCase("admin")) {
+            if (juiceList[0] != null) {
+                //Cycles through until the end of the array or until the target is found
+                while ((!juiceList[k].getItemName().equalsIgnoreCase(stock)) && (k < juice - 1)) {
+                    k++;
+                }
+                //If target is found, remove it and the rest stock after it from the list
+                //Then copy the stock after the list back to the list
+                //As well decrease the position for where the next stock item will be added
+                if (juiceList[k].getItemName().equalsIgnoreCase(stock)) {
+                    System.arraycopy(juiceList, k + 1, juiceList, k, juice);
+                    juice--;
+                } else {
+                    System.out.println(stock.toUpperCase() + " is not in stock.\n");
+                }
+            }
+            else {
+                System.out.println("No juice is in stock.\n");
+            }
+        }
+        else {
+            System.out.println("You do not have admin privileges.\n");
+        }
+    }
+
+    public void removeFromSodaList(String stock) {
+        int k = 0;
+
+        if (this.userType.equalsIgnoreCase("admin")) {
+            if (sodaList[0] != null) {
+                //Cycles through until the end of the array or until the target is found
+                while ((!sodaList[k].getItemName().equalsIgnoreCase(stock)) && (k < soda - 1)) {
+                    k++;
+                }
+                //If target is found, remove it and the rest stock after it from the list
+                //Then copy the stock after the list back to the list
+                //As well decrease the position for where the next stock item will be added
+                if (sodaList[k].getItemName().equalsIgnoreCase(stock)) {
+                    System.arraycopy(sodaList, k + 1, sodaList, k, soda);
+                    soda--;
+                } else {
+                    System.out.println(stock.toUpperCase() + " is not in stock.\n");
+                }
+            }
+            else {
+                System.out.println("No soda is in stock.\n");
+            }
+        }
+        else {
+            System.out.println("You do not have admin privileges.\n");
+        }
+    }
+
+
+    public void removeFromWaterList(String stock) {
+        int k = 0;
+
+        if (this.userType.equalsIgnoreCase("admin")) {
+            if (waterList[0] != null) {
+                //Cycles through until the end of the array or until the target is found
+                while ((!waterList[k].getItemName().equalsIgnoreCase(stock)) && (k < water - 1)) {
+                    k++;
+                }
+                //If target is found, remove it and the rest stock after it from the list
+                //Then copy the stock after the list back to the list
+                //As well decrease the position for where the next stock item will be added
+                if (waterList[k].getItemName().equalsIgnoreCase(stock)) {
+                    System.arraycopy(waterList, k + 1, waterList, k, water);
+                    water--;
+                } else {
+                    System.out.println(stock.toUpperCase() + " is not in stock.\n");
+                }
+            }
+            else {
+                System.out.println("No water is in stock.\n");
+            }
+        }
+        else {
+            System.out.println("You do not have admin privileges.\n");
+        }
+    }
+
+
+    public void removeFromWineList(String stock) {
+        int k = 0;
+
+        if (this.userType.equalsIgnoreCase("admin")) {
+            if (wineList[0] != null) {
+                //Cycles through until the end of the array or until the target is found
+                while ((!wineList[k].getItemName().equalsIgnoreCase(stock)) && (k < wine - 1)) {
+                    k++;
+                }
+                //If target is found, remove it and the rest stock after it from the list
+                //Then copy the stock after the list back to the list
+                //As well decrease the position for where the next stock item will be added
+                if (wineList[k].getItemName().equalsIgnoreCase(stock)) {
+                    System.arraycopy(wineList, k + 1, wineList, k, wine);
+                    wine--;
+                } else {
+                    System.out.println(stock.toUpperCase() + " is not in stock.\n");
+                }
+            }
+            else {
+                System.out.println("No wine is in stock.\n");
+            }
+        }
+        else {
+            System.out.println("You do not have admin privileges.\n");
+        }
+    }
+
+
+    public void removeFromChampagneList(String stock) {
+        int k = 0;
+
+        if (this.userType.equalsIgnoreCase("admin")) {
+            if (champagneList[0] != null) {
+                //Cycles through until the end of the array or until the target is found
+                while ((!champagneList[k].getItemName().equalsIgnoreCase(stock)) && (k < champagne - 1)) {
+                    k++;
+                }
+                //If target is found, remove it and the rest stock after it from the list
+                //Then copy the stock after the list back to the list
+                //As well decrease the position for where the next stock item will be added
+                if (champagneList[k].getItemName().equalsIgnoreCase(stock)) {
+                    System.arraycopy(champagneList, k + 1, champagneList, k, champagne);
+                    champagne--;
+                } else {
+                    System.out.println(stock.toUpperCase() + " is not in stock.\n");
+                }
+            }
+            else {
+                System.out.println("No champagne is in stock.\n");
+            }
+        }
+        else {
+            System.out.println("You do not have admin privileges.\n");
+        }
+    }
+
     public void viewBeerList() {
         //Checks if list is empty
         if (beerList[0] == null) {
