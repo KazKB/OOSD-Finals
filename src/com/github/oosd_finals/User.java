@@ -2,11 +2,14 @@ package com.github.oosd_finals;
 
 import java.util.Arrays;
 
+import static java.lang.Math.abs;
+
 public class User {
     private String userName, userEmail, userID, userType, password;
     private static Beer[] beerList = new Beer[10];
     private static Spirit[] spiritList = new Spirit[10];
     private static int beer = 0, spirit = 0;
+    private static double wallet;
 
     public User() {
         beerList[0] = new Beer();
@@ -69,6 +72,30 @@ public class User {
 
     public String getUserType() {
         return userType;
+    }
+
+    public static void setWallet(double wallet) {
+        User.wallet = wallet;
+    }
+
+    public static double getWallet() {
+        return wallet;
+    }
+
+    public String printProfitAndLoss() {
+        String s = null;
+
+        if(wallet > 0) {
+            s = String.format("You made a profit of $%.2f.%n", wallet);
+        }
+        else if (wallet == 0) {
+            s = String.format("You broke even.%n");
+        }
+        else if (wallet < 0) {
+            s= String.format("You made a loss of $%.2f.%n", abs(wallet));
+        }
+
+        return s;
     }
 
     public void addToStockList(Beer stock) {

@@ -14,7 +14,7 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(String name, String email, String contactNumber, User user) {
+    public Customer(String name, String email, String contactNumber, @NotNull User user) {
         if (user.getUserType().equalsIgnoreCase("admin")) {
             this.customerName = name;
             this.customerEmail = email;
@@ -40,7 +40,7 @@ public class Customer {
         return customerName;
     }
 
-    public void setCustomerName(String customerName, User user) {
+    public void setCustomerName(String customerName, @NotNull User user) {
         if (user.getUserType().equalsIgnoreCase("admin")) {
             this.customerName = customerName;
         }
@@ -53,7 +53,7 @@ public class Customer {
         return customerEmail;
     }
 
-    public void setCustomerEmail(String customerEmail, User user) {
+    public void setCustomerEmail(String customerEmail, @NotNull User user) {
         if (user.getUserType().equalsIgnoreCase("admin")) {
             this.customerEmail = customerEmail;
         }
@@ -66,7 +66,7 @@ public class Customer {
         return customerContactNumber;
     }
 
-    public void setCustomerContactNumber(String customerContactNumber, User user) {
+    public void setCustomerContactNumber(String customerContactNumber, @NotNull User user) {
         if (user.getUserType().equalsIgnoreCase("admin")) {
             this.customerContactNumber = customerContactNumber;
         }
@@ -76,7 +76,7 @@ public class Customer {
     }
 
     //Basically the constructor but as a method
-    public void editCustomerInformation(String name, String email, String contactNumber, User user) {
+    public void editCustomerInformation(String name, String email, String contactNumber, @NotNull User user) {
         if (user.getUserType().equalsIgnoreCase("admin")) {
             this.customerName = name;
             this.customerEmail = email;
@@ -113,7 +113,7 @@ public class Customer {
     }
 
     //Removes and item from the purchased item list
-    public void removePurchasedItem(String item, int quantity, User user) {
+    public void removePurchasedItem(String item, int quantity, @NotNull User user) {
         if (user.getUserType().equalsIgnoreCase("admin")) {
             if (this.purchasedItemsList[0][0] != null) {
                 int j = 0;
@@ -122,6 +122,16 @@ public class Customer {
                 //Or runs till the end of the array or if the next position is null
                 while ((!(this.purchasedItemsList[j][0].equalsIgnoreCase(item))) && (!(this.purchasedItemsList[j][2].equalsIgnoreCase(String.valueOf(quantity)))) && (j < this.purchasedItemsList.length - 1) && (this.purchasedItemsList[j + 1][0] != null)) {
                     j++;
+                }
+
+                //Adds back the subtracted quantity from stock
+                if (user.checkIfBeerInStock(item)) {
+                    user.addQuantityToBeerStock(item, quantity);
+                    User.setWallet(User.getWallet() - Double.parseDouble(this.purchasedItemsList[j][1]) * Double.parseDouble(this.purchasedItemsList[j][2]));
+                }
+                else if (user.checkIfSpiritInStock(item)) {
+                    user.addQuantityToSpiritStock(item, quantity);
+                    User.setWallet(User.getWallet() - Double.parseDouble(this.purchasedItemsList[j][1]) * Double.parseDouble(this.purchasedItemsList[j][2]));
                 }
 
                 if ((this.purchasedItemsList[j][0].equalsIgnoreCase(item)) && (this.purchasedItemsList[j][2].equalsIgnoreCase(String.valueOf(quantity)))) {
@@ -151,14 +161,6 @@ public class Customer {
                     for (l = 0; l < temp.length - j; l++) {
                         this.purchasedItemsList[k] = Arrays.copyOf(temp[l], 3);
                         k++;
-                    }
-
-                    //Adds back the subtracted quantity from stock
-                    if (user.checkIfBeerInStock(item)) {
-                        user.addQuantityToBeerStock(item, quantity);
-                    }
-                    else if (user.checkIfSpiritInStock(item)) {
-                        user.addQuantityToSpiritStock(item, quantity);
                     }
 
                     i--;
@@ -211,6 +213,8 @@ public class Customer {
             addPurchasedItem(item, user.getBeerStock(item).getItemPrice(), quantity);
             salesReceiptTotal = Double.parseDouble(this.purchasedItemsList[i - 1][1]) * quantity;
 
+            User.setWallet(User.getWallet() + salesReceiptTotal);
+
             System.out.printf(
                     """
                     Sales Receipt: %d
@@ -221,6 +225,7 @@ public class Customer {
                     Price: $%.2f
                     Quantity: %dl/ml
                     Total: $%.2f
+                    
                     """,
                     this.salesReceiptNumber, formatter.format(date), this.customerName, item.toUpperCase(), Double.parseDouble(this.purchasedItemsList[i - 1][1]), quantity, salesReceiptTotal);
         }
@@ -233,6 +238,8 @@ public class Customer {
             addPurchasedItem(item, user.getSpiritStock(item).getItemPrice(), quantity);
             salesReceiptTotal = Double.parseDouble(this.purchasedItemsList[i - 1][1]) * quantity;
 
+            User.setWallet(User.getWallet() + salesReceiptTotal);
+
             System.out.printf(
                     """
                     Sales Receipt: %d
@@ -243,6 +250,7 @@ public class Customer {
                     Price: $%.2f
                     Quantity: %dl/ml
                     Total: $%.2f
+                    
                     """,
                     this.salesReceiptNumber, formatter.format(date), this.customerName, item.toUpperCase(), Double.parseDouble(this.purchasedItemsList[i - 1][1]), quantity, salesReceiptTotal);
         }

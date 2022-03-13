@@ -197,6 +197,8 @@ public class Supplier {
                     this.invoiceNumber += 1;
                     invoiceTotal = Double.parseDouble(this.supplierItemList[j][1]) * quantity;
 
+                    User.setWallet(User.getWallet() - invoiceTotal);
+
                     //Add to the amount of stock owned
                     user.addQuantityToBeerStock(item, quantity);
 
@@ -217,6 +219,8 @@ public class Supplier {
                 else if (user.checkIfSpiritInStock(item)) {
                     this.invoiceNumber += 1;
                     invoiceTotal = Double.parseDouble(this.supplierItemList[j][1]) * quantity;
+
+                    User.setWallet(User.getWallet() - invoiceTotal);
 
                     //Add to the amount of stock owned
                     user.addQuantityToSpiritStock(item, quantity);
