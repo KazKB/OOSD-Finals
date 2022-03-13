@@ -1,4 +1,4 @@
-package com.StockManager;
+package com.github.oosd_finals;
 
 import java.util.Arrays;
 

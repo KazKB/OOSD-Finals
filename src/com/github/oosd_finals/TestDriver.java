@@ -1,4 +1,4 @@
-package com.StockManager;
+package com.github.oosd_finals;
 
 public class TestDriver {
     public static void main(String[] args) {
