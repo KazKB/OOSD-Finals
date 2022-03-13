@@ -12,8 +12,8 @@ public class Spirit extends Stock {
         super(name, price, user);
     }
 
-    public Spirit(String name, String description, String id, String size, double price, @NotNull User user) {
-        super(name, description, id, size, price, user);
+    public Spirit(String name, String description, String id, double price, @NotNull User user) {
+        super(name, description, id, price, user);
     }
 
     public String getITEM_CATEGORY() {
@@ -26,7 +26,7 @@ public class Spirit extends Stock {
                         "ID: %s%n" +
                         "Description: %s%n" +
                         "Category: %s%n" +
-                        "Quantity: %d%n" +
+                        "Quantity: %dl/ml%n" +
                         "Price: $%.2f%n%n"
                 , this.itemName, this.itemID, this.itemDescription, this.ITEM_CATEGORY, this.itemQuantity, this.itemPrice);
     }

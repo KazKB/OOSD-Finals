@@ -208,7 +208,7 @@ public class Supplier {
 
                                     Item: %s
                                     Price: $%.2f
-                                    Quantity: %d
+                                    Quantity: %dl/ml
                                     Total: $%.2f
 
                                     """,
@@ -229,7 +229,7 @@ public class Supplier {
 
                                     Item: %s
                                     Price: $%.2f
-                                    Quantity: %d
+                                    Quantity: %dl/ml
                                     Total: $%.2f
 
                                     """,

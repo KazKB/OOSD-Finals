@@ -213,16 +213,15 @@ public class Customer {
 
             System.out.printf(
                     """
-                            Invoice Number: %d
-                            Date: %s
-                            Supplier: %s
+                    Sales Receipt: %d
+                    Date: %s
+                    Customer: %s
 
-                            Item: %s
-                            Price: $%.2f
-                            Quantity: %d
-                            Total: $%.2f
-
-                            """,
+                    Item: %s
+                    Price: $%.2f
+                    Quantity: %dl/ml
+                    Total: $%.2f
+                    """,
                     this.salesReceiptNumber, formatter.format(date), this.customerName, item.toUpperCase(), Double.parseDouble(this.purchasedItemsList[i - 1][1]), quantity, salesReceiptTotal);
         }
         else if (user.checkIfSpiritInStock(item)) {
@@ -236,16 +235,15 @@ public class Customer {
 
             System.out.printf(
                     """
-                            Invoice Number: %d
-                            Date: %s
-                            Supplier: %s
+                    Sales Receipt: %d
+                    Date: %s
+                    Customer: %s
 
-                            Item: %s
-                            Price: $%.2f
-                            Quantity: %d
-                            Total: $%.2f
-
-                            """,
+                    Item: %s
+                    Price: $%.2f
+                    Quantity: %dl/ml
+                    Total: $%.2f
+                    """,
                     this.salesReceiptNumber, formatter.format(date), this.customerName, item.toUpperCase(), Double.parseDouble(this.purchasedItemsList[i - 1][1]), quantity, salesReceiptTotal);
         }
         else {

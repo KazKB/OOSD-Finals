@@ -3,8 +3,8 @@ package com.github.oosd_finals;
 public class TestDriver {
     public static void main(String[] args) {
         User user = new User("admin", "sd");
-        Beer beer = new Beer("Beer", "Beer", "Beer", "1l", 10, user);
-        Spirit spirit = new Spirit("Spirit", "Spirit", "Spirit", "Spirit", 15, user);
+        Beer beer = new Beer("Beer", "Beer", "Beer", 10, user);
+        Spirit spirit = new Spirit("Spirit", "Spirit", "Spirit", 15, user);
 
         user.addToStockList(beer);
         user.addToStockList(spirit);
