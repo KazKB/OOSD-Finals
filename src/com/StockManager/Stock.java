@@ -1,10 +1,11 @@
 package com.StockManager;
 
+import com.StockManager.User;
 import org.jetbrains.annotations.NotNull;
 
 import static java.lang.Math.abs;
 
-public abstract  class Stock {
+public abstract class Stock {
     protected String itemName, itemDescription, itemID;
     protected int itemQuantity = 0;
     protected double itemPrice;
@@ -20,7 +21,7 @@ public abstract  class Stock {
         }
     }
 
-    protected Stock(String name, String description, String id, String category, double price, @NotNull User user) {
+    protected Stock(String name, String description, String id, double price, @NotNull User user) {
         if(user.getUserType().equalsIgnoreCase("admin")) {
             this.itemName = name;
             this.itemDescription = description;
@@ -33,44 +34,44 @@ public abstract  class Stock {
     }
 
     //Setters are edited to allow only admins to edit them
-    protected String getStockName() {
+    protected String getItemName() {
         return itemName;
     }
 
-    protected void setStockName(String itemName, @NotNull User user) {
+    protected void setItemName(String itemName, @NotNull User user) {
         if(user.getUserType().equalsIgnoreCase("admin"))
             this.itemName = itemName;
         else
             System.out.println("You do not have admin privileges.");
     }
 
-    protected String getStockDescription() {
+    protected String getItemDescription() {
         return itemDescription;
     }
 
-    protected void setStockDescription(String itemDescription, @NotNull User user) {
+    protected void setItemDescription(String itemDescription, @NotNull User user) {
         if(user.getUserType().equalsIgnoreCase("admin"))
             this.itemDescription = itemDescription;
         else
             System.out.println("You do not have admin privileges.");
     }
 
-    protected String getStockID() {
+    protected String getItemID() {
         return itemID;
     }
 
-    protected void setStockID(String itemID, @NotNull User user) {
+    protected void setItemID(String itemID, @NotNull User user) {
         if(user.getUserType().equalsIgnoreCase("admin"))
             this.itemID = itemID;
         else
             System.out.println("You do not have admin privileges.");
     }
 
-    protected double getStockPrice() {
+    protected double getItemPrice() {
         return itemPrice;
     }
 
-    protected void setStockPrice(double itemPrice, @NotNull User user) {
+    protected void setItemPrice(double itemPrice, @NotNull User user) {
         if(user.getUserType().equalsIgnoreCase("admin"))
             this.itemPrice = itemPrice;
         else
@@ -78,7 +79,7 @@ public abstract  class Stock {
     }
 
     //Basically the constructor all over again
-    protected void editStockInformation(String itemName, String itemDescription, String itemID, double itemPrice, @NotNull User user) {
+    protected void editItemInformation(String itemName, String itemDescription, String itemID, double itemPrice, @NotNull User user) {
         if(user.getUserType().equalsIgnoreCase("admin")) {
             this.itemName = itemName;
             this.itemDescription = itemDescription;
