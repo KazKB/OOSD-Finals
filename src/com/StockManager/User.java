@@ -5,16 +5,19 @@ import java.util.Arrays;
 public class User {
     private String userName, userEmail, userID, userType, password;
     private static Beer[] beerList = new Beer[10];
-    private static int i = 0;
+    private static Spirit[] spiritList = new Spirit[10];
+    private static int beer = 0, spirit = 0;
 
     public User() {
         beerList[0] = new Beer();
+        spiritList[0] = new Spirit();
     }
 
     public User(String type, String id) {
         this.userType = type;
         this.userID = id;
         beerList[0] = new Beer();
+        spiritList[0] = new Spirit();
     }
 
     public User(String firstName, String lastName, String email, String id, String type, String password) {
@@ -24,6 +27,7 @@ public class User {
         this.userType = type;
         this.password = password;
         beerList[0] = new Beer();
+        spiritList[0] = new Spirit();
     }
 
     //Getters and Setters will be used to edit this Class
@@ -67,38 +71,53 @@ public class User {
         return userType;
     }
 
-    public void addToStockList(Beer beer) {
+    public void addToStockList(Beer stock) {
         if (this.userType.equalsIgnoreCase("admin")) {
-            //Increases beerList's max size when capacity is reached
-            if (i >= beerList.length) {
+            //Increases list's max size when capacity is reached
+            if (beer >= beerList.length) {
                 beerList = Arrays.copyOf(beerList, beerList.length + 5);
             }
-            //Adds beer to beer list and increases the position to the next location
-            beerList[i] = beer;
-            i++;
+            //Adds stock to list and increases the position to the next location
+            beerList[beer] = stock;
+            beer++;
         }
         else {
             System.out.println("You do not have admin privileges.\n");
         }
     }
 
-    public void removeFromStockList(Beer beer) {
+    public void addToStockList(Spirit stock) {
+        if (this.userType.equalsIgnoreCase("admin")) {
+            //Increases list's max size when capacity is reached
+            if (spirit >= spiritList.length) {
+                spiritList = Arrays.copyOf(spiritList, spiritList.length + 5);
+            }
+            //Adds stock to list and increases the position to the next location
+            spiritList[spirit] = stock;
+            spirit++;
+        }
+        else {
+            System.out.println("You do not have admin privileges.\n");
+        }
+    }
+
+    public void removeFromStockList(Beer stock) {
         int k = 0;
 
         if (this.userType.equalsIgnoreCase("admin")) {
             if (beerList[0] != null) {
-                //Cycles through until the end of the array or until the particular beer is found
-                while ((!beerList[k].getItemName().equalsIgnoreCase(beer.getItemName())) && (k < i - 1)) {
+                //Cycles through until the end of the array or until the target is found
+                while ((!beerList[k].getItemName().equalsIgnoreCase(stock.getItemName())) && (k < beer - 1)) {
                     k++;
                 }
-                //If target is found, remove it and the rest beer after it from the list
-                //Then copy the beer after the list back to the list
-                //As well decrease the position for where the next beer item will be added
-                if (beerList[k].getItemName().equalsIgnoreCase(beer.getItemName())) {
-                    System.arraycopy(beerList, k + 1, beerList, k, i);
-                    i--;
+                //If target is found, remove it and the rest stock after it from the list
+                //Then copy the stock after the list back to the list
+                //As well decrease the position for where the next stock item will be added
+                if (beerList[k].getItemName().equalsIgnoreCase(stock.getItemName())) {
+                    System.arraycopy(beerList, k + 1, beerList, k, beer);
+                    beer--;
                 } else {
-                    System.out.println(beer.getItemName().toUpperCase() + " is not in stock.\n");
+                    System.out.println(stock.getItemName().toUpperCase() + " is not in stock.\n");
                 }
             }
             else {
@@ -110,65 +129,155 @@ public class User {
         }
     }
 
-    public void viewStockList() {
-        //Checks if beer list is empty
+    public void removeFromStockList(Spirit stock) {
+        int k = 0;
+
+        if (this.userType.equalsIgnoreCase("admin")) {
+            if (spiritList[0] != null) {
+                //Cycles through until the end of the array or until the target is found
+                while ((!spiritList[k].getItemName().equalsIgnoreCase(stock.getItemName())) && (k < spirit - 1)) {
+                    k++;
+                }
+                //If target is found, remove it and the rest stock after it from the list
+                //Then copy the stock after the list back to the list
+                //As well decrease the position for where the next stock item will be added
+                if (spiritList[k].getItemName().equalsIgnoreCase(stock.getItemName())) {
+                    System.arraycopy(spiritList, k + 1, spiritList, k, spirit);
+                    spirit--;
+                } else {
+                    System.out.println(stock.getItemName().toUpperCase() + " is not in stock.\n");
+                }
+            }
+            else {
+                System.out.println("No spirit is in stock.\n");
+            }
+        }
+        else {
+            System.out.println("You do not have admin privileges.\n");
+        }
+    }
+
+    public void viewBeerList() {
+        //Checks if list is empty
         if (beerList[0] == null) {
             System.out.println("No beer is in stock.\n");
         }
         else {
             //If not empty print what is in the list's name
-            for (int k = 0; k < i; k++) {
+            for (int k = 0; k < beer; k++) {
                 System.out.println(beerList[k].getItemName().toUpperCase());
             }
             System.out.println();
         }
     }
 
-    public boolean checkIfInStock(String beer) {
+    public void viewSpiritList() {
+        //Checks if list is empty
+        if (spiritList[0] == null) {
+            System.out.println("No spirit is in stock.\n");
+        }
+        else {
+            //If not empty print what is in the list's name
+            for (int k = 0; k < spirit; k++) {
+                System.out.println(spiritList[k].getItemName().toUpperCase());
+            }
+            System.out.println();
+        }
+    }
+
+    public boolean checkIfBeerInStock(String stock) {
         int k = 0;
 
         //Cycles through array until target is found, end was reached or the next item is null
-        while ((!beerList[k].getItemName().equalsIgnoreCase(beer)) && (k < i) && (beerList[k + 1] != null)) {
+        while ((!beerList[k].getItemName().equalsIgnoreCase(stock)) && (k < beer) && (beerList[k + 1] != null)) {
             k++;
         }
 
         //Returns whether the target was found or not
-        return beerList[k].getItemName().equalsIgnoreCase(beer);
+        return beerList[k].getItemName().equalsIgnoreCase(stock);
     }
 
-    public void addQuantityToStock(String beer, int quantity) {
+    public boolean checkIfSpiritInStock(String stock) {
+        int k = 0;
+
+        //Cycles through array until target is found, end was reached or the next item is null
+        while ((!spiritList[k].getItemName().equalsIgnoreCase(stock)) && (k < spirit) && (spiritList[k + 1] != null)) {
+            k++;
+        }
+
+        //Returns whether the target was found or not
+        return spiritList[k].getItemName().equalsIgnoreCase(stock);
+    }
+
+    public void addQuantityToBeerStock(String stock, int quantity) {
         int k = 0;
 
         //Cycles through array until target is found, end has reached or the next item is null
-        while ((!beerList[k].getItemName().equalsIgnoreCase(beer)) && (k < i) && (beerList[k + 1] != null)) {
+        while ((!beerList[k].getItemName().equalsIgnoreCase(stock)) && (k < beer) && (beerList[k + 1] != null)) {
             k++;
         }
 
-        //Add to the amount of beer owned
+        //Add to the amount of stock owned
         beerList[k].addToStock(quantity);
     }
 
-    public void removeQuantityFromStock(String beer, int quantity) {
+    public void addQuantityToSpiritStock(String stock, int quantity) {
         int k = 0;
 
-        //Cycles through array until beer is found, end was reached or the next item is null
-        while ((!beerList[k].getItemName().equalsIgnoreCase(beer)) && (k < i) && (beerList[k + 1] != null)) {
+        //Cycles through array until target is found, end has reached or the next item is null
+        while ((!spiritList[k].getItemName().equalsIgnoreCase(stock)) && (k < spirit && (spiritList[k + 1] != null))) {
             k++;
         }
 
-        //Remove from amount of beer owned
+        //Add to the amount of stock owned
+        spiritList[k].addToStock(quantity);
+    }
+
+    public void removeQuantityFromBeerStock(String stock, int quantity) {
+        int k = 0;
+
+        //Cycles through array until target is found, end was reached or the next item is null
+        while ((!beerList[k].getItemName().equalsIgnoreCase(stock)) && (k < beer) && (beerList[k + 1] != null)) {
+            k++;
+        }
+
+        //Remove from amount of stock owned
         beerList[k].removeFromStock(quantity);
     }
 
-    public Beer getStock(String beer) {
+    public void removeQuantityFromSpiritStock(String stock, int quantity) {
         int k = 0;
 
-        //Cycles through array until beer is found, end has reached or the next item is null
-        while ((!beerList[k].getItemName().equalsIgnoreCase(beer)) && (k < i) && (beerList[k + 1] != null)) {
+        //Cycles through array until target is found, end was reached or the next item is null
+        while ((!spiritList[k].getItemName().equalsIgnoreCase(stock)) && (k < spirit) && (spiritList[k + 1] != null)) {
+            k++;
+        }
+
+        //Remove from amount of stock owned
+        spiritList[k].removeFromStock(quantity);
+    }
+
+    public Beer getBeerStock(String stock) {
+        int k = 0;
+
+        //Cycles through array until target is found, end has reached or the next item is null
+        while ((!beerList[k].getItemName().equalsIgnoreCase(stock)) && (k < beer) && (beerList[k + 1] != null)) {
             k++;
         }
 
         //Returns target if found
         return beerList[k];
+    }
+
+    public Spirit getSpiritStock(String stock) {
+        int k = 0;
+
+        //Cycles through array until target is found, end has reached or the next item is null
+        while ((!spiritList[k].getItemName().equalsIgnoreCase(stock)) && (k < spirit) && (spiritList[k + 1] != null)) {
+            k++;
+        }
+
+        //Returns target if found
+        return spiritList[k];
     }
 }

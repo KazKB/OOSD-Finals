@@ -193,12 +193,33 @@ public class Supplier {
         //Otherwise print the corresponding error
         if (this.supplierItemList[j][0].equalsIgnoreCase(item)) {
             if(user.getUserType().equalsIgnoreCase("admin")) {
-                if (user.checkIfInStock(item)) {
+                if (user.checkIfBeerInStock(item)) {
                     this.invoiceNumber += 1;
                     invoiceTotal = Double.parseDouble(this.supplierItemList[j][1]) * quantity;
 
                     //Add to the amount of stock owned
-                    user.addQuantityToStock(item, quantity);
+                    user.addQuantityToBeerStock(item, quantity);
+
+                    System.out.printf(
+                            """
+                                    Invoice Number: %d
+                                    Date: %s
+                                    Supplier: %s
+
+                                    Item: %s
+                                    Price: $%.2f
+                                    Quantity: %d
+                                    Total: $%.2f
+
+                                    """,
+                            this.invoiceNumber, formatter.format(date), this.supplierName, item.toUpperCase(), Double.parseDouble(this.supplierItemList[j][1]), quantity, invoiceTotal);
+                }
+                else if (user.checkIfSpiritInStock(item)) {
+                    this.invoiceNumber += 1;
+                    invoiceTotal = Double.parseDouble(this.supplierItemList[j][1]) * quantity;
+
+                    //Add to the amount of stock owned
+                    user.addQuantityToSpiritStock(item, quantity);
 
                     System.out.printf(
                             """

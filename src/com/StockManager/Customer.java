@@ -154,7 +154,13 @@ public class Customer {
                     }
 
                     //Adds back the subtracted quantity from stock
-                    user.addQuantityToStock(item, quantity);
+                    if (user.checkIfBeerInStock(item)) {
+                        user.addQuantityToBeerStock(item, quantity);
+                    }
+                    else if (user.checkIfSpiritInStock(item)) {
+                        user.addQuantityToSpiritStock(item, quantity);
+                    }
+
                     i--;
                 } else {
                     System.out.println(item.toUpperCase() + " hasn't been bought.\n");
@@ -196,13 +202,36 @@ public class Customer {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
         //Checks if item is in stock
-        if (user.checkIfInStock(item)) {
+        if (user.checkIfBeerInStock(item)) {
             this.salesReceiptNumber += 1;
 
             //Removes from the amount owned
             //Adds item to the purchased item list
-            user.removeQuantityFromStock(item, quantity);
-            addPurchasedItem(item, user.getStock(item).getItemPrice(), quantity);
+            user.removeQuantityFromBeerStock(item, quantity);
+            addPurchasedItem(item, user.getBeerStock(item).getItemPrice(), quantity);
+            salesReceiptTotal = Double.parseDouble(this.purchasedItemsList[i - 1][1]) * quantity;
+
+            System.out.printf(
+                    """
+                            Invoice Number: %d
+                            Date: %s
+                            Supplier: %s
+
+                            Item: %s
+                            Price: $%.2f
+                            Quantity: %d
+                            Total: $%.2f
+
+                            """,
+                    this.salesReceiptNumber, formatter.format(date), this.customerName, item.toUpperCase(), Double.parseDouble(this.purchasedItemsList[i - 1][1]), quantity, salesReceiptTotal);
+        }
+        else if (user.checkIfSpiritInStock(item)) {
+            this.salesReceiptNumber += 1;
+
+            //Removes from the amount owned
+            //Adds item to the purchased item list
+            user.removeQuantityFromSpiritStock(item, quantity);
+            addPurchasedItem(item, user.getSpiritStock(item).getItemPrice(), quantity);
             salesReceiptTotal = Double.parseDouble(this.purchasedItemsList[i - 1][1]) * quantity;
 
             System.out.printf(
@@ -220,7 +249,7 @@ public class Customer {
                     this.salesReceiptNumber, formatter.format(date), this.customerName, item.toUpperCase(), Double.parseDouble(this.purchasedItemsList[i - 1][1]), quantity, salesReceiptTotal);
         }
         else {
-            System.out.println(item.toUpperCase() + " is not in the stock list.\n");
+            System.out.println(item.toUpperCase() + " is not in stock.\n");
         }
     }
 }

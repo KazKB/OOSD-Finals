@@ -2,17 +2,17 @@ package com.StockManager;
 
 import org.jetbrains.annotations.NotNull;
 
-public class Beer extends Stock {
-    private final String ITEM_CATEGORY = "Beer";
+public class Spirit extends Stock {
+    private final String ITEM_CATEGORY = "Spirit";
 
-    public Beer() {
+    public Spirit() {
     }
 
-    public Beer(String name, double price, @NotNull User user) {
+    public Spirit(String name, double price, @NotNull User user) {
         super(name, price, user);
     }
 
-    public Beer(String name, String description, String id, String size, double price, @NotNull User user) {
+    public Spirit(String name, String description, String id, String size, double price, @NotNull User user) {
         super(name, description, id, size, price, user);
     }
 
