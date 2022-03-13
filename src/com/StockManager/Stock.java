@@ -1,12 +1,11 @@
 package com.StockManager;
 
-import com.StockManager.User;
 import org.jetbrains.annotations.NotNull;
 
 import static java.lang.Math.abs;
 
 public abstract class Stock {
-    protected String itemName, itemDescription, itemID;
+    protected String itemName, itemDescription, itemID, itemSize;
     protected int itemQuantity = 0;
     protected double itemPrice;
 
@@ -21,11 +20,12 @@ public abstract class Stock {
         }
     }
 
-    protected Stock(String name, String description, String id, double price, @NotNull User user) {
+    protected Stock(String name, String description, String id, String size, double price, @NotNull User user) {
         if(user.getUserType().equalsIgnoreCase("admin")) {
             this.itemName = name;
             this.itemDescription = description;
             this.itemID = id;
+            this.itemSize = size;
             this.itemPrice = price;
         }
         else {
@@ -67,6 +67,14 @@ public abstract class Stock {
             System.out.println("You do not have admin privileges.");
     }
 
+    protected String getItemSize() {
+        return itemSize;
+    }
+
+    protected void setItemSize(String itemSize) {
+        this.itemSize = itemSize;
+    }
+
     protected double getItemPrice() {
         return itemPrice;
     }
@@ -79,15 +87,17 @@ public abstract class Stock {
     }
 
     //Basically the constructor all over again
-    protected void editItemInformation(String itemName, String itemDescription, String itemID, double itemPrice, @NotNull User user) {
+    protected void editItemInformation(String name, String description, String id, String size, double price, @NotNull User user) {
         if(user.getUserType().equalsIgnoreCase("admin")) {
-            this.itemName = itemName;
-            this.itemDescription = itemDescription;
-            this.itemID = itemID;
-            this.itemPrice = itemPrice;
+            this.itemName = name;
+            this.itemDescription = description;
+            this.itemID = id;
+            this.itemSize = size;
+            this.itemPrice = price;
         }
-        else
+        else {
             System.out.println("You do not have admin privileges.");
+        }
     }
 
     //Add to amount of item owned

@@ -1,5 +1,7 @@
 package com.StockManager;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -11,7 +13,7 @@ public class Supplier {
 
     public Supplier() {}
 
-    public Supplier(String name, String email, String contactNumber, User user) {
+    public Supplier(String name, String email, String contactNumber, @NotNull User user) {
         if(user.getUserType().equalsIgnoreCase("admin")) {
             this.supplierName = name;
             this.supplierEmail = email;
@@ -26,7 +28,7 @@ public class Supplier {
         return supplierName;
     }
 
-    public void setSupplierName(String supplierName, User user) {
+    public void setSupplierName(String supplierName, @NotNull User user) {
         if (user.getUserType().equalsIgnoreCase("admin")) {
             this.supplierName = supplierName;
         }
@@ -39,7 +41,7 @@ public class Supplier {
         return supplierEmail;
     }
 
-    public void setSupplierEmail(String supplierEmail, User user) {
+    public void setSupplierEmail(String supplierEmail, @NotNull User user) {
         if (user.getUserType().equalsIgnoreCase("admin")) {
             this.supplierEmail = supplierEmail;
         }
@@ -52,7 +54,7 @@ public class Supplier {
         return supplierContactNumber;
     }
 
-    public void setSupplierContactNumber(String supplierContactNumber, User user) {
+    public void setSupplierContactNumber(String supplierContactNumber, @NotNull User user) {
         if (user.getUserType().equalsIgnoreCase("admin")) {
             this.supplierContactNumber = supplierContactNumber;
         }
@@ -62,7 +64,7 @@ public class Supplier {
     }
 
     //Basically the constructor but as a method
-    public void editSupplierInformation(String name, String email, String contactNumber, User user) {
+    public void editSupplierInformation(String name, String email, String contactNumber, @NotNull User user) {
         if(user.getUserType().equalsIgnoreCase("admin")) {
             this.supplierName = name;
             this.supplierEmail = email;
@@ -72,7 +74,7 @@ public class Supplier {
 
     //Adds an item and its price to a list that contains what is sold by the supplier
     //Only admins have access to this action
-    public void addPurchasableItem(String item, String price, User user) {
+    public void addPurchasableItem(String item, String price, @NotNull User user) {
         //Temporary array that is 10 spaces bigger than original
         String[][] temp = new String[this.supplierItemList.length + 10][2];
 
@@ -101,7 +103,7 @@ public class Supplier {
 
     //Removes an item and its price to a list that contains what is sold by the supplier
     //Only admins have access to this action
-    public void removePurchasableItem(String item, User user) {
+    public void removePurchasableItem(String item, @NotNull User user) {
         if (user.getUserType().equalsIgnoreCase("admin")) {
             if (this.supplierItemList[0][0] != null) {
                 int j = 0;
