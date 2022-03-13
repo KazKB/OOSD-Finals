@@ -101,23 +101,23 @@ public class User {
         }
     }
 
-    public void removeFromStockList(Beer stock) {
+    public void removeFromBeerList(String stock) {
         int k = 0;
 
         if (this.userType.equalsIgnoreCase("admin")) {
             if (beerList[0] != null) {
                 //Cycles through until the end of the array or until the target is found
-                while ((!beerList[k].getItemName().equalsIgnoreCase(stock.getItemName())) && (k < beer - 1)) {
+                while ((!beerList[k].getItemName().equalsIgnoreCase(stock)) && (k < beer - 1)) {
                     k++;
                 }
                 //If target is found, remove it and the rest stock after it from the list
                 //Then copy the stock after the list back to the list
                 //As well decrease the position for where the next stock item will be added
-                if (beerList[k].getItemName().equalsIgnoreCase(stock.getItemName())) {
+                if (beerList[k].getItemName().equalsIgnoreCase(stock)) {
                     System.arraycopy(beerList, k + 1, beerList, k, beer);
                     beer--;
                 } else {
-                    System.out.println(stock.getItemName().toUpperCase() + " is not in stock.\n");
+                    System.out.println(stock.toUpperCase() + " is not in stock.\n");
                 }
             }
             else {
@@ -129,23 +129,23 @@ public class User {
         }
     }
 
-    public void removeFromStockList(Spirit stock) {
+    public void removeFromSpiritList(String stock) {
         int k = 0;
 
         if (this.userType.equalsIgnoreCase("admin")) {
             if (spiritList[0] != null) {
                 //Cycles through until the end of the array or until the target is found
-                while ((!spiritList[k].getItemName().equalsIgnoreCase(stock.getItemName())) && (k < spirit - 1)) {
+                while ((!spiritList[k].getItemName().equalsIgnoreCase(stock)) && (k < spirit - 1)) {
                     k++;
                 }
                 //If target is found, remove it and the rest stock after it from the list
                 //Then copy the stock after the list back to the list
                 //As well decrease the position for where the next stock item will be added
-                if (spiritList[k].getItemName().equalsIgnoreCase(stock.getItemName())) {
+                if (spiritList[k].getItemName().equalsIgnoreCase(stock)) {
                     System.arraycopy(spiritList, k + 1, spiritList, k, spirit);
                     spirit--;
                 } else {
-                    System.out.println(stock.getItemName().toUpperCase() + " is not in stock.\n");
+                    System.out.println(stock.toUpperCase() + " is not in stock.\n");
                 }
             }
             else {
