@@ -8,12 +8,22 @@ public class User {
     private String userName, userEmail, userID, userType, password;
     private static Beer[] beerList = new Beer[10];
     private static Spirit[] spiritList = new Spirit[10];
-    private static int beer = 0, spirit = 0;
+    private static Juice[] juiceList = new Juice[10];
+    private static Soda[] sodaList = new Soda[10];
+    private static Water[] waterList = new Water[10];
+    private static Wine[] wineList = new Wine[10];
+    private static Champagne[] champagneList = new Champagne[10];
+    private static int beer = 0, spirit = 0, juice = 0, soda = 0, water = 0, wine = 0, champagne = 0;
     private static double wallet;
 
     public User() {
         beerList[0] = new Beer();
         spiritList[0] = new Spirit();
+        juiceList[0] = new Juice();
+        sodaList[0] = new Soda();
+        waterList[0] = new Water();
+        wineList[0] = new Wine();
+        champagneList[0] = new Champagne();
     }
 
     public User(String type, String id) {
@@ -21,6 +31,11 @@ public class User {
         this.userID = id;
         beerList[0] = new Beer();
         spiritList[0] = new Spirit();
+        juiceList[0] = new Juice();
+        sodaList[0] = new Soda();
+        waterList[0] = new Water();
+        wineList[0] = new Wine();
+        champagneList[0] = new Champagne();
     }
 
     public User(String firstName, String lastName, String email, String id, String type, String password) {
@@ -31,6 +46,11 @@ public class User {
         this.password = password;
         beerList[0] = new Beer();
         spiritList[0] = new Spirit();
+        juiceList[0] = new Juice();
+        sodaList[0] = new Soda();
+        waterList[0] = new Water();
+        wineList[0] = new Wine();
+        champagneList[0] = new Champagne();
     }
 
     //Getters and Setters will be used to edit this Class
@@ -122,6 +142,81 @@ public class User {
             //Adds stock to list and increases the position to the next location
             spiritList[spirit] = stock;
             spirit++;
+        }
+        else {
+            System.out.println("You do not have admin privileges.\n");
+        }
+    }
+
+    public void addToStockList(Juice stock) {
+        if (this.userType.equalsIgnoreCase("admin")) {
+            //Increases list's max size when capacity is reached
+            if (juice >= juiceList.length) {
+                juiceList = Arrays.copyOf(juiceList, juiceList.length + 5);
+            }
+            //Adds stock to list and increases the position to the next location
+            juiceList[juice] = stock;
+            juice++;
+        }
+        else {
+            System.out.println("You do not have admin privileges.\n");
+        }
+    }
+
+    public void addToStockList(Soda stock) {
+        if (this.userType.equalsIgnoreCase("admin")) {
+            //Increases list's max size when capacity is reached
+            if (soda >= sodaList.length) {
+                sodaList = Arrays.copyOf(sodaList, sodaList.length + 5);
+            }
+            //Adds stock to list and increases the position to the next location
+            sodaList[soda] = stock;
+            soda++;
+        }
+        else {
+            System.out.println("You do not have admin privileges.\n");
+        }
+    }
+
+    public void addToStockList(Water stock) {
+        if (this.userType.equalsIgnoreCase("admin")) {
+            //Increases list's max size when capacity is reached
+            if (water >= waterList.length) {
+                waterList = Arrays.copyOf(waterList, waterList.length + 5);
+            }
+            //Adds stock to list and increases the position to the next location
+            waterList[water] = stock;
+            water++;
+        }
+        else {
+            System.out.println("You do not have admin privileges.\n");
+        }
+    }
+
+    public void addToStockList(Wine stock) {
+        if (this.userType.equalsIgnoreCase("admin")) {
+            //Increases list's max size when capacity is reached
+            if (wine >= wineList.length) {
+                wineList = Arrays.copyOf(wineList, wineList.length + 5);
+            }
+            //Adds stock to list and increases the position to the next location
+            wineList[wine] = stock;
+            wine++;
+        }
+        else {
+            System.out.println("You do not have admin privileges.\n");
+        }
+    }
+
+    public void addToStockList(Champagne stock) {
+        if (this.userType.equalsIgnoreCase("admin")) {
+            //Increases list's max size when capacity is reached
+            if (champagne >= champagneList.length) {
+                champagneList = Arrays.copyOf(champagneList, champagneList.length + 5);
+            }
+            //Adds stock to list and increases the position to the next location
+            champagneList[champagne] = stock;
+            champagne++;
         }
         else {
             System.out.println("You do not have admin privileges.\n");
