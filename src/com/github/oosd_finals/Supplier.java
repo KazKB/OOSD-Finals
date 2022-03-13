@@ -239,6 +239,121 @@ public class Supplier {
                                     """,
                             this.invoiceNumber, formatter.format(date), this.supplierName, item.toUpperCase(), Double.parseDouble(this.supplierItemList[j][1]), quantity, invoiceTotal);
                 }
+                else if (user.checkIfJuiceInStock(item)) {
+                    this.invoiceNumber += 1;
+                    invoiceTotal = Double.parseDouble(this.supplierItemList[j][1]) * quantity;
+
+                    User.setWallet(User.getWallet() - invoiceTotal);
+
+                    //Add to the amount of stock owned
+                    user.addQuantityToJuiceStock(item, quantity);
+
+                    System.out.printf(
+                            """
+                                    Invoice Number: %d
+                                    Date: %s
+                                    Supplier: %s
+
+                                    Item: %s
+                                    Price: $%.2f
+                                    Quantity: %dl/ml
+                                    Total: $%.2f
+
+                                    """,
+                            this.invoiceNumber, formatter.format(date), this.supplierName, item.toUpperCase(), Double.parseDouble(this.supplierItemList[j][1]), quantity, invoiceTotal);
+                }
+                else if (user.checkIfSodaInStock(item)) {
+                    this.invoiceNumber += 1;
+                    invoiceTotal = Double.parseDouble(this.supplierItemList[j][1]) * quantity;
+
+                    User.setWallet(User.getWallet() - invoiceTotal);
+
+                    //Add to the amount of stock owned
+                    user.addQuantityToSodaStock(item, quantity);
+
+                    System.out.printf(
+                            """
+                                    Invoice Number: %d
+                                    Date: %s
+                                    Supplier: %s
+
+                                    Item: %s
+                                    Price: $%.2f
+                                    Quantity: %dl/ml
+                                    Total: $%.2f
+
+                                    """,
+                            this.invoiceNumber, formatter.format(date), this.supplierName, item.toUpperCase(), Double.parseDouble(this.supplierItemList[j][1]), quantity, invoiceTotal);
+                }
+                else if (user.checkIfWaterInStock(item)) {
+                    this.invoiceNumber += 1;
+                    invoiceTotal = Double.parseDouble(this.supplierItemList[j][1]) * quantity;
+
+                    User.setWallet(User.getWallet() - invoiceTotal);
+
+                    //Add to the amount of stock owned
+                    user.addQuantityToWaterStock(item, quantity);
+
+                    System.out.printf(
+                            """
+                                    Invoice Number: %d
+                                    Date: %s
+                                    Supplier: %s
+
+                                    Item: %s
+                                    Price: $%.2f
+                                    Quantity: %dl/ml
+                                    Total: $%.2f
+
+                                    """,
+                            this.invoiceNumber, formatter.format(date), this.supplierName, item.toUpperCase(), Double.parseDouble(this.supplierItemList[j][1]), quantity, invoiceTotal);
+                }
+                else if (user.checkIfWineInStock(item)) {
+                    this.invoiceNumber += 1;
+                    invoiceTotal = Double.parseDouble(this.supplierItemList[j][1]) * quantity;
+
+                    User.setWallet(User.getWallet() - invoiceTotal);
+
+                    //Add to the amount of stock owned
+                    user.addQuantityToWineStock(item, quantity);
+
+                    System.out.printf(
+                            """
+                                    Invoice Number: %d
+                                    Date: %s
+                                    Supplier: %s
+
+                                    Item: %s
+                                    Price: $%.2f
+                                    Quantity: %dl/ml
+                                    Total: $%.2f
+
+                                    """,
+                            this.invoiceNumber, formatter.format(date), this.supplierName, item.toUpperCase(), Double.parseDouble(this.supplierItemList[j][1]), quantity, invoiceTotal);
+                }
+                else if (user.checkIfChampagneInStock(item)) {
+                    this.invoiceNumber += 1;
+                    invoiceTotal = Double.parseDouble(this.supplierItemList[j][1]) * quantity;
+
+                    User.setWallet(User.getWallet() - invoiceTotal);
+
+                    //Add to the amount of stock owned
+                    user.addQuantityToChampagneStock(item, quantity);
+
+                    System.out.printf(
+                            """
+                                    Invoice Number: %d
+                                    Date: %s
+                                    Supplier: %s
+
+                                    Item: %s
+                                    Price: $%.2f
+                                    Quantity: %dl/ml
+                                    Total: $%.2f
+
+                                    """,
+                            this.invoiceNumber, formatter.format(date), this.supplierName, item.toUpperCase(), Double.parseDouble(this.supplierItemList[j][1]), quantity, invoiceTotal);
+                }
                 else {
                     System.out.println(item.toUpperCase() + " is not in stock.\n");
                 }

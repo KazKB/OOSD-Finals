@@ -808,6 +808,18 @@ public class User {
         return juiceList[k];
     }
 
+    public Soda getSodaStock(String stock) {
+        int k = 0;
+
+        //Cycles through array until target is found, end has reached or the next item is null
+        while ((!sodaList[k].getItemName().equalsIgnoreCase(stock)) && (k < soda) && (sodaList[k + 1] != null)) {
+            k++;
+        }
+
+        //Returns target if found
+        return sodaList[k];
+    }
+
     public Water getWaterStock(String stock) {
         int k = 0;
 

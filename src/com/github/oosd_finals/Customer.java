@@ -133,6 +133,26 @@ public class Customer {
                     user.addQuantityToSpiritStock(item, quantity);
                     User.setWallet(User.getWallet() - Double.parseDouble(this.purchasedItemsList[j][1]) * Double.parseDouble(this.purchasedItemsList[j][2]));
                 }
+                else if (user.checkIfJuiceInStock(item)) {
+                    user.addQuantityToJuiceStock(item, quantity);
+                    User.setWallet(User.getWallet() - Double.parseDouble(this.purchasedItemsList[j][1]) * Double.parseDouble(this.purchasedItemsList[j][2]));
+                }
+                else if (user.checkIfSodaInStock(item)) {
+                    user.addQuantityToSodaStock(item, quantity);
+                    User.setWallet(User.getWallet() - Double.parseDouble(this.purchasedItemsList[j][1]) * Double.parseDouble(this.purchasedItemsList[j][2]));
+                }
+                else if (user.checkIfWaterInStock(item)) {
+                    user.addQuantityToWaterStock(item, quantity);
+                    User.setWallet(User.getWallet() - Double.parseDouble(this.purchasedItemsList[j][1]) * Double.parseDouble(this.purchasedItemsList[j][2]));
+                }
+                else if (user.checkIfWineInStock(item)) {
+                    user.addQuantityToWineStock(item, quantity);
+                    User.setWallet(User.getWallet() - Double.parseDouble(this.purchasedItemsList[j][1]) * Double.parseDouble(this.purchasedItemsList[j][2]));
+                }
+                else if (user.checkIfChampagneInStock(item)) {
+                    user.addQuantityToChampagneStock(item, quantity);
+                    User.setWallet(User.getWallet() - Double.parseDouble(this.purchasedItemsList[j][1]) * Double.parseDouble(this.purchasedItemsList[j][2]));
+                }
 
                 if ((this.purchasedItemsList[j][0].equalsIgnoreCase(item)) && (this.purchasedItemsList[j][2].equalsIgnoreCase(String.valueOf(quantity)))) {
                     String[][] temp = new String[this.purchasedItemsList.length][3];
@@ -236,6 +256,131 @@ public class Customer {
             //Adds item to the purchased item list
             user.removeQuantityFromSpiritStock(item, quantity);
             addPurchasedItem(item, user.getSpiritStock(item).getItemPrice(), quantity);
+            salesReceiptTotal = Double.parseDouble(this.purchasedItemsList[i - 1][1]) * quantity;
+
+            User.setWallet(User.getWallet() + salesReceiptTotal);
+
+            System.out.printf(
+                    """
+                    Sales Receipt: %d
+                    Date: %s
+                    Customer: %s
+
+                    Item: %s
+                    Price: $%.2f
+                    Quantity: %dl/ml
+                    Total: $%.2f
+                    
+                    """,
+                    this.salesReceiptNumber, formatter.format(date), this.customerName, item.toUpperCase(), Double.parseDouble(this.purchasedItemsList[i - 1][1]), quantity, salesReceiptTotal);
+        }
+        else if (user.checkIfJuiceInStock(item)) {
+            this.salesReceiptNumber += 1;
+
+            //Removes from the amount owned
+            //Adds item to the purchased item list
+            user.removeQuantityFromJuiceStock(item, quantity);
+            addPurchasedItem(item, user.getJuiceStock(item).getItemPrice(), quantity);
+            salesReceiptTotal = Double.parseDouble(this.purchasedItemsList[i - 1][1]) * quantity;
+
+            User.setWallet(User.getWallet() + salesReceiptTotal);
+
+            System.out.printf(
+                    """
+                    Sales Receipt: %d
+                    Date: %s
+                    Customer: %s
+
+                    Item: %s
+                    Price: $%.2f
+                    Quantity: %dl/ml
+                    Total: $%.2f
+                    
+                    """,
+                    this.salesReceiptNumber, formatter.format(date), this.customerName, item.toUpperCase(), Double.parseDouble(this.purchasedItemsList[i - 1][1]), quantity, salesReceiptTotal);
+        }
+        else if (user.checkIfSodaInStock(item)) {
+            this.salesReceiptNumber += 1;
+
+            //Removes from the amount owned
+            //Adds item to the purchased item list
+            user.removeQuantityFromSodaStock(item, quantity);
+            addPurchasedItem(item, user.getSodaStock(item).getItemPrice(), quantity);
+            salesReceiptTotal = Double.parseDouble(this.purchasedItemsList[i - 1][1]) * quantity;
+
+            User.setWallet(User.getWallet() + salesReceiptTotal);
+
+            System.out.printf(
+                    """
+                    Sales Receipt: %d
+                    Date: %s
+                    Customer: %s
+
+                    Item: %s
+                    Price: $%.2f
+                    Quantity: %dl/ml
+                    Total: $%.2f
+                    
+                    """,
+                    this.salesReceiptNumber, formatter.format(date), this.customerName, item.toUpperCase(), Double.parseDouble(this.purchasedItemsList[i - 1][1]), quantity, salesReceiptTotal);
+        }
+        else if (user.checkIfWaterInStock(item)) {
+            this.salesReceiptNumber += 1;
+
+            //Removes from the amount owned
+            //Adds item to the purchased item list
+            user.removeQuantityFromWaterStock(item, quantity);
+            addPurchasedItem(item, user.getWaterStock(item).getItemPrice(), quantity);
+            salesReceiptTotal = Double.parseDouble(this.purchasedItemsList[i - 1][1]) * quantity;
+
+            User.setWallet(User.getWallet() + salesReceiptTotal);
+
+            System.out.printf(
+                    """
+                    Sales Receipt: %d
+                    Date: %s
+                    Customer: %s
+
+                    Item: %s
+                    Price: $%.2f
+                    Quantity: %dl/ml
+                    Total: $%.2f
+                    
+                    """,
+                    this.salesReceiptNumber, formatter.format(date), this.customerName, item.toUpperCase(), Double.parseDouble(this.purchasedItemsList[i - 1][1]), quantity, salesReceiptTotal);
+        }
+        else if (user.checkIfWineInStock(item)) {
+            this.salesReceiptNumber += 1;
+
+            //Removes from the amount owned
+            //Adds item to the purchased item list
+            user.removeQuantityFromWineStock(item, quantity);
+            addPurchasedItem(item, user.getWineStock(item).getItemPrice(), quantity);
+            salesReceiptTotal = Double.parseDouble(this.purchasedItemsList[i - 1][1]) * quantity;
+
+            User.setWallet(User.getWallet() + salesReceiptTotal);
+
+            System.out.printf(
+                    """
+                    Sales Receipt: %d
+                    Date: %s
+                    Customer: %s
+
+                    Item: %s
+                    Price: $%.2f
+                    Quantity: %dl/ml
+                    Total: $%.2f
+                    
+                    """,
+                    this.salesReceiptNumber, formatter.format(date), this.customerName, item.toUpperCase(), Double.parseDouble(this.purchasedItemsList[i - 1][1]), quantity, salesReceiptTotal);
+        }
+        else if (user.checkIfChampagneInStock(item)) {
+            this.salesReceiptNumber += 1;
+
+            //Removes from the amount owned
+            //Adds item to the purchased item list
+            user.removeQuantityFromChampagneStock(item, quantity);
+            addPurchasedItem(item, user.getChampagneStock(item).getItemPrice(), quantity);
             salesReceiptTotal = Double.parseDouble(this.purchasedItemsList[i - 1][1]) * quantity;
 
             User.setWallet(User.getWallet() + salesReceiptTotal);
