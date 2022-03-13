@@ -450,6 +450,76 @@ public class User {
         }
     }
 
+    public void viewJuiceList() {
+        //Checks if list is empty
+        if (juiceList[0] == null) {
+            System.out.println("No juice is in stock.\n");
+        }
+        else {
+            //If not empty print what is in the list's name
+            for (int k = 0; k < juice; k++) {
+                System.out.println(juiceList[k].getItemName().toUpperCase());
+            }
+            System.out.println();
+        }
+    }
+
+    public void viewSodaList() {
+        //Checks if list is empty
+        if (sodaList[0] == null) {
+            System.out.println("No soda is in stock.\n");
+        }
+        else {
+            //If not empty print what is in the list's name
+            for (int k = 0; k < soda; k++) {
+                System.out.println(sodaList[k].getItemName().toUpperCase());
+            }
+            System.out.println();
+        }
+    }
+
+    public void viewWaterList() {
+        //Checks if list is empty
+        if (waterList[0] == null) {
+            System.out.println("No water is in stock.\n");
+        }
+        else {
+            //If not empty print what is in the list's name
+            for (int k = 0; k < water; k++) {
+                System.out.println(waterList[k].getItemName().toUpperCase());
+            }
+            System.out.println();
+        }
+    }
+
+    public void viewWineList() {
+        //Checks if list is empty
+        if (wineList[0] == null) {
+            System.out.println("No wine is in stock.\n");
+        }
+        else {
+            //If not empty print what is in the list's name
+            for (int k = 0; k < wine; k++) {
+                System.out.println(wineList[k].getItemName().toUpperCase());
+            }
+            System.out.println();
+        }
+    }
+
+    public void viewChampagneList() {
+        //Checks if list is empty
+        if (champagneList[0] == null) {
+            System.out.println("No champagne is in stock.\n");
+        }
+        else {
+            //If not empty print what is in the list's name
+            for (int k = 0; k < champagne; k++) {
+                System.out.println(champagneList[k].getItemName().toUpperCase());
+            }
+            System.out.println();
+        }
+    }
+
     public boolean checkIfBeerInStock(String stock) {
         int k = 0;
 
