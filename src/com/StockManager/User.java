@@ -88,7 +88,7 @@ public class User {
         if (this.userType.equalsIgnoreCase("admin")) {
             if (beerList[0] != null) {
                 //Cycles through until the end of the array or until the particular beer is found
-                while (!beerList[k].getItemName().equalsIgnoreCase(beer.getItemName()) && k < i - 1) {
+                while ((!beerList[k].getItemName().equalsIgnoreCase(beer.getItemName())) && (k < i - 1)) {
                     k++;
                 }
                 //If target is found, remove it and the rest beer after it from the list
@@ -98,11 +98,11 @@ public class User {
                     System.arraycopy(beerList, k + 1, beerList, k, i);
                     i--;
                 } else {
-                    System.out.println(beer.getItemName().toUpperCase() + " is not in beer.\n");
+                    System.out.println(beer.getItemName().toUpperCase() + " is not in stock.\n");
                 }
             }
             else {
-                System.out.println("Beer List is empty.\n");
+                System.out.println("No beer is in stock.\n");
             }
         }
         else {
@@ -112,8 +112,8 @@ public class User {
 
     public void viewStockList() {
         //Checks if beer list is empty
-        if (beerList[0].getItemName().equals("")) {
-            System.out.println("Beer List is empty.\n");
+        if (beerList[0] == null) {
+            System.out.println("No beer is in stock.\n");
         }
         else {
             //If not empty print what is in the list's name
@@ -128,7 +128,7 @@ public class User {
         int k = 0;
 
         //Cycles through array until target is found, end was reached or the next item is null
-        while (!beerList[k].getItemName().equalsIgnoreCase(beer) && k < i && beerList[k + 1] != null) {
+        while ((!beerList[k].getItemName().equalsIgnoreCase(beer)) && (k < i) && (beerList[k + 1] != null)) {
             k++;
         }
 
@@ -140,7 +140,7 @@ public class User {
         int k = 0;
 
         //Cycles through array until target is found, end has reached or the next item is null
-        while (!beerList[k].getItemName().equalsIgnoreCase(beer) && k < i && beerList[k + 1] != null) {
+        while ((!beerList[k].getItemName().equalsIgnoreCase(beer)) && (k < i) && (beerList[k + 1] != null)) {
             k++;
         }
 
@@ -152,7 +152,7 @@ public class User {
         int k = 0;
 
         //Cycles through array until beer is found, end was reached or the next item is null
-        while (!beerList[k].getItemName().equalsIgnoreCase(beer) && k < i && beerList[k + 1] != null) {
+        while ((!beerList[k].getItemName().equalsIgnoreCase(beer)) && (k < i) && (beerList[k + 1] != null)) {
             k++;
         }
 
@@ -164,7 +164,7 @@ public class User {
         int k = 0;
 
         //Cycles through array until beer is found, end has reached or the next item is null
-        while (!beerList[k].getItemName().equalsIgnoreCase(beer) && k < i && beerList[k + 1] != null) {
+        while ((!beerList[k].getItemName().equalsIgnoreCase(beer)) && (k < i) && (beerList[k + 1] != null)) {
             k++;
         }
 

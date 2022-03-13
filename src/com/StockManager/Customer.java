@@ -120,11 +120,11 @@ public class Customer {
 
                 //Searches for the position of the target if it is in the purchasable items list
                 //Or runs till the end of the array or if the next position is null
-                while (!(this.purchasedItemsList[j][0].equalsIgnoreCase(item)) && !(this.purchasedItemsList[j][2].equalsIgnoreCase(String.valueOf(quantity))) && j < this.purchasedItemsList.length - 1 && this.purchasedItemsList[j + 1][0] != null) {
+                while ((!(this.purchasedItemsList[j][0].equalsIgnoreCase(item))) && (!(this.purchasedItemsList[j][2].equalsIgnoreCase(String.valueOf(quantity)))) && (j < this.purchasedItemsList.length - 1) && (this.purchasedItemsList[j + 1][0] != null)) {
                     j++;
                 }
 
-                if (this.purchasedItemsList[j][0].equalsIgnoreCase(item) && this.purchasedItemsList[j][2].equalsIgnoreCase(String.valueOf(quantity))) {
+                if ((this.purchasedItemsList[j][0].equalsIgnoreCase(item)) && (this.purchasedItemsList[j][2].equalsIgnoreCase(String.valueOf(quantity)))) {
                     String[][] temp = new String[this.purchasedItemsList.length][3];
                     int l = 0;
 
@@ -165,7 +165,7 @@ public class Customer {
             }
         }
         else {
-            System.out.println("Do not have admin privileges.\n");
+            System.out.println("You do not have admin privileges.\n");
         }
     }
 

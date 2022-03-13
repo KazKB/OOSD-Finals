@@ -95,7 +95,7 @@ public class Supplier {
             i++;
         }
         else {
-            System.out.println("Do not have admin privileges.\n");
+            System.out.println("You do not have admin privileges.\n");
         }
     }
 
@@ -108,7 +108,7 @@ public class Supplier {
 
                 //Searches for the position of the target if it is in the purchasable items list
                 //Or runs till the end of the array or if the next position is null
-                while (!(this.supplierItemList[j][0].equalsIgnoreCase(item)) && j < this.supplierItemList.length - 1 && this.supplierItemList[j + 1][0] != null) {
+                while ((!(this.supplierItemList[j][0].equalsIgnoreCase(item))) && (j < this.supplierItemList.length - 1) && (this.supplierItemList[j + 1][0] != null)) {
                     j++;
                 }
 
@@ -150,7 +150,7 @@ public class Supplier {
             }
         }
         else {
-            System.out.println("Do not have admin privileges.\n");
+            System.out.println("You do not have admin privileges.\n");
         }
     }
 
@@ -181,7 +181,7 @@ public class Supplier {
         //Checks if item is the sellable items
         //If the end of the array is found
         //If the next position contains nothing
-        while (!(this.supplierItemList[j][0].equalsIgnoreCase(item)) && j < this.supplierItemList.length - 1 && this.supplierItemList[j + 1][0] != null) {
+        while ((!(this.supplierItemList[j][0].equalsIgnoreCase(item))) && (j < this.supplierItemList.length - 1) && (this.supplierItemList[j + 1][0] != null)) {
             j++;
         }
 
@@ -213,7 +213,7 @@ public class Supplier {
                             this.invoiceNumber, formatter.format(date), this.supplierName, item.toUpperCase(), Double.parseDouble(this.supplierItemList[j][1]), quantity, invoiceTotal);
                 }
                 else {
-                    System.out.println(item.toUpperCase() + " is not in the stock list.\n");
+                    System.out.println(item.toUpperCase() + " is not in stock.\n");
                 }
             }
             else {
