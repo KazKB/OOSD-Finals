@@ -1,35 +1,40 @@
 package com.github.oosd_finals;
 
+import java.util.Scanner;
+
 public class TestDriver {
+    public static Scanner ansScanner = new Scanner(System.in);
+    public static boolean answer = false;
+    public static String ans = "";
+
+    static void entry() {
+        do {
+            System.out.print("Do want to sign-up(s) or login(l): ");
+            ans = String.valueOf(ansScanner.next().charAt(0));
+        } while (!((ans.equalsIgnoreCase("s")) || (ans.equalsIgnoreCase("l"))));
+    }
+
+    static void exit() {
+        System.out.print("Do you want to re-login or sign-up (y/n): ");
+        ans = ansScanner.next();
+
+        if ((ans.equalsIgnoreCase("y"))) {
+            answer = true;
+        }
+        else if (ans.equalsIgnoreCase("n")) {
+            System.exit(0);
+        }
+        else {
+            System.out.println("Enter a y or n please.");
+            exit();
+        }
+    }
+
     public static void main(String[] args) {
-        User user = new User("admin", "sd");
-        Beer beer = new Beer("Beer", "Beer", "Beer", 10, user);
-        Spirit spirit = new Spirit("Spirit", "Spirit", "Spirit", 15, user);
+        do {
+            entry();
 
-        user.addToStockList(beer);
-        user.addToStockList(spirit);
-
-        Supplier supplier = new Supplier("Supplier", "e", "n", user);
-        supplier.addPurchasableItem("Beer", "5", user);
-        supplier.addPurchasableItem("Spirit", "10", user);
-        supplier.createAndPrintInvoice("Beer", 5, user);
-        supplier.createAndPrintInvoice("Spirit", 5, user);
-
-        System.out.println(user.printProfitAndLoss());
-
-        Customer customer = new Customer("Customer", "e", "n", user);
-        customer.createAndPrintSalesReceipt("Beer", 5, user);
-        customer.createAndPrintSalesReceipt("Spirit", 5, user);
-
-        System.out.println(user.printProfitAndLoss());
-
-        customer.printPurchasedItems();
-        customer.removePurchasedItem("Beer", 5, user);
-        customer.removePurchasedItem("Spirit", 5, user);
-
-        System.out.println(beer);
-        System.out.println(spirit);
-
-        System.out.println(user.printProfitAndLoss());
+            exit();
+        } while (answer);
     }
 }
