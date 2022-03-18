@@ -1,5 +1,8 @@
 package com.github.oosd_finals;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class TestDriver {
@@ -14,25 +17,57 @@ public class TestDriver {
         } while (!((ans.equalsIgnoreCase("s")) || (ans.equalsIgnoreCase("l"))));
     }
 
-    static void entry() {
+    static void entrySignIn() throws IOException {
         String[] signInCredentials = new String[6];
+        File user = new File("user.txt");
+
+        user.createNewFile();
+        Scanner fileReader = new Scanner(user);
+        fileReader.useDelimiter("\r\n|,");
+        FileWriter writer = new FileWriter(user, true);
+
         if (ans.equalsIgnoreCase("s")) {
             System.out.print("Enter your first name: ");
-            signInCredentials[0] = ansScanner.next();
+            signInCredentials[0] = ansScanner.next().trim();
             System.out.print("Enter your last name: ");
-            signInCredentials[1] = ansScanner.next();
+            signInCredentials[1] = ansScanner.next().trim();
             System.out.print("Enter your email: ");
-            signInCredentials[2] = ansScanner.next();
+            signInCredentials[2] = ansScanner.next().trim();
             do {
                 System.out.print("Enter your account type (admin/regular): ");
-                signInCredentials[3] = ansScanner.next();
-            } while (!((signInCredentials[3].equalsIgnoreCase("admin")) || (signInCredentials[3].equalsIgnoreCase("regular"))));
+                signInCredentials[3] = String.valueOf(ansScanner.next().charAt(0));
+            } while (!((signInCredentials[3].equalsIgnoreCase("a")) || (signInCredentials[3].equalsIgnoreCase("r"))));
             System.out.print("Enter your ID: ");
-            signInCredentials[4] = ansScanner.next();
+            signInCredentials[4] = ansScanner.next().trim();
             do {
                 System.out.print("Enter your password (at least 8 characters: ");
-                signInCredentials[5] = ansScanner.next();
+                signInCredentials[5] = ansScanner.next().trim();
             } while (signInCredentials[5].length() < 8);
+
+
+            if (user.length() > 0) {
+                while (fileReader.hasNext()) {
+                    if (fileReader.next().equals(signInCredentials[4])) {
+                        entrySignIn();
+                    }
+
+                    fileReader.next();
+                }
+
+                for (int i = 0; i < signInCredentials.length-1; i++) {
+                    writer.append(signInCredentials[i]).append(",");
+                }
+                writer.append(signInCredentials[5]);
+            }
+            else {
+                for (int i = 0; i < signInCredentials.length-1; i++) {
+                    writer.append(signInCredentials[i]).append(",");
+                }
+                writer.append(signInCredentials[5]);
+            }
+
+            writer.append("\n");
+            writer.close();
         }
     }
 
@@ -52,11 +87,13 @@ public class TestDriver {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         do {
             genesis();
+            System.out.println();
 
-            entry();
+            entrySignIn();
+            System.out.println();
 
             exit();
         } while (answer);
