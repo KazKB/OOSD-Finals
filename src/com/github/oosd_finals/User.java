@@ -15,7 +15,7 @@ public class User {
     private static Champagne[] champagneList = new Champagne[10];
     private static Supplier[] suppliers = new Supplier[10];
     private static Customer[] customers = new Customer[10];
-    private static int beer = 0, spirit = 0, juice = 0, soda = 0, water = 0, wine = 0, champagne = 0, supplier = 0, customer = 0;
+    private static int beer, spirit, juice, soda, water, wine, champagne, supplier, customer;
     private static double wallet;
 
     public User() {
@@ -77,13 +77,11 @@ public class User {
         return s;
     }
 
-
-
     public void addToSuppliers(Supplier person) {
          if(this.getUserType().equalsIgnoreCase("a")) {
             //Increases list's max size when capacity is reached
             if (supplier >= suppliers.length) {
-                suppliers = Arrays.copyOf(suppliers, suppliers.length + 5);
+                suppliers = Arrays.copyOf(suppliers, suppliers.length + 1);
             }
             //Adds supplier to list and increases the position to the next location
             suppliers[supplier] = person;
@@ -98,7 +96,7 @@ public class User {
          if(this.getUserType().equalsIgnoreCase("a")) {
             //Increases list's max size when capacity is reached
             if (customer >= customers.length) {
-                customers = Arrays.copyOf(customers, customers.length + 5);
+                customers = Arrays.copyOf(customers, customers.length + 1);
             }
             //Adds customer to list and increases the position to the next location
             customers[customer] = person;
@@ -113,7 +111,7 @@ public class User {
         if(this.getUserType().equalsIgnoreCase("a")) {
             //Increases list's max size when capacity is reached
             if (beer >= beerList.length) {
-                beerList = Arrays.copyOf(beerList, beerList.length + 5);
+                beerList = Arrays.copyOf(beerList, beerList.length + 1);
             }
             //Adds stock to list and increases the position to the next location
             beerList[beer] = stock;
@@ -128,7 +126,7 @@ public class User {
          if(this.getUserType().equalsIgnoreCase("a")) {
             //Increases list's max size when capacity is reached
             if (spirit >= spiritList.length) {
-                spiritList = Arrays.copyOf(spiritList, spiritList.length + 5);
+                spiritList = Arrays.copyOf(spiritList, spiritList.length + 1);
             }
             //Adds stock to list and increases the position to the next location
             spiritList[spirit] = stock;
@@ -143,7 +141,7 @@ public class User {
          if(this.getUserType().equalsIgnoreCase("a")) {
             //Increases list's max size when capacity is reached
             if (juice >= juiceList.length) {
-                juiceList = Arrays.copyOf(juiceList, juiceList.length + 5);
+                juiceList = Arrays.copyOf(juiceList, juiceList.length + 1);
             }
             //Adds stock to list and increases the position to the next location
             juiceList[juice] = stock;
@@ -158,7 +156,7 @@ public class User {
          if(this.getUserType().equalsIgnoreCase("a")) {
             //Increases list's max size when capacity is reached
             if (soda >= sodaList.length) {
-                sodaList = Arrays.copyOf(sodaList, sodaList.length + 5);
+                sodaList = Arrays.copyOf(sodaList, sodaList.length + 1);
             }
             //Adds stock to list and increases the position to the next location
             sodaList[soda] = stock;
@@ -173,7 +171,7 @@ public class User {
          if(this.getUserType().equalsIgnoreCase("a")) {
             //Increases list's max size when capacity is reached
             if (water >= waterList.length) {
-                waterList = Arrays.copyOf(waterList, waterList.length + 5);
+                waterList = Arrays.copyOf(waterList, waterList.length + 1);
             }
             //Adds stock to list and increases the position to the next location
             waterList[water] = stock;
@@ -188,7 +186,7 @@ public class User {
          if(this.getUserType().equalsIgnoreCase("a")) {
             //Increases list's max size when capacity is reached
             if (wine >= wineList.length) {
-                wineList = Arrays.copyOf(wineList, wineList.length + 5);
+                wineList = Arrays.copyOf(wineList, wineList.length + 1);
             }
             //Adds stock to list and increases the position to the next location
             wineList[wine] = stock;
@@ -203,7 +201,7 @@ public class User {
          if(this.getUserType().equalsIgnoreCase("a")) {
             //Increases list's max size when capacity is reached
             if (champagne >= champagneList.length) {
-                champagneList = Arrays.copyOf(champagneList, champagneList.length + 5);
+                champagneList = Arrays.copyOf(champagneList, champagneList.length + 1);
             }
             //Adds stock to list and increases the position to the next location
             champagneList[champagne] = stock;
@@ -382,7 +380,6 @@ public class User {
         }
     }
 
-
     public void removeFromWaterList(String stock) {
         int k = 0;
 
@@ -411,7 +408,6 @@ public class User {
         }
     }
 
-
     public void removeFromWineList(String stock) {
         int k = 0;
 
@@ -439,7 +435,6 @@ public class User {
             System.out.println("You do not have admin privileges.\n");
         }
     }
-
 
     public void removeFromChampagneList(String stock) {
         int k = 0;

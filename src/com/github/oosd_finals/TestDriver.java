@@ -31,7 +31,7 @@ public class TestDriver {
     static void entrySignIn() throws IOException {
         String[] signInCredentials = new String[6];
         Scanner fileReader = new Scanner(userFile);
-        fileReader.useDelimiter("\n|,");
+        fileReader.useDelimiter("[\n,]");
         FileWriter writer = new FileWriter(userFile, true);
 
         userFile.createNewFile();
@@ -88,7 +88,7 @@ public class TestDriver {
 
     static void entryLogIn() throws IOException {
         Scanner fileReader = new Scanner(userFile);
-        fileReader.useDelimiter("\n|,");
+        fileReader.useDelimiter("[\n,]");
 
         userFile.createNewFile();
 
@@ -177,12 +177,13 @@ public class TestDriver {
                 1. Add Item To Stock List
                 2. Remove Item From Stock List
                 3. View Stock Lists
-                4. Back to Menu Selection""");
+                4. View Profit/Loss
+                5. Back to Menu Selection""");
         System.out.print("Enter number: ");
         choice = ansScanner.nextInt();
 
         Scanner fileReader = new Scanner(userFile);
-        fileReader.useDelimiter("\n|,");
+        fileReader.useDelimiter("[\n,]");
         String[] userCredentials = new String[6];
         int i = 0;
 
@@ -226,7 +227,7 @@ public class TestDriver {
                 do {
                     System.out.print("Enter item's price: $");
                     stockPrice = ansScanner.nextDouble();
-                } while (stockPrice == 0);
+                } while (stockPrice == 0.0);
 
                 do {
                     System.out.print("Enter item's category (beer, champagne, juice, soda, spirit, water, wine): ");
@@ -424,6 +425,11 @@ public class TestDriver {
                     userMenu();
                 }
             case 4:
+                System.out.println();
+                System.out.println(user.printProfitAndLoss());
+                System.out.println();
+                menuSelection();
+            case 5:
                 System.out.println();
                 menuSelection();
         }

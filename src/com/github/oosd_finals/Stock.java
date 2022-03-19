@@ -10,7 +10,6 @@ public abstract class Stock {
     protected double itemPrice;
 
     protected Stock() {
-        this.itemName = "null";
     }
 
     protected Stock(String name, double price, @NotNull User user) {

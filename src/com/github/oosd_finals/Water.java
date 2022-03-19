@@ -6,7 +6,6 @@ public class Water extends Stock {
     private final String ITEM_CATEGORY = "Water";
 
     public Water() {
-        this.itemName = "null";
     }
 
     public Water(String name, double price, @NotNull User user) {

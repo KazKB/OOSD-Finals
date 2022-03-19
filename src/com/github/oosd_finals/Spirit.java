@@ -6,7 +6,6 @@ public class Spirit extends Stock {
     private final String ITEM_CATEGORY = "Spirit";
 
     public Spirit() {
-        this.itemName = "null";
     }
 
     public Spirit(String name, double price, @NotNull User user) {
