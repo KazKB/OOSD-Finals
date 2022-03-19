@@ -5,7 +5,7 @@ import java.util.Arrays;
 import static java.lang.Math.abs;
 
 public class User {
-    private String userName, userEmail, userID, userType, password;
+    private String userID, userType;
     private static Beer[] beerList = new Beer[10];
     private static Spirit[] spiritList = new Spirit[10];
     private static Juice[] juiceList = new Juice[10];
@@ -13,7 +13,9 @@ public class User {
     private static Water[] waterList = new Water[10];
     private static Wine[] wineList = new Wine[10];
     private static Champagne[] champagneList = new Champagne[10];
-    private static int beer = 0, spirit = 0, juice = 0, soda = 0, water = 0, wine = 0, champagne = 0;
+    private static Supplier[] suppliers = new Supplier[10];
+    private static Customer[] customers = new Customer[10];
+    private static int beer = 0, spirit = 0, juice = 0, soda = 0, water = 0, wine = 0, champagne = 0, supplier = 0, customer = 0;
     private static double wallet;
 
     public User() {
@@ -24,6 +26,8 @@ public class User {
         waterList[0] = new Water();
         wineList[0] = new Wine();
         champagneList[0] = new Champagne();
+        suppliers[0] = new Supplier(this);
+        customers[0] = new Customer(this);
     }
 
     public User(String type, String id) {
@@ -36,56 +40,11 @@ public class User {
         waterList[0] = new Water();
         wineList[0] = new Wine();
         champagneList[0] = new Champagne();
-    }
-
-    public User(String firstName, String lastName, String email, String id, String type, String password) {
-        this.userName = firstName + " " + lastName;
-        this.userEmail = email;
-        this.userID = id;
-        this.userType = type;
-        this.password = password;
-        beerList[0] = new Beer();
-        spiritList[0] = new Spirit();
-        juiceList[0] = new Juice();
-        sodaList[0] = new Soda();
-        waterList[0] = new Water();
-        wineList[0] = new Wine();
-        champagneList[0] = new Champagne();
+        suppliers[0] = new Supplier(this);
+        customers[0] = new Customer(this);
     }
 
     //Getters and Setters will be used to edit this Class
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public void setUserName(String firstName, String lastName) {
-        this.userName = firstName + " " + lastName;
-    }
-
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
-
-    public void setUserID(String userID) {
-        this.userID = userID;
-    }
-
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public String getUserEmail() {
-        return userEmail;
-    }
-
     public String getUserID() {
         return userID;
     }
@@ -118,8 +77,40 @@ public class User {
         return s;
     }
 
+
+
+    public void addToSuppliers(Supplier person) {
+         if(this.getUserType().equalsIgnoreCase("a")) {
+            //Increases list's max size when capacity is reached
+            if (supplier >= suppliers.length) {
+                suppliers = Arrays.copyOf(suppliers, suppliers.length + 5);
+            }
+            //Adds supplier to list and increases the position to the next location
+            suppliers[supplier] = person;
+            supplier++;
+        }
+        else {
+            System.out.println("You do not have admin privileges.\n");
+        }
+    }
+
+    public void addToCustomers(Customer person) {
+         if(this.getUserType().equalsIgnoreCase("a")) {
+            //Increases list's max size when capacity is reached
+            if (customer >= customers.length) {
+                customers = Arrays.copyOf(customers, customers.length + 5);
+            }
+            //Adds customer to list and increases the position to the next location
+            customers[customer] = person;
+            customer++;
+        }
+        else {
+            System.out.println("You do not have admin privileges.\n");
+        }
+    }
+
     public void addToStockList(Beer stock) {
-        if (this.userType.equalsIgnoreCase("admin")) {
+        if(this.getUserType().equalsIgnoreCase("a")) {
             //Increases list's max size when capacity is reached
             if (beer >= beerList.length) {
                 beerList = Arrays.copyOf(beerList, beerList.length + 5);
@@ -134,7 +125,7 @@ public class User {
     }
 
     public void addToStockList(Spirit stock) {
-        if (this.userType.equalsIgnoreCase("admin")) {
+         if(this.getUserType().equalsIgnoreCase("a")) {
             //Increases list's max size when capacity is reached
             if (spirit >= spiritList.length) {
                 spiritList = Arrays.copyOf(spiritList, spiritList.length + 5);
@@ -149,7 +140,7 @@ public class User {
     }
 
     public void addToStockList(Juice stock) {
-        if (this.userType.equalsIgnoreCase("admin")) {
+         if(this.getUserType().equalsIgnoreCase("a")) {
             //Increases list's max size when capacity is reached
             if (juice >= juiceList.length) {
                 juiceList = Arrays.copyOf(juiceList, juiceList.length + 5);
@@ -164,7 +155,7 @@ public class User {
     }
 
     public void addToStockList(Soda stock) {
-        if (this.userType.equalsIgnoreCase("admin")) {
+         if(this.getUserType().equalsIgnoreCase("a")) {
             //Increases list's max size when capacity is reached
             if (soda >= sodaList.length) {
                 sodaList = Arrays.copyOf(sodaList, sodaList.length + 5);
@@ -179,7 +170,7 @@ public class User {
     }
 
     public void addToStockList(Water stock) {
-        if (this.userType.equalsIgnoreCase("admin")) {
+         if(this.getUserType().equalsIgnoreCase("a")) {
             //Increases list's max size when capacity is reached
             if (water >= waterList.length) {
                 waterList = Arrays.copyOf(waterList, waterList.length + 5);
@@ -194,7 +185,7 @@ public class User {
     }
 
     public void addToStockList(Wine stock) {
-        if (this.userType.equalsIgnoreCase("admin")) {
+         if(this.getUserType().equalsIgnoreCase("a")) {
             //Increases list's max size when capacity is reached
             if (wine >= wineList.length) {
                 wineList = Arrays.copyOf(wineList, wineList.length + 5);
@@ -209,7 +200,7 @@ public class User {
     }
 
     public void addToStockList(Champagne stock) {
-        if (this.userType.equalsIgnoreCase("admin")) {
+         if(this.getUserType().equalsIgnoreCase("a")) {
             //Increases list's max size when capacity is reached
             if (champagne >= champagneList.length) {
                 champagneList = Arrays.copyOf(champagneList, champagneList.length + 5);
@@ -223,10 +214,66 @@ public class User {
         }
     }
 
+    public void removeFromSuppliers(String person) {
+        int k = 0;
+
+         if(this.getUserType().equalsIgnoreCase("a")) {
+            if (suppliers[0] != null) {
+                //Cycles through until the end of the array or until the target is found
+                while ((!suppliers[k].getSupplierName().equalsIgnoreCase(person)) && (k < supplier - 1)) {
+                    k++;
+                }
+                //If target is found, remove it and the rest stock after it from the list
+                //Then copy the suppliers after the list back to the list
+                //As well decrease the position for where the next stock item will be added
+                if (suppliers[k].getSupplierName().equalsIgnoreCase(person)) {
+                    System.arraycopy(suppliers, k + 1, suppliers, k, supplier);
+                    supplier--;
+                } else {
+                    System.out.println(person.toUpperCase() + " is not an added supplier.\n");
+                }
+            }
+            else {
+                System.out.println("No suppliers available.\n");
+            }
+        }
+        else {
+            System.out.println("You do not have admin privileges.\n");
+        }
+    }
+
+    public void removeFromCustomers(String person) {
+        int k = 0;
+
+         if(this.getUserType().equalsIgnoreCase("a")) {
+            if (customers[0] != null) {
+                //Cycles through until the end of the array or until the target is found
+                while ((!customers[k].getCustomerName().equalsIgnoreCase(person)) && (k < customer - 1)) {
+                    k++;
+                }
+                //If target is found, remove it and the rest stock after it from the list
+                //Then copy the suppliers after the list back to the list
+                //As well decrease the position for where the next stock item will be added
+                if (customers[k].getCustomerName().equalsIgnoreCase(person)) {
+                    System.arraycopy(customers, k + 1, customers, k, customer);
+                    customer--;
+                } else {
+                    System.out.println(person.toUpperCase() + " is not an added customer.\n");
+                }
+            }
+            else {
+                System.out.println("No customers available.\n");
+            }
+        }
+        else {
+            System.out.println("You do not have admin privileges.\n");
+        }
+    }
+
     public void removeFromBeerList(String stock) {
         int k = 0;
 
-        if (this.userType.equalsIgnoreCase("admin")) {
+         if(this.getUserType().equalsIgnoreCase("a")) {
             if (beerList[0] != null) {
                 //Cycles through until the end of the array or until the target is found
                 while ((!beerList[k].getItemName().equalsIgnoreCase(stock)) && (k < beer - 1)) {
@@ -254,7 +301,7 @@ public class User {
     public void removeFromSpiritList(String stock) {
         int k = 0;
 
-        if (this.userType.equalsIgnoreCase("admin")) {
+         if(this.getUserType().equalsIgnoreCase("a")) {
             if (spiritList[0] != null) {
                 //Cycles through until the end of the array or until the target is found
                 while ((!spiritList[k].getItemName().equalsIgnoreCase(stock)) && (k < spirit - 1)) {
@@ -282,7 +329,7 @@ public class User {
     public void removeFromJuiceList(String stock) {
         int k = 0;
 
-        if (this.userType.equalsIgnoreCase("admin")) {
+         if(this.getUserType().equalsIgnoreCase("a")) {
             if (juiceList[0] != null) {
                 //Cycles through until the end of the array or until the target is found
                 while ((!juiceList[k].getItemName().equalsIgnoreCase(stock)) && (k < juice - 1)) {
@@ -310,7 +357,7 @@ public class User {
     public void removeFromSodaList(String stock) {
         int k = 0;
 
-        if (this.userType.equalsIgnoreCase("admin")) {
+         if(this.getUserType().equalsIgnoreCase("a")) {
             if (sodaList[0] != null) {
                 //Cycles through until the end of the array or until the target is found
                 while ((!sodaList[k].getItemName().equalsIgnoreCase(stock)) && (k < soda - 1)) {
@@ -339,7 +386,7 @@ public class User {
     public void removeFromWaterList(String stock) {
         int k = 0;
 
-        if (this.userType.equalsIgnoreCase("admin")) {
+         if(this.getUserType().equalsIgnoreCase("a")) {
             if (waterList[0] != null) {
                 //Cycles through until the end of the array or until the target is found
                 while ((!waterList[k].getItemName().equalsIgnoreCase(stock)) && (k < water - 1)) {
@@ -368,7 +415,7 @@ public class User {
     public void removeFromWineList(String stock) {
         int k = 0;
 
-        if (this.userType.equalsIgnoreCase("admin")) {
+         if(this.getUserType().equalsIgnoreCase("a")) {
             if (wineList[0] != null) {
                 //Cycles through until the end of the array or until the target is found
                 while ((!wineList[k].getItemName().equalsIgnoreCase(stock)) && (k < wine - 1)) {
@@ -397,7 +444,7 @@ public class User {
     public void removeFromChampagneList(String stock) {
         int k = 0;
 
-        if (this.userType.equalsIgnoreCase("admin")) {
+         if(this.getUserType().equalsIgnoreCase("a")) {
             if (champagneList[0] != null) {
                 //Cycles through until the end of the array or until the target is found
                 while ((!champagneList[k].getItemName().equalsIgnoreCase(stock)) && (k < champagne - 1)) {
@@ -419,6 +466,34 @@ public class User {
         }
         else {
             System.out.println("You do not have admin privileges.\n");
+        }
+    }
+
+    public void viewSuppliers() {
+        //Checks if list is empty
+        if (suppliers[0] == null) {
+            System.out.println("No suppliers available.\n");
+        }
+        else {
+            //If not empty print what is in the list's name
+            for (int k = 0; k < supplier; k++) {
+                System.out.println(suppliers[k].getSupplierName().toUpperCase());
+            }
+            System.out.println();
+        }
+    }
+
+    public void viewCustomers() {
+        //Checks if list is empty
+        if (customers[0] == null) {
+            System.out.println("No customers available.\n");
+        }
+        else {
+            //If not empty print what is in the list's name
+            for (int k = 0; k < customer; k++) {
+                System.out.println(customers[k].getCustomerName().toUpperCase());
+            }
+            System.out.println();
         }
     }
 
@@ -518,6 +593,30 @@ public class User {
             }
             System.out.println();
         }
+    }
+
+    public boolean checkIfPersonInSuppliers(String person) {
+        int k = 0;
+
+        //Cycles through array until target is found, end was reached or the next item is null
+        while ((!suppliers[k].getSupplierName().equalsIgnoreCase(person)) && (k < supplier) && (suppliers[k + 1] != null)) {
+            k++;
+        }
+
+        //Returns whether the target was found or not
+        return suppliers[k].getSupplierName().equalsIgnoreCase(person);
+    }
+
+    public boolean checkIfPersonInCustomers(String person) {
+        int k = 0;
+
+        //Cycles through array until target is found, end was reached or the next item is null
+        while ((!customers[k].getCustomerName().equalsIgnoreCase(person)) && (k < customer) && (customers[k + 1] != null)) {
+            k++;
+        }
+
+        //Returns whether the target was found or not
+        return customers[k].getCustomerName().equalsIgnoreCase(person);
     }
 
     public boolean checkIfBeerInStock(String stock) {

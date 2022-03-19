@@ -11,16 +11,18 @@ public class Supplier {
     private int invoiceNumber = 0, i = 0;
     private String[][] supplierItemList = new String[10][2];
 
-    public Supplier() {}
+    public Supplier(@NotNull User user) {
+        if(user.getUserType().equalsIgnoreCase("a")) {
+            user.addToSuppliers(this);
+        }
+    }
 
     public Supplier(String name, String email, String contactNumber, @NotNull User user) {
-        if(user.getUserType().equalsIgnoreCase("admin")) {
+        if(user.getUserType().equalsIgnoreCase("a")) {
             this.supplierName = name;
             this.supplierEmail = email;
             this.supplierContactNumber = contactNumber;
-        }
-        else {
-            System.out.println("You do not have admin privileges.\n");
+            user.addToSuppliers(this);
         }
     }
 
@@ -65,7 +67,7 @@ public class Supplier {
 
     //Basically the constructor but as a method
     public void editSupplierInformation(String name, String email, String contactNumber, @NotNull User user) {
-        if(user.getUserType().equalsIgnoreCase("admin")) {
+        if(user.getUserType().equalsIgnoreCase("a")) {
             this.supplierName = name;
             this.supplierEmail = email;
             this.supplierContactNumber = contactNumber;
@@ -78,7 +80,7 @@ public class Supplier {
         //Temporary array that is 10 spaces bigger than original
         String[][] temp = new String[this.supplierItemList.length + 10][2];
 
-        if(user.getUserType().equalsIgnoreCase("admin")) {
+        if(user.getUserType().equalsIgnoreCase("a")) {
             if (i >= this.supplierItemList.length) {
                 //Loops through rows of the original 2d array and copies the columns to the temporary 2d array
                 for (int j = 0; j < this.supplierItemList.length; j++) {
@@ -192,7 +194,7 @@ public class Supplier {
         //Check if the stock list has the item in it
         //Otherwise print the corresponding error
         if (this.supplierItemList[j][0].equalsIgnoreCase(item)) {
-            if(user.getUserType().equalsIgnoreCase("admin")) {
+            if(user.getUserType().equalsIgnoreCase("a")) {
                 if (user.checkIfBeerInStock(item)) {
                     this.invoiceNumber += 1;
                     invoiceTotal = Double.parseDouble(this.supplierItemList[j][1]) * quantity;

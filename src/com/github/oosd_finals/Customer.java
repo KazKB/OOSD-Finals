@@ -11,22 +11,23 @@ public class Customer {
     private String[][] purchasedItemsList = new String[10][3];
     private int salesReceiptNumber = 0, i = 0;
 
-    public Customer() {
+    public Customer(@NotNull User user) {
+         if(user.getUserType().equalsIgnoreCase("a")) {
+            user.addToCustomers(this);
+        }
     }
 
     public Customer(String name, String email, String contactNumber, @NotNull User user) {
-        if (user.getUserType().equalsIgnoreCase("admin")) {
+         if(user.getUserType().equalsIgnoreCase("a")) {
             this.customerName = name;
             this.customerEmail = email;
             this.customerContactNumber = contactNumber;
-        }
-        else {
-            System.out.println("You do not have admin privileges.\n");
+            user.addToCustomers(this);
         }
     }
 
     public Customer(String firstName, String lastName, String email, String contactNumber, @NotNull User user) {
-        if (user.getUserType().equalsIgnoreCase("admin")) {
+         if(user.getUserType().equalsIgnoreCase("a")) {
             this.customerName = firstName + " " + lastName;
             this.customerEmail = email;
             this.customerContactNumber = contactNumber;
@@ -41,7 +42,7 @@ public class Customer {
     }
 
     public void setCustomerName(String customerName, @NotNull User user) {
-        if (user.getUserType().equalsIgnoreCase("admin")) {
+         if(user.getUserType().equalsIgnoreCase("a")) {
             this.customerName = customerName;
         }
         else {
@@ -54,7 +55,7 @@ public class Customer {
     }
 
     public void setCustomerEmail(String customerEmail, @NotNull User user) {
-        if (user.getUserType().equalsIgnoreCase("admin")) {
+         if(user.getUserType().equalsIgnoreCase("a")) {
             this.customerEmail = customerEmail;
         }
         else {
@@ -67,7 +68,7 @@ public class Customer {
     }
 
     public void setCustomerContactNumber(String customerContactNumber, @NotNull User user) {
-        if (user.getUserType().equalsIgnoreCase("admin")) {
+         if(user.getUserType().equalsIgnoreCase("a")) {
             this.customerContactNumber = customerContactNumber;
         }
         else {
@@ -77,7 +78,7 @@ public class Customer {
 
     //Basically the constructor but as a method
     public void editCustomerInformation(String name, String email, String contactNumber, @NotNull User user) {
-        if (user.getUserType().equalsIgnoreCase("admin")) {
+         if(user.getUserType().equalsIgnoreCase("a")) {
             this.customerName = name;
             this.customerEmail = email;
             this.customerContactNumber = contactNumber;
@@ -114,7 +115,7 @@ public class Customer {
 
     //Removes and item from the purchased item list
     public void removePurchasedItem(String item, int quantity, @NotNull User user) {
-        if (user.getUserType().equalsIgnoreCase("admin")) {
+         if(user.getUserType().equalsIgnoreCase("a")) {
             if (this.purchasedItemsList[0][0] != null) {
                 int j = 0;
 
@@ -218,7 +219,7 @@ public class Customer {
         }
     }
 
-    public void createAndPrintSalesReceipt (String item, int quantity, User user) {
+    public void createAndPrintSalesReceipt (String item, int quantity, @NotNull User user) {
         double salesReceiptTotal;
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
