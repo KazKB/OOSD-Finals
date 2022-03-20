@@ -13,21 +13,18 @@ public abstract class Stock {
     }
 
     protected Stock(String name, double price, @NotNull User user) {
-        if(user.getUserType().equalsIgnoreCase("admin")) {
+        if(user.getUserType().equalsIgnoreCase("a")) {
             this.itemName = name;
             this.itemPrice = price;
         }
     }
 
     protected Stock(String name, String description, String id, double price, @NotNull User user) {
-        if(user.getUserType().equalsIgnoreCase("admin")) {
+        if(user.getUserType().equalsIgnoreCase("a")) {
             this.itemName = name;
             this.itemDescription = description;
             this.itemID = id;
             this.itemPrice = price;
-        }
-        else {
-            System.out.println("You do not have admin privileges.");
         }
     }
 
@@ -37,10 +34,8 @@ public abstract class Stock {
     }
 
     protected void setItemName(String itemName, @NotNull User user) {
-        if(user.getUserType().equalsIgnoreCase("admin"))
+        if(user.getUserType().equalsIgnoreCase("a"))
             this.itemName = itemName;
-        else
-            System.out.println("You do not have admin privileges.");
     }
 
     protected String getItemDescription() {
@@ -48,10 +43,8 @@ public abstract class Stock {
     }
 
     protected void setItemDescription(String itemDescription, @NotNull User user) {
-        if(user.getUserType().equalsIgnoreCase("admin"))
+        if(user.getUserType().equalsIgnoreCase("a"))
             this.itemDescription = itemDescription;
-        else
-            System.out.println("You do not have admin privileges.");
     }
 
     protected String getItemID() {
@@ -59,7 +52,7 @@ public abstract class Stock {
     }
 
     protected void setItemID(String itemID, @NotNull User user) {
-        if(user.getUserType().equalsIgnoreCase("admin"))
+        if(user.getUserType().equalsIgnoreCase("a"))
             this.itemID = itemID;
         else
             System.out.println("You do not have admin privileges.");
@@ -70,7 +63,7 @@ public abstract class Stock {
     }
 
     protected void setItemPrice(double itemPrice, @NotNull User user) {
-        if(user.getUserType().equalsIgnoreCase("admin"))
+        if(user.getUserType().equalsIgnoreCase("a"))
             this.itemPrice = itemPrice;
         else
             System.out.println("You do not have admin privileges.");
@@ -78,7 +71,7 @@ public abstract class Stock {
 
     //Basically the constructor all over again
     protected void editItemInformation(String name, String description, String id, double price, @NotNull User user) {
-        if(user.getUserType().equalsIgnoreCase("admin")) {
+        if(user.getUserType().equalsIgnoreCase("a")) {
             this.itemName = name;
             this.itemDescription = description;
             this.itemID = id;

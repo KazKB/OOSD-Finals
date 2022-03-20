@@ -6,6 +6,7 @@ public class Beer extends Stock {
     private final String ITEM_CATEGORY = "Beer";
 
     public Beer() {
+        this.itemName = "";
     }
 
     public Beer(String name, double price, @NotNull User user) {

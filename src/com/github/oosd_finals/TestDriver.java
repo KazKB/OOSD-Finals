@@ -18,7 +18,7 @@ public class TestDriver {
         do {
             System.out.print("Do want to sign-up(s) or login(l): ");
             ans = String.valueOf(ansScanner.next().charAt(0));
-        } while (!((ans.equalsIgnoreCase("s")) || (ans.equalsIgnoreCase("l"))));
+        } while (!(ans.equalsIgnoreCase("s") || ans.equalsIgnoreCase("l")));
 
         System.out.println();
 
@@ -46,7 +46,7 @@ public class TestDriver {
         do {
             System.out.print("Enter your account type (admin/regular): ");
             signInCredentials[3] = String.valueOf(ansScanner.next().charAt(0));
-        } while (!((signInCredentials[3].equalsIgnoreCase("a")) || (signInCredentials[3].equalsIgnoreCase("r"))));
+        } while (!(signInCredentials[3].equalsIgnoreCase("a") || signInCredentials[3].equalsIgnoreCase("r")));
         System.out.print("Enter your ID: ");
         signInCredentials[4] = ansScanner.next().trim();
 
@@ -112,12 +112,12 @@ public class TestDriver {
                 if (i == 6) {
                     i = 0;
 
-                    if ((loginCredentials[4].equals(login[0])) && (loginCredentials[5].equals(login[1]))) {
+                    if (loginCredentials[4].equals(login[0]) && loginCredentials[5].equals(login[1])) {
                         user = new User(loginCredentials[3], loginCredentials[4]);
                         System.out.println();
                         menuSelection();
                     }
-                    else if (!(fileReader.hasNext())) {
+                    else if (!fileReader.hasNext()) {
                         System.out.println();
                         System.out.print("Try again(t) or Sign-up(s): ");
                         ans = String.valueOf(ansScanner.next().charAt(0));
@@ -232,7 +232,7 @@ public class TestDriver {
                 do {
                     System.out.print("Enter item's category (beer, champagne, juice, soda, spirit, water, wine): ");
                     stockCategory = ansScanner.next().trim();
-                } while (!((stockCategory.equalsIgnoreCase("beer")) || (stockCategory.equalsIgnoreCase("champagne")) || (stockCategory.equalsIgnoreCase("juice")) || (stockCategory.equalsIgnoreCase("soda")) || (stockCategory.equalsIgnoreCase("spirit")) || (stockCategory.equalsIgnoreCase("water")) || (stockCategory.equalsIgnoreCase("wine"))));
+                } while (!(stockCategory.equalsIgnoreCase("beer") || stockCategory.equalsIgnoreCase("champagne") || stockCategory.equalsIgnoreCase("juice") || stockCategory.equalsIgnoreCase("soda") || stockCategory.equalsIgnoreCase("spirit") || stockCategory.equalsIgnoreCase("water") || stockCategory.equalsIgnoreCase("wine")));
 
 
                 if (stockCategory.equalsIgnoreCase("beer")) {
@@ -316,7 +316,7 @@ public class TestDriver {
                 do {
                     System.out.print("Enter item's category (beer, champagne, juice, soda, spirit, water, wine): ");
                     stockCategory = ansScanner.next().trim();
-                } while (!((stockCategory.equalsIgnoreCase("beer")) || (stockCategory.equalsIgnoreCase("champagne")) || (stockCategory.equalsIgnoreCase("juice")) || (stockCategory.equalsIgnoreCase("soda")) || (stockCategory.equalsIgnoreCase("spirit")) || (stockCategory.equalsIgnoreCase("water")) || (stockCategory.equalsIgnoreCase("wine"))));
+                } while (!(stockCategory.equalsIgnoreCase("beer") || stockCategory.equalsIgnoreCase("champagne") || stockCategory.equalsIgnoreCase("juice") || stockCategory.equalsIgnoreCase("soda") || stockCategory.equalsIgnoreCase("spirit") || stockCategory.equalsIgnoreCase("water") || stockCategory.equalsIgnoreCase("wine")));
 
                 if (stockInformation[1].equalsIgnoreCase("beer")) {
                     if (user.checkIfBeerInStock(stockInformation[0])) {
@@ -387,7 +387,7 @@ public class TestDriver {
                 do {
                     System.out.print("Enter list category (beer, champagne, juice, soda, spirit, water, wine): ");
                     stockCategory = ansScanner.next().trim();
-                } while (!((stockCategory.equalsIgnoreCase("beer")) || (stockCategory.equalsIgnoreCase("champagne")) || (stockCategory.equalsIgnoreCase("juice")) || (stockCategory.equalsIgnoreCase("soda")) || (stockCategory.equalsIgnoreCase("spirit")) || (stockCategory.equalsIgnoreCase("water")) || (stockCategory.equalsIgnoreCase("wine"))));
+                } while (!(stockCategory.equalsIgnoreCase("beer") || stockCategory.equalsIgnoreCase("champagne") || stockCategory.equalsIgnoreCase("juice") || stockCategory.equalsIgnoreCase("soda") || stockCategory.equalsIgnoreCase("spirit") || stockCategory.equalsIgnoreCase("water") || stockCategory.equalsIgnoreCase("wine")));
 
                 if (stockCategory.equalsIgnoreCase("beer")) {
                     user.viewBeerList();

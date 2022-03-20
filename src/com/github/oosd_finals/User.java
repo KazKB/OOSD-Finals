@@ -15,8 +15,8 @@ public class User {
     private static Champagne[] champagneList = new Champagne[10];
     private static Supplier[] suppliers = new Supplier[10];
     private static Customer[] customers = new Customer[10];
-    private static int beer, spirit, juice, soda, water, wine, champagne, supplier, customer;
-    private static double wallet;
+    private static int beer = 0, spirit = 0, juice = 0, soda = 0, water = 0, wine = 0, champagne = 0, supplier = 0, customer = 0;
+    private static double wallet = 0.0;
 
     public User() {
         beerList[0] = new Beer();
@@ -218,7 +218,7 @@ public class User {
          if(this.getUserType().equalsIgnoreCase("a")) {
             if (suppliers[0] != null) {
                 //Cycles through until the end of the array or until the target is found
-                while ((!suppliers[k].getSupplierName().equalsIgnoreCase(person)) && (k < supplier - 1)) {
+                while (!suppliers[k].getSupplierName().equalsIgnoreCase(person) && k < supplier - 1) {
                     k++;
                 }
                 //If target is found, remove it and the rest stock after it from the list
@@ -246,7 +246,7 @@ public class User {
          if(this.getUserType().equalsIgnoreCase("a")) {
             if (customers[0] != null) {
                 //Cycles through until the end of the array or until the target is found
-                while ((!customers[k].getCustomerName().equalsIgnoreCase(person)) && (k < customer - 1)) {
+                while (!customers[k].getCustomerName().equalsIgnoreCase(person) && k < customer - 1) {
                     k++;
                 }
                 //If target is found, remove it and the rest stock after it from the list
@@ -274,7 +274,7 @@ public class User {
          if(this.getUserType().equalsIgnoreCase("a")) {
             if (beerList[0] != null) {
                 //Cycles through until the end of the array or until the target is found
-                while ((!beerList[k].getItemName().equalsIgnoreCase(stock)) && (k < beer - 1)) {
+                while (!beerList[k].getItemName().equalsIgnoreCase(stock) && k < beer - 1) {
                     k++;
                 }
                 //If target is found, remove it and the rest stock after it from the list
@@ -302,7 +302,7 @@ public class User {
          if(this.getUserType().equalsIgnoreCase("a")) {
             if (spiritList[0] != null) {
                 //Cycles through until the end of the array or until the target is found
-                while ((!spiritList[k].getItemName().equalsIgnoreCase(stock)) && (k < spirit - 1)) {
+                while (!spiritList[k].getItemName().equalsIgnoreCase(stock) && k < spirit - 1) {
                     k++;
                 }
                 //If target is found, remove it and the rest stock after it from the list
@@ -330,7 +330,7 @@ public class User {
          if(this.getUserType().equalsIgnoreCase("a")) {
             if (juiceList[0] != null) {
                 //Cycles through until the end of the array or until the target is found
-                while ((!juiceList[k].getItemName().equalsIgnoreCase(stock)) && (k < juice - 1)) {
+                while (!juiceList[k].getItemName().equalsIgnoreCase(stock) && k < juice - 1) {
                     k++;
                 }
                 //If target is found, remove it and the rest stock after it from the list
@@ -358,7 +358,7 @@ public class User {
          if(this.getUserType().equalsIgnoreCase("a")) {
             if (sodaList[0] != null) {
                 //Cycles through until the end of the array or until the target is found
-                while ((!sodaList[k].getItemName().equalsIgnoreCase(stock)) && (k < soda - 1)) {
+                while (!sodaList[k].getItemName().equalsIgnoreCase(stock) && k < soda - 1) {
                     k++;
                 }
                 //If target is found, remove it and the rest stock after it from the list
@@ -386,7 +386,7 @@ public class User {
          if(this.getUserType().equalsIgnoreCase("a")) {
             if (waterList[0] != null) {
                 //Cycles through until the end of the array or until the target is found
-                while ((!waterList[k].getItemName().equalsIgnoreCase(stock)) && (k < water - 1)) {
+                while (!waterList[k].getItemName().equalsIgnoreCase(stock) && k < water - 1) {
                     k++;
                 }
                 //If target is found, remove it and the rest stock after it from the list
@@ -414,7 +414,7 @@ public class User {
          if(this.getUserType().equalsIgnoreCase("a")) {
             if (wineList[0] != null) {
                 //Cycles through until the end of the array or until the target is found
-                while ((!wineList[k].getItemName().equalsIgnoreCase(stock)) && (k < wine - 1)) {
+                while (!wineList[k].getItemName().equalsIgnoreCase(stock) && k < wine - 1) {
                     k++;
                 }
                 //If target is found, remove it and the rest stock after it from the list
@@ -442,7 +442,7 @@ public class User {
          if(this.getUserType().equalsIgnoreCase("a")) {
             if (champagneList[0] != null) {
                 //Cycles through until the end of the array or until the target is found
-                while ((!champagneList[k].getItemName().equalsIgnoreCase(stock)) && (k < champagne - 1)) {
+                while (!champagneList[k].getItemName().equalsIgnoreCase(stock) && k < champagne - 1) {
                     k++;
                 }
                 //If target is found, remove it and the rest stock after it from the list
@@ -466,7 +466,7 @@ public class User {
 
     public void viewSuppliers() {
         //Checks if list is empty
-        if (suppliers[0] == null) {
+        if (suppliers[0].getSupplierName().equals("")) {
             System.out.println("No suppliers available.\n");
         }
         else {
@@ -480,7 +480,7 @@ public class User {
 
     public void viewCustomers() {
         //Checks if list is empty
-        if (customers[0] == null) {
+        if (customers[0].getCustomerName().equals("")) {
             System.out.println("No customers available.\n");
         }
         else {
@@ -494,7 +494,7 @@ public class User {
 
     public void viewBeerList() {
         //Checks if list is empty
-        if (beerList[0] == null) {
+        if (beerList[0].getItemName().equals("")) {
             System.out.println("No beer is in stock.\n");
         }
         else {
@@ -508,7 +508,7 @@ public class User {
 
     public void viewSpiritList() {
         //Checks if list is empty
-        if (spiritList[0] == null) {
+        if (spiritList[0].getItemName().equals("")) {
             System.out.println("No spirit is in stock.\n");
         }
         else {
@@ -522,7 +522,7 @@ public class User {
 
     public void viewJuiceList() {
         //Checks if list is empty
-        if (juiceList[0] == null) {
+        if (juiceList[0].getItemName().equals("")) {
             System.out.println("No juice is in stock.\n");
         }
         else {
@@ -536,7 +536,7 @@ public class User {
 
     public void viewSodaList() {
         //Checks if list is empty
-        if (sodaList[0] == null) {
+        if (sodaList[0].getItemName().equals("")) {
             System.out.println("No soda is in stock.\n");
         }
         else {
@@ -550,7 +550,7 @@ public class User {
 
     public void viewWaterList() {
         //Checks if list is empty
-        if (waterList[0] == null) {
+        if (waterList[0].getItemName().equals("")) {
             System.out.println("No water is in stock.\n");
         }
         else {
@@ -564,7 +564,7 @@ public class User {
 
     public void viewWineList() {
         //Checks if list is empty
-        if (wineList[0] == null) {
+        if (wineList[0].getItemName().equals("")) {
             System.out.println("No wine is in stock.\n");
         }
         else {
@@ -578,7 +578,7 @@ public class User {
 
     public void viewChampagneList() {
         //Checks if list is empty
-        if (champagneList[0] == null) {
+        if (champagneList[0].getItemName().equals("")) {
             System.out.println("No champagne is in stock.\n");
         }
         else {
@@ -594,7 +594,7 @@ public class User {
         int k = 0;
 
         //Cycles through array until target is found, end was reached or the next item is null
-        while ((!suppliers[k].getSupplierName().equalsIgnoreCase(person)) && (k < supplier) && (suppliers[k + 1] != null)) {
+        while (!suppliers[k].getSupplierName().equalsIgnoreCase(person) && k < supplier && suppliers[k + 1] != null) {
             k++;
         }
 
@@ -606,7 +606,7 @@ public class User {
         int k = 0;
 
         //Cycles through array until target is found, end was reached or the next item is null
-        while ((!customers[k].getCustomerName().equalsIgnoreCase(person)) && (k < customer) && (customers[k + 1] != null)) {
+        while (!customers[k].getCustomerName().equalsIgnoreCase(person) && k < customer && customers[k + 1] != null) {
             k++;
         }
 
@@ -618,7 +618,7 @@ public class User {
         int k = 0;
 
         //Cycles through array until target is found, end was reached or the next item is null
-        while ((!beerList[k].getItemName().equalsIgnoreCase(stock)) && (k < beer) && (beerList[k + 1] != null)) {
+        while (!beerList[k].getItemName().equalsIgnoreCase(stock) && k < beer && beerList[k + 1] != null) {
             k++;
         }
 
@@ -630,7 +630,7 @@ public class User {
         int k = 0;
 
         //Cycles through array until target is found, end was reached or the next item is null
-        while ((!spiritList[k].getItemName().equalsIgnoreCase(stock)) && (k < spirit) && (spiritList[k + 1] != null)) {
+        while (!spiritList[k].getItemName().equalsIgnoreCase(stock) && k < spirit && spiritList[k + 1] != null) {
             k++;
         }
 
@@ -642,7 +642,7 @@ public class User {
         int k = 0;
 
         //Cycles through array until target is found, end was reached or the next item is null
-        while ((!juiceList[k].getItemName().equalsIgnoreCase(stock)) && (k < juice) && (juiceList[k + 1] != null)) {
+        while (!juiceList[k].getItemName().equalsIgnoreCase(stock) && k < juice && juiceList[k + 1] != null) {
             k++;
         }
 
@@ -654,7 +654,7 @@ public class User {
         int k = 0;
 
         //Cycles through array until target is found, end was reached or the next item is null
-        while ((!sodaList[k].getItemName().equalsIgnoreCase(stock)) && (k < soda) && (sodaList[k + 1] != null)) {
+        while (!sodaList[k].getItemName().equalsIgnoreCase(stock) && k < soda && sodaList[k + 1] != null) {
             k++;
         }
 
@@ -666,7 +666,7 @@ public class User {
         int k = 0;
 
         //Cycles through array until target is found, end was reached or the next item is null
-        while ((!waterList[k].getItemName().equalsIgnoreCase(stock)) && (k < water) && (waterList[k + 1] != null)) {
+        while (!waterList[k].getItemName().equalsIgnoreCase(stock) && k < water && waterList[k + 1] != null) {
             k++;
         }
 
@@ -678,7 +678,7 @@ public class User {
         int k = 0;
 
         //Cycles through array until target is found, end was reached or the next item is null
-        while ((!wineList[k].getItemName().equalsIgnoreCase(stock)) && (k < wine) && (wineList[k + 1] != null)) {
+        while (!wineList[k].getItemName().equalsIgnoreCase(stock) && k < wine && wineList[k + 1] != null) {
             k++;
         }
 
@@ -690,7 +690,7 @@ public class User {
         int k = 0;
 
         //Cycles through array until target is found, end was reached or the next item is null
-        while ((!champagneList[k].getItemName().equalsIgnoreCase(stock)) && (k < champagne) && (champagneList[k + 1] != null)) {
+        while (!champagneList[k].getItemName().equalsIgnoreCase(stock) && k < champagne && champagneList[k + 1] != null) {
             k++;
         }
 
@@ -702,7 +702,7 @@ public class User {
         int k = 0;
 
         //Cycles through array until target is found, end has reached or the next item is null
-        while ((!beerList[k].getItemName().equalsIgnoreCase(stock)) && (k < beer) && (beerList[k + 1] != null)) {
+        while (!beerList[k].getItemName().equalsIgnoreCase(stock) && k < beer && beerList[k + 1] != null) {
             k++;
         }
 
@@ -714,7 +714,7 @@ public class User {
         int k = 0;
 
         //Cycles through array until target is found, end has reached or the next item is null
-        while ((!spiritList[k].getItemName().equalsIgnoreCase(stock)) && (k < spirit && (spiritList[k + 1] != null))) {
+        while (!spiritList[k].getItemName().equalsIgnoreCase(stock) && k < spirit && spiritList[k + 1] != null) {
             k++;
         }
 
@@ -726,7 +726,7 @@ public class User {
         int k = 0;
 
         //Cycles through array until target is found, end has reached or the next item is null
-        while ((!juiceList[k].getItemName().equalsIgnoreCase(stock)) && (k < juice) && (juiceList[k + 1] != null)) {
+        while (!juiceList[k].getItemName().equalsIgnoreCase(stock) && k < juice && juiceList[k + 1] != null) {
             k++;
         }
 
@@ -738,7 +738,7 @@ public class User {
         int k = 0;
 
         //Cycles through array until target is found, end has reached or the next item is null
-        while ((!sodaList[k].getItemName().equalsIgnoreCase(stock)) && (k < soda) && (sodaList[k + 1] != null)) {
+        while (!sodaList[k].getItemName().equalsIgnoreCase(stock) && k < soda && sodaList[k + 1] != null) {
             k++;
         }
 
@@ -750,7 +750,7 @@ public class User {
         int k = 0;
 
         //Cycles through array until target is found, end has reached or the next item is null
-        while ((!waterList[k].getItemName().equalsIgnoreCase(stock)) && (k < water) && (waterList[k + 1] != null)) {
+        while (!waterList[k].getItemName().equalsIgnoreCase(stock) && k < water && waterList[k + 1] != null) {
             k++;
         }
 
@@ -762,7 +762,7 @@ public class User {
         int k = 0;
 
         //Cycles through array until target is found, end has reached or the next item is null
-        while ((!wineList[k].getItemName().equalsIgnoreCase(stock)) && (k < wine) && (wineList[k + 1] != null)) {
+        while (!wineList[k].getItemName().equalsIgnoreCase(stock) && k < wine && wineList[k + 1] != null) {
             k++;
         }
 
@@ -774,7 +774,7 @@ public class User {
         int k = 0;
 
         //Cycles through array until target is found, end has reached or the next item is null
-        while ((!champagneList[k].getItemName().equalsIgnoreCase(stock)) && (k < champagne) && (champagneList[k + 1] != null)) {
+        while (!champagneList[k].getItemName().equalsIgnoreCase(stock) && k < champagne && champagneList[k + 1] != null) {
             k++;
         }
 
@@ -786,7 +786,7 @@ public class User {
         int k = 0;
 
         //Cycles through array until target is found, end was reached or the next item is null
-        while ((!beerList[k].getItemName().equalsIgnoreCase(stock)) && (k < beer) && (beerList[k + 1] != null)) {
+        while (!beerList[k].getItemName().equalsIgnoreCase(stock) && k < beer && beerList[k + 1] != null) {
             k++;
         }
 
@@ -798,7 +798,7 @@ public class User {
         int k = 0;
 
         //Cycles through array until target is found, end was reached or the next item is null
-        while ((!spiritList[k].getItemName().equalsIgnoreCase(stock)) && (k < spirit) && (spiritList[k + 1] != null)) {
+        while (!spiritList[k].getItemName().equalsIgnoreCase(stock) && k < spirit && spiritList[k + 1] != null) {
             k++;
         }
 
@@ -810,7 +810,7 @@ public class User {
         int k = 0;
 
         //Cycles through array until target is found, end was reached or the next item is null
-        while ((!juiceList[k].getItemName().equalsIgnoreCase(stock)) && (k < juice) && (juiceList[k + 1] != null)) {
+        while (!juiceList[k].getItemName().equalsIgnoreCase(stock) && k < juice && juiceList[k + 1] != null) {
             k++;
         }
 
@@ -822,7 +822,7 @@ public class User {
         int k = 0;
 
         //Cycles through array until target is found, end was reached or the next item is null
-        while ((!sodaList[k].getItemName().equalsIgnoreCase(stock)) && (k < soda) && (sodaList[k + 1] != null)) {
+        while (!sodaList[k].getItemName().equalsIgnoreCase(stock) && k < soda && sodaList[k + 1] != null) {
             k++;
         }
 
@@ -834,7 +834,7 @@ public class User {
         int k = 0;
 
         //Cycles through array until target is found, end was reached or the next item is null
-        while ((!waterList[k].getItemName().equalsIgnoreCase(stock)) && (k < water) && (waterList[k + 1] != null)) {
+        while (!waterList[k].getItemName().equalsIgnoreCase(stock) && k < water && waterList[k + 1] != null) {
             k++;
         }
 
@@ -846,7 +846,7 @@ public class User {
         int k = 0;
 
         //Cycles through array until target is found, end was reached or the next item is null
-        while ((!wineList[k].getItemName().equalsIgnoreCase(stock)) && (k < wine) && (wineList[k + 1] != null)) {
+        while (!wineList[k].getItemName().equalsIgnoreCase(stock) && k < wine && wineList[k + 1] != null) {
             k++;
         }
 
@@ -858,7 +858,7 @@ public class User {
         int k = 0;
 
         //Cycles through array until target is found, end was reached or the next item is null
-        while ((!champagneList[k].getItemName().equalsIgnoreCase(stock)) && (k < champagne) && (champagneList[k + 1] != null)) {
+        while (!champagneList[k].getItemName().equalsIgnoreCase(stock) && k < champagne && champagneList[k + 1] != null) {
             k++;
         }
 
@@ -870,7 +870,7 @@ public class User {
         int k = 0;
 
         //Cycles through array until target is found, end has reached or the next item is null
-        while ((!beerList[k].getItemName().equalsIgnoreCase(stock)) && (k < beer) && (beerList[k + 1] != null)) {
+        while (!beerList[k].getItemName().equalsIgnoreCase(stock) && k < beer && beerList[k + 1] != null) {
             k++;
         }
 
@@ -882,7 +882,7 @@ public class User {
         int k = 0;
 
         //Cycles through array until target is found, end has reached or the next item is null
-        while ((!spiritList[k].getItemName().equalsIgnoreCase(stock)) && (k < spirit) && (spiritList[k + 1] != null)) {
+        while (!spiritList[k].getItemName().equalsIgnoreCase(stock) && k < spirit && spiritList[k + 1] != null) {
             k++;
         }
 
@@ -894,7 +894,7 @@ public class User {
         int k = 0;
 
         //Cycles through array until target is found, end has reached or the next item is null
-        while ((!juiceList[k].getItemName().equalsIgnoreCase(stock)) && (k < juice) && (juiceList[k + 1] != null)) {
+        while (!juiceList[k].getItemName().equalsIgnoreCase(stock) && k < juice && juiceList[k + 1] != null) {
             k++;
         }
 
@@ -906,7 +906,7 @@ public class User {
         int k = 0;
 
         //Cycles through array until target is found, end has reached or the next item is null
-        while ((!sodaList[k].getItemName().equalsIgnoreCase(stock)) && (k < soda) && (sodaList[k + 1] != null)) {
+        while (!sodaList[k].getItemName().equalsIgnoreCase(stock) && k < soda && sodaList[k + 1] != null) {
             k++;
         }
 
@@ -918,7 +918,7 @@ public class User {
         int k = 0;
 
         //Cycles through array until target is found, end has reached or the next item is null
-        while ((!waterList[k].getItemName().equalsIgnoreCase(stock)) && (k < water) && (waterList[k + 1] != null)) {
+        while (!waterList[k].getItemName().equalsIgnoreCase(stock) && k < water && waterList[k + 1] != null) {
             k++;
         }
 
@@ -930,7 +930,7 @@ public class User {
         int k = 0;
 
         //Cycles through array until target is found, end has reached or the next item is null
-        while ((!wineList[k].getItemName().equalsIgnoreCase(stock)) && (k < wine) && (wineList[k + 1] != null)) {
+        while (!wineList[k].getItemName().equalsIgnoreCase(stock) && k < wine && wineList[k + 1] != null) {
             k++;
         }
 
@@ -942,7 +942,7 @@ public class User {
         int k = 0;
 
         //Cycles through array until target is found, end has reached or the next item is null
-        while ((!champagneList[k].getItemName().equalsIgnoreCase(stock)) && (k < champagne) && (champagneList[k + 1] != null)) {
+        while (!champagneList[k].getItemName().equalsIgnoreCase(stock) && k < champagne && champagneList[k + 1] != null) {
             k++;
         }
 

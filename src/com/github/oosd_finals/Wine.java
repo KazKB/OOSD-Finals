@@ -6,7 +6,7 @@ public class Wine extends Stock {
     private final String ITEM_CATEGORY = "Wine";
 
     public Wine() {
-        this.itemName = "null";
+        this.itemName = "";
     }
 
     public Wine(String name, double price, @NotNull User user) {

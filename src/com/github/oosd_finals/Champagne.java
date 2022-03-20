@@ -3,9 +3,10 @@ package com.github.oosd_finals;
 import org.jetbrains.annotations.NotNull;
 
 public class Champagne extends Stock {
-    private final String ITEM_CATEGORY = "Champaigne";
+    private final String ITEM_CATEGORY = "Champagne";
 
     public Champagne() {
+        this.itemName = "";
     }
 
     public Champagne(String name, double price, @NotNull User user) {
