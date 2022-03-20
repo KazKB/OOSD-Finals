@@ -5,9 +5,9 @@ import org.jetbrains.annotations.NotNull;
 import static java.lang.Math.abs;
 
 public abstract class Stock {
-    protected String itemName, itemDescription, itemID;
-    protected int itemQuantity = 0;
-    protected double itemPrice;
+    private String itemName, itemID;
+    private int itemQuantity = 0;
+    private double itemPrice;
 
     protected Stock() {
     }
@@ -19,10 +19,9 @@ public abstract class Stock {
         }
     }
 
-    protected Stock(String name, String description, String id, double price, @NotNull User user) {
+    protected Stock(String name, String id, double price, @NotNull User user) {
         if(user.getUserType().equalsIgnoreCase("a")) {
             this.itemName = name;
-            this.itemDescription = description;
             this.itemID = id;
             this.itemPrice = price;
         }
@@ -33,18 +32,8 @@ public abstract class Stock {
         return itemName;
     }
 
-    protected void setItemName(String itemName, @NotNull User user) {
-        if(user.getUserType().equalsIgnoreCase("a"))
-            this.itemName = itemName;
-    }
-
-    protected String getItemDescription() {
-        return itemDescription;
-    }
-
-    protected void setItemDescription(String itemDescription, @NotNull User user) {
-        if(user.getUserType().equalsIgnoreCase("a"))
-            this.itemDescription = itemDescription;
+    protected void setItemName() {
+        this.itemName = "";
     }
 
     protected String getItemID() {
@@ -69,17 +58,8 @@ public abstract class Stock {
             System.out.println("You do not have admin privileges.");
     }
 
-    //Basically the constructor all over again
-    protected void editItemInformation(String name, String description, String id, double price, @NotNull User user) {
-        if(user.getUserType().equalsIgnoreCase("a")) {
-            this.itemName = name;
-            this.itemDescription = description;
-            this.itemID = id;
-            this.itemPrice = price;
-        }
-        else {
-            System.out.println("You do not have admin privileges.");
-        }
+    public int getItemQuantity() {
+        return itemQuantity;
     }
 
     //Add to amount of item owned

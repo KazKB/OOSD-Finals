@@ -66,11 +66,9 @@ public class User {
 
         if(wallet > 0) {
             s = String.format("You made a profit of $%.2f.%n", wallet);
-        }
-        else if (wallet == 0) {
+         } else if (wallet == 0) {
             s = String.format("You broke even.%n");
-        }
-        else if (wallet < 0) {
+         } else if (wallet < 0) {
             s= String.format("You made a loss of $%.2f.%n", abs(wallet));
         }
 
@@ -86,8 +84,7 @@ public class User {
             //Adds supplier to list and increases the position to the next location
             suppliers[supplier] = person;
             supplier++;
-        }
-        else {
+         } else {
             System.out.println("You do not have admin privileges.\n");
         }
     }
@@ -101,8 +98,7 @@ public class User {
             //Adds customer to list and increases the position to the next location
             customers[customer] = person;
             customer++;
-        }
-        else {
+         } else {
             System.out.println("You do not have admin privileges.\n");
         }
     }
@@ -116,8 +112,7 @@ public class User {
             //Adds stock to list and increases the position to the next location
             beerList[beer] = stock;
             beer++;
-        }
-        else {
+         } else {
             System.out.println("You do not have admin privileges.\n");
         }
     }
@@ -131,8 +126,7 @@ public class User {
             //Adds stock to list and increases the position to the next location
             spiritList[spirit] = stock;
             spirit++;
-        }
-        else {
+         } else {
             System.out.println("You do not have admin privileges.\n");
         }
     }
@@ -146,8 +140,7 @@ public class User {
             //Adds stock to list and increases the position to the next location
             juiceList[juice] = stock;
             juice++;
-        }
-        else {
+         } else {
             System.out.println("You do not have admin privileges.\n");
         }
     }
@@ -161,8 +154,7 @@ public class User {
             //Adds stock to list and increases the position to the next location
             sodaList[soda] = stock;
             soda++;
-        }
-        else {
+         } else {
             System.out.println("You do not have admin privileges.\n");
         }
     }
@@ -176,8 +168,7 @@ public class User {
             //Adds stock to list and increases the position to the next location
             waterList[water] = stock;
             water++;
-        }
-        else {
+         } else {
             System.out.println("You do not have admin privileges.\n");
         }
     }
@@ -191,8 +182,7 @@ public class User {
             //Adds stock to list and increases the position to the next location
             wineList[wine] = stock;
             wine++;
-        }
-        else {
+         } else {
             System.out.println("You do not have admin privileges.\n");
         }
     }
@@ -206,8 +196,7 @@ public class User {
             //Adds stock to list and increases the position to the next location
             champagneList[champagne] = stock;
             champagne++;
-        }
-        else {
+         } else {
             System.out.println("You do not have admin privileges.\n");
         }
     }
@@ -218,7 +207,7 @@ public class User {
          if(this.getUserType().equalsIgnoreCase("a")) {
             if (suppliers[0] != null) {
                 //Cycles through until the end of the array or until the target is found
-                while (!suppliers[k].getSupplierName().equalsIgnoreCase(person) && k < supplier - 1) {
+                while (!suppliers[k].getSupplierName().equalsIgnoreCase(person) && k < supplier && suppliers[k + 1] != null) {
                     k++;
                 }
                 //If target is found, remove it and the rest stock after it from the list
@@ -230,12 +219,10 @@ public class User {
                 } else {
                     System.out.println(person.toUpperCase() + " is not an added supplier.\n");
                 }
-            }
-            else {
+             } else {
                 System.out.println("No suppliers available.\n");
             }
-        }
-        else {
+         } else {
             System.out.println("You do not have admin privileges.\n");
         }
     }
@@ -246,7 +233,7 @@ public class User {
          if(this.getUserType().equalsIgnoreCase("a")) {
             if (customers[0] != null) {
                 //Cycles through until the end of the array or until the target is found
-                while (!customers[k].getCustomerName().equalsIgnoreCase(person) && k < customer - 1) {
+                while (!customers[k].getCustomerName().equalsIgnoreCase(person) && k < customer && customers[k + 1] != null) {
                     k++;
                 }
                 //If target is found, remove it and the rest stock after it from the list
@@ -258,12 +245,10 @@ public class User {
                 } else {
                     System.out.println(person.toUpperCase() + " is not an added customer.\n");
                 }
-            }
-            else {
+             } else {
                 System.out.println("No customers available.\n");
             }
-        }
-        else {
+         } else {
             System.out.println("You do not have admin privileges.\n");
         }
     }
@@ -274,7 +259,7 @@ public class User {
          if(this.getUserType().equalsIgnoreCase("a")) {
             if (beerList[0] != null) {
                 //Cycles through until the end of the array or until the target is found
-                while (!beerList[k].getItemName().equalsIgnoreCase(stock) && k < beer - 1) {
+                while (!beerList[k].getItemName().equalsIgnoreCase(stock) && k < beer && beerList[k + 1] != null) {
                     k++;
                 }
                 //If target is found, remove it and the rest stock after it from the list
@@ -286,12 +271,10 @@ public class User {
                 } else {
                     System.out.println(stock.toUpperCase() + " is not in stock.\n");
                 }
-            }
-            else {
+             } else {
                 System.out.println("No beer is in stock.\n");
             }
-        }
-        else {
+         } else {
             System.out.println("You do not have admin privileges.\n");
         }
     }
@@ -302,7 +285,7 @@ public class User {
          if(this.getUserType().equalsIgnoreCase("a")) {
             if (spiritList[0] != null) {
                 //Cycles through until the end of the array or until the target is found
-                while (!spiritList[k].getItemName().equalsIgnoreCase(stock) && k < spirit - 1) {
+                while (!spiritList[k].getItemName().equalsIgnoreCase(stock) && k < spirit && spiritList[k + 1] != null) {
                     k++;
                 }
                 //If target is found, remove it and the rest stock after it from the list
@@ -314,12 +297,10 @@ public class User {
                 } else {
                     System.out.println(stock.toUpperCase() + " is not in stock.\n");
                 }
-            }
-            else {
+             } else {
                 System.out.println("No spirit is in stock.\n");
             }
-        }
-        else {
+         } else {
             System.out.println("You do not have admin privileges.\n");
         }
     }
@@ -330,7 +311,7 @@ public class User {
          if(this.getUserType().equalsIgnoreCase("a")) {
             if (juiceList[0] != null) {
                 //Cycles through until the end of the array or until the target is found
-                while (!juiceList[k].getItemName().equalsIgnoreCase(stock) && k < juice - 1) {
+                while (!juiceList[k].getItemName().equalsIgnoreCase(stock) && k < juice && juiceList[k + 1] != null) {
                     k++;
                 }
                 //If target is found, remove it and the rest stock after it from the list
@@ -342,12 +323,10 @@ public class User {
                 } else {
                     System.out.println(stock.toUpperCase() + " is not in stock.\n");
                 }
-            }
-            else {
+             } else {
                 System.out.println("No juice is in stock.\n");
             }
-        }
-        else {
+         } else {
             System.out.println("You do not have admin privileges.\n");
         }
     }
@@ -358,7 +337,7 @@ public class User {
          if(this.getUserType().equalsIgnoreCase("a")) {
             if (sodaList[0] != null) {
                 //Cycles through until the end of the array or until the target is found
-                while (!sodaList[k].getItemName().equalsIgnoreCase(stock) && k < soda - 1) {
+                while (!sodaList[k].getItemName().equalsIgnoreCase(stock) && k < soda && sodaList[k + 1] != null) {
                     k++;
                 }
                 //If target is found, remove it and the rest stock after it from the list
@@ -370,12 +349,10 @@ public class User {
                 } else {
                     System.out.println(stock.toUpperCase() + " is not in stock.\n");
                 }
-            }
-            else {
+             } else {
                 System.out.println("No soda is in stock.\n");
             }
-        }
-        else {
+         } else {
             System.out.println("You do not have admin privileges.\n");
         }
     }
@@ -386,7 +363,7 @@ public class User {
          if(this.getUserType().equalsIgnoreCase("a")) {
             if (waterList[0] != null) {
                 //Cycles through until the end of the array or until the target is found
-                while (!waterList[k].getItemName().equalsIgnoreCase(stock) && k < water - 1) {
+                while (!waterList[k].getItemName().equalsIgnoreCase(stock) && k < water && waterList[k + 1] != null) {
                     k++;
                 }
                 //If target is found, remove it and the rest stock after it from the list
@@ -398,12 +375,10 @@ public class User {
                 } else {
                     System.out.println(stock.toUpperCase() + " is not in stock.\n");
                 }
-            }
-            else {
+             } else {
                 System.out.println("No water is in stock.\n");
             }
-        }
-        else {
+         } else {
             System.out.println("You do not have admin privileges.\n");
         }
     }
@@ -414,7 +389,7 @@ public class User {
          if(this.getUserType().equalsIgnoreCase("a")) {
             if (wineList[0] != null) {
                 //Cycles through until the end of the array or until the target is found
-                while (!wineList[k].getItemName().equalsIgnoreCase(stock) && k < wine - 1) {
+                while (!wineList[k].getItemName().equalsIgnoreCase(stock) && k < wine && wineList[k + 1] != null) {
                     k++;
                 }
                 //If target is found, remove it and the rest stock after it from the list
@@ -426,12 +401,10 @@ public class User {
                 } else {
                     System.out.println(stock.toUpperCase() + " is not in stock.\n");
                 }
-            }
-            else {
+            } else {
                 System.out.println("No wine is in stock.\n");
             }
-        }
-        else {
+        } else {
             System.out.println("You do not have admin privileges.\n");
         }
     }
@@ -442,7 +415,7 @@ public class User {
          if(this.getUserType().equalsIgnoreCase("a")) {
             if (champagneList[0] != null) {
                 //Cycles through until the end of the array or until the target is found
-                while (!champagneList[k].getItemName().equalsIgnoreCase(stock) && k < champagne - 1) {
+                while (!champagneList[k].getItemName().equalsIgnoreCase(stock) && k < champagne && champagneList[k + 1] != null) {
                     k++;
                 }
                 //If target is found, remove it and the rest stock after it from the list
@@ -454,12 +427,10 @@ public class User {
                 } else {
                     System.out.println(stock.toUpperCase() + " is not in stock.\n");
                 }
-            }
-            else {
+            } else {
                 System.out.println("No champagne is in stock.\n");
             }
-        }
-        else {
+        } else {
             System.out.println("You do not have admin privileges.\n");
         }
     }
@@ -468,8 +439,7 @@ public class User {
         //Checks if list is empty
         if (suppliers[0].getSupplierName().equals("")) {
             System.out.println("No suppliers available.\n");
-        }
-        else {
+         } else {
             //If not empty print what is in the list's name
             for (int k = 0; k < supplier; k++) {
                 System.out.println(suppliers[k].getSupplierName().toUpperCase());
@@ -482,8 +452,7 @@ public class User {
         //Checks if list is empty
         if (customers[0].getCustomerName().equals("")) {
             System.out.println("No customers available.\n");
-        }
-        else {
+         } else {
             //If not empty print what is in the list's name
             for (int k = 0; k < customer; k++) {
                 System.out.println(customers[k].getCustomerName().toUpperCase());
@@ -496,8 +465,7 @@ public class User {
         //Checks if list is empty
         if (beerList[0].getItemName().equals("")) {
             System.out.println("No beer is in stock.\n");
-        }
-        else {
+         } else {
             //If not empty print what is in the list's name
             for (int k = 0; k < beer; k++) {
                 System.out.println(beerList[k].getItemName().toUpperCase());
@@ -510,8 +478,7 @@ public class User {
         //Checks if list is empty
         if (spiritList[0].getItemName().equals("")) {
             System.out.println("No spirit is in stock.\n");
-        }
-        else {
+         } else {
             //If not empty print what is in the list's name
             for (int k = 0; k < spirit; k++) {
                 System.out.println(spiritList[k].getItemName().toUpperCase());
@@ -524,8 +491,7 @@ public class User {
         //Checks if list is empty
         if (juiceList[0].getItemName().equals("")) {
             System.out.println("No juice is in stock.\n");
-        }
-        else {
+         } else {
             //If not empty print what is in the list's name
             for (int k = 0; k < juice; k++) {
                 System.out.println(juiceList[k].getItemName().toUpperCase());
@@ -538,8 +504,7 @@ public class User {
         //Checks if list is empty
         if (sodaList[0].getItemName().equals("")) {
             System.out.println("No soda is in stock.\n");
-        }
-        else {
+         } else {
             //If not empty print what is in the list's name
             for (int k = 0; k < soda; k++) {
                 System.out.println(sodaList[k].getItemName().toUpperCase());
@@ -552,8 +517,7 @@ public class User {
         //Checks if list is empty
         if (waterList[0].getItemName().equals("")) {
             System.out.println("No water is in stock.\n");
-        }
-        else {
+         } else {
             //If not empty print what is in the list's name
             for (int k = 0; k < water; k++) {
                 System.out.println(waterList[k].getItemName().toUpperCase());
@@ -566,8 +530,7 @@ public class User {
         //Checks if list is empty
         if (wineList[0].getItemName().equals("")) {
             System.out.println("No wine is in stock.\n");
-        }
-        else {
+         } else {
             //If not empty print what is in the list's name
             for (int k = 0; k < wine; k++) {
                 System.out.println(wineList[k].getItemName().toUpperCase());
@@ -580,8 +543,7 @@ public class User {
         //Checks if list is empty
         if (champagneList[0].getItemName().equals("")) {
             System.out.println("No champagne is in stock.\n");
-        }
-        else {
+         } else {
             //If not empty print what is in the list's name
             for (int k = 0; k < champagne; k++) {
                 System.out.println(champagneList[k].getItemName().toUpperCase());

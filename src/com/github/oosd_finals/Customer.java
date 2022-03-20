@@ -14,7 +14,9 @@ public class Customer {
     public Customer(@NotNull User user) {
          if(user.getUserType().equalsIgnoreCase("a")) {
             user.addToCustomers(this);
-        }
+        } else {
+             System.out.println("You do not have admin privileges.\n");
+         }
     }
 
     public Customer(String name, String email, String contactNumber, @NotNull User user) {
@@ -23,7 +25,9 @@ public class Customer {
             this.customerEmail = email;
             this.customerContactNumber = contactNumber;
             user.addToCustomers(this);
-        }
+        } else {
+             System.out.println("You do not have admin privileges.\n");
+         }
     }
 
     public Customer(String firstName, String lastName, String email, String contactNumber, @NotNull User user) {
@@ -31,8 +35,7 @@ public class Customer {
             this.customerName = firstName + " " + lastName;
             this.customerEmail = email;
             this.customerContactNumber = contactNumber;
-        }
-        else {
+        } else {
             System.out.println("You do not have admin privileges.\n");
         }
     }

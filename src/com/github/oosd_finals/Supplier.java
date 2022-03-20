@@ -14,6 +14,8 @@ public class Supplier {
     public Supplier(@NotNull User user) {
         if(user.getUserType().equalsIgnoreCase("a")) {
             user.addToSuppliers(this);
+        } else {
+            System.out.println("You do not have admin privileges.\n");
         }
     }
 
@@ -23,6 +25,8 @@ public class Supplier {
             this.supplierEmail = email;
             this.supplierContactNumber = contactNumber;
             user.addToSuppliers(this);
+        } else {
+            System.out.println("You do not have admin privileges.\n");
         }
     }
 
@@ -33,8 +37,7 @@ public class Supplier {
     public void setSupplierName(String supplierName, @NotNull User user) {
         if (user.getUserType().equalsIgnoreCase("admin")) {
             this.supplierName = supplierName;
-        }
-        else {
+        } else {
             System.out.println("You do not have admin privileges.\n");
         }
     }

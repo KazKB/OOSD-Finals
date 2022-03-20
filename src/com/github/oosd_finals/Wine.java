@@ -6,15 +6,15 @@ public class Wine extends Stock {
     private final String ITEM_CATEGORY = "Wine";
 
     public Wine() {
-        this.itemName = "";
+        this.setItemName();
     }
 
     public Wine(String name, double price, @NotNull User user) {
         super(name, price, user);
     }
 
-    public Wine(String name, String description, String id, double price, @NotNull User user) {
-        super(name, description, id, price, user);
+    public Wine(String name, String id, double price, @NotNull User user) {
+        super(name, id, price, user);
     }
 
     public String getITEM_CATEGORY() {
@@ -25,10 +25,9 @@ public class Wine extends Stock {
     public String toString() {
         return String.format("Name: %s%n" +
                         "ID: %s%n" +
-                        "Description: %s%n" +
                         "Category: %s%n" +
-                        "Quantity: %dl/ml%n" +
-                        "Price: $%.2f%n%n"
-                , this.itemName, this.itemID, this.itemDescription, this.ITEM_CATEGORY, this.itemQuantity, this.itemPrice);
+                        "Quantity: %d%n" +
+                        "Price: $%.2f"
+                , this.getItemName(), this.getItemID(), this.ITEM_CATEGORY, this.getItemQuantity(), this.getItemPrice());
     }
 }
