@@ -13,7 +13,7 @@ public class Supplier {
 
     public Supplier(@NotNull User user) {
         if(user.getUserType().equalsIgnoreCase("a")) {
-            user.addToSuppliers(this);
+            this.supplierName = "";
         } else {
             System.out.println("You do not have admin privileges.\n");
         }
@@ -24,7 +24,6 @@ public class Supplier {
             this.supplierName = name;
             this.supplierEmail = email;
             this.supplierContactNumber = contactNumber;
-            user.addToSuppliers(this);
         } else {
             System.out.println("You do not have admin privileges.\n");
         }
@@ -35,7 +34,7 @@ public class Supplier {
     }
 
     public void setSupplierName(String supplierName, @NotNull User user) {
-        if (user.getUserType().equalsIgnoreCase("admin")) {
+        if (user.getUserType().equalsIgnoreCase("a")) {
             this.supplierName = supplierName;
         } else {
             System.out.println("You do not have admin privileges.\n");
@@ -47,7 +46,7 @@ public class Supplier {
     }
 
     public void setSupplierEmail(String supplierEmail, @NotNull User user) {
-        if (user.getUserType().equalsIgnoreCase("admin")) {
+        if (user.getUserType().equalsIgnoreCase("a")) {
             this.supplierEmail = supplierEmail;
         }
         else {
@@ -60,7 +59,7 @@ public class Supplier {
     }
 
     public void setSupplierContactNumber(String supplierContactNumber, @NotNull User user) {
-        if (user.getUserType().equalsIgnoreCase("admin")) {
+        if (user.getUserType().equalsIgnoreCase("a")) {
             this.supplierContactNumber = supplierContactNumber;
         }
         else {
@@ -79,7 +78,7 @@ public class Supplier {
 
     //Adds an item and its price to a list that contains what is sold by the supplier
     //Only admins have access to this action
-    public void addPurchasableItem(String item, String price, @NotNull User user) {
+    public void addPurchasableItem(String item, double price, @NotNull User user) {
         //Temporary array that is 10 spaces bigger than original
         String[][] temp = new String[this.supplierItemList.length + 10][2];
 
@@ -98,7 +97,7 @@ public class Supplier {
             }
             //Adds the item and price to the list and moves to the next array location
             this.supplierItemList[i][0] = item;
-            this.supplierItemList[i][1] = price;
+            this.supplierItemList[i][1] = String.valueOf(String.format("%.2f", price));
             i++;
         }
         else {
@@ -109,7 +108,7 @@ public class Supplier {
     //Removes an item and its price to a list that contains what is sold by the supplier
     //Only admins have access to this action
     public void removePurchasableItem(String item, @NotNull User user) {
-        if (user.getUserType().equalsIgnoreCase("admin")) {
+        if (user.getUserType().equalsIgnoreCase("a")) {
             if (this.supplierItemList[0][0] != null) {
                 int j = 0;
 
@@ -174,8 +173,6 @@ public class Supplier {
                 System.out.printf("Item %d - %s: $%.2f\n", j + 1, this.supplierItemList[j][0].toUpperCase(), Double.parseDouble(this.supplierItemList[j][1]));
                 j++;
             }
-
-            System.out.println();
         }
     }
 
@@ -215,9 +212,8 @@ public class Supplier {
 
                                     Item: %s
                                     Price: $%.2f
-                                    Quantity: %dl/ml
+                                    Quantity: %d
                                     Total: $%.2f
-
                                     """,
                             this.invoiceNumber, formatter.format(date), this.supplierName, item.toUpperCase(), Double.parseDouble(this.supplierItemList[j][1]), quantity, invoiceTotal);
                 }
@@ -238,9 +234,8 @@ public class Supplier {
 
                                     Item: %s
                                     Price: $%.2f
-                                    Quantity: %dl/ml
+                                    Quantity: %d
                                     Total: $%.2f
-
                                     """,
                             this.invoiceNumber, formatter.format(date), this.supplierName, item.toUpperCase(), Double.parseDouble(this.supplierItemList[j][1]), quantity, invoiceTotal);
                 }
@@ -261,9 +256,8 @@ public class Supplier {
 
                                     Item: %s
                                     Price: $%.2f
-                                    Quantity: %dl/ml
+                                    Quantity: %d
                                     Total: $%.2f
-
                                     """,
                             this.invoiceNumber, formatter.format(date), this.supplierName, item.toUpperCase(), Double.parseDouble(this.supplierItemList[j][1]), quantity, invoiceTotal);
                 }
@@ -284,9 +278,8 @@ public class Supplier {
 
                                     Item: %s
                                     Price: $%.2f
-                                    Quantity: %dl/ml
+                                    Quantity: %d
                                     Total: $%.2f
-
                                     """,
                             this.invoiceNumber, formatter.format(date), this.supplierName, item.toUpperCase(), Double.parseDouble(this.supplierItemList[j][1]), quantity, invoiceTotal);
                 }
@@ -307,9 +300,8 @@ public class Supplier {
 
                                     Item: %s
                                     Price: $%.2f
-                                    Quantity: %dl/ml
+                                    Quantity: %d
                                     Total: $%.2f
-
                                     """,
                             this.invoiceNumber, formatter.format(date), this.supplierName, item.toUpperCase(), Double.parseDouble(this.supplierItemList[j][1]), quantity, invoiceTotal);
                 }
@@ -330,9 +322,8 @@ public class Supplier {
 
                                     Item: %s
                                     Price: $%.2f
-                                    Quantity: %dl/ml
+                                    Quantity: %d
                                     Total: $%.2f
-
                                     """,
                             this.invoiceNumber, formatter.format(date), this.supplierName, item.toUpperCase(), Double.parseDouble(this.supplierItemList[j][1]), quantity, invoiceTotal);
                 }
@@ -353,9 +344,8 @@ public class Supplier {
 
                                     Item: %s
                                     Price: $%.2f
-                                    Quantity: %dl/ml
+                                    Quantity: %d
                                     Total: $%.2f
-
                                     """,
                             this.invoiceNumber, formatter.format(date), this.supplierName, item.toUpperCase(), Double.parseDouble(this.supplierItemList[j][1]), quantity, invoiceTotal);
                 }
@@ -370,5 +360,13 @@ public class Supplier {
         else {
             System.out.println(item.toUpperCase() + " is not sold by " + this.supplierName + ".\n");
         }
+    }
+
+    @Override
+    public String toString() {
+        return 
+                "Name: " + supplierName + '\n' +
+                "Email: " + supplierEmail + '\n' +
+                "Contact Number: " + supplierContactNumber;
     }
 }

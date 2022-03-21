@@ -13,7 +13,7 @@ public class Customer {
 
     public Customer(@NotNull User user) {
          if(user.getUserType().equalsIgnoreCase("a")) {
-            user.addToCustomers(this);
+             this.customerName = "";
         } else {
              System.out.println("You do not have admin privileges.\n");
          }
@@ -24,7 +24,6 @@ public class Customer {
             this.customerName = name;
             this.customerEmail = email;
             this.customerContactNumber = contactNumber;
-            user.addToCustomers(this);
         } else {
              System.out.println("You do not have admin privileges.\n");
          }
@@ -111,7 +110,7 @@ public class Customer {
         //Adds the item, its price and quantity to the list
         //Moves to the next array position
         this.purchasedItemsList[i][0] = item;
-        this.purchasedItemsList[i][1] = String.valueOf(price);
+        this.purchasedItemsList[i][1] = String.valueOf(String.format("%.2f", price));
         this.purchasedItemsList[i][2] = String.valueOf(quantity);
         i++;
     }
@@ -217,8 +216,6 @@ public class Customer {
                 System.out.printf("Item %d - %s: $%.2f * %d = $%.2f\n", j + 1, this.purchasedItemsList[j][0].toUpperCase(), Double.parseDouble(this.purchasedItemsList[j][1]), Integer.parseInt(this.purchasedItemsList[j][2]), total);
                 j++;
             }
-
-            System.out.println();
         }
     }
 
@@ -247,9 +244,8 @@ public class Customer {
 
                     Item: %s
                     Price: $%.2f
-                    Quantity: %dl/ml
+                    Quantity: %d
                     Total: $%.2f
-                    
                     """,
                     this.salesReceiptNumber, formatter.format(date), this.customerName, item.toUpperCase(), Double.parseDouble(this.purchasedItemsList[i - 1][1]), quantity, salesReceiptTotal);
         }
@@ -272,9 +268,8 @@ public class Customer {
 
                     Item: %s
                     Price: $%.2f
-                    Quantity: %dl/ml
+                    Quantity: %d
                     Total: $%.2f
-                    
                     """,
                     this.salesReceiptNumber, formatter.format(date), this.customerName, item.toUpperCase(), Double.parseDouble(this.purchasedItemsList[i - 1][1]), quantity, salesReceiptTotal);
         }
@@ -297,9 +292,8 @@ public class Customer {
 
                     Item: %s
                     Price: $%.2f
-                    Quantity: %dl/ml
+                    Quantity: %d
                     Total: $%.2f
-                    
                     """,
                     this.salesReceiptNumber, formatter.format(date), this.customerName, item.toUpperCase(), Double.parseDouble(this.purchasedItemsList[i - 1][1]), quantity, salesReceiptTotal);
         }
@@ -322,9 +316,8 @@ public class Customer {
 
                     Item: %s
                     Price: $%.2f
-                    Quantity: %dl/ml
+                    Quantity: %d
                     Total: $%.2f
-                    
                     """,
                     this.salesReceiptNumber, formatter.format(date), this.customerName, item.toUpperCase(), Double.parseDouble(this.purchasedItemsList[i - 1][1]), quantity, salesReceiptTotal);
         }
@@ -347,9 +340,8 @@ public class Customer {
 
                     Item: %s
                     Price: $%.2f
-                    Quantity: %dl/ml
+                    Quantity: %d
                     Total: $%.2f
-                    
                     """,
                     this.salesReceiptNumber, formatter.format(date), this.customerName, item.toUpperCase(), Double.parseDouble(this.purchasedItemsList[i - 1][1]), quantity, salesReceiptTotal);
         }
@@ -372,9 +364,8 @@ public class Customer {
 
                     Item: %s
                     Price: $%.2f
-                    Quantity: %dl/ml
+                    Quantity: %d
                     Total: $%.2f
-                    
                     """,
                     this.salesReceiptNumber, formatter.format(date), this.customerName, item.toUpperCase(), Double.parseDouble(this.purchasedItemsList[i - 1][1]), quantity, salesReceiptTotal);
         }
@@ -397,9 +388,8 @@ public class Customer {
 
                     Item: %s
                     Price: $%.2f
-                    Quantity: %dl/ml
+                    Quantity: %d
                     Total: $%.2f
-                    
                     """,
                     this.salesReceiptNumber, formatter.format(date), this.customerName, item.toUpperCase(), Double.parseDouble(this.purchasedItemsList[i - 1][1]), quantity, salesReceiptTotal);
         }

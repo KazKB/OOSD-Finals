@@ -16,10 +16,13 @@ public class TestDriver {
 
     static {
         try {
-            fileReader = new Scanner(file);
-            fileReader.useDelimiter("[\n,]");
+            fileReader = new Scanner(file).useDelimiter("[\n,]");
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            try {
+                file.createNewFile();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
@@ -42,8 +45,6 @@ public class TestDriver {
         Scanner fileReader = new Scanner(file);
         fileReader.useDelimiter("[\n,]");
         FileWriter writer = new FileWriter(file, true);
-
-        file.createNewFile();
 
         System.out.print("Enter your first name: ");
         signInCredentials[0] = ansScanner.next().trim();
@@ -98,8 +99,6 @@ public class TestDriver {
     static void entryLogIn() throws IOException {
         Scanner fileReader = new Scanner(file);
         fileReader.useDelimiter("[\n,]");
-
-        file.createNewFile();
 
         if (file.length() == 0) {
             entrySignIn();
@@ -158,25 +157,20 @@ public class TestDriver {
                 4. Log Out""");
         System.out.print("Enter number: ");
         choice = ansScanner.nextInt();
+        System.out.println();
 
         switch (choice) {
             case 0:
-                System.out.println();
                 userMenu();
             case 1:
-                System.out.println();
                 stockMenu();
             case 2:
-                System.out.println();
                 supplierMenu();
             case 3:
-                System.out.println();
                 customerMenu();
             case 4:
-                System.out.println();
                 exit();
             default:
-                System.out.println();
                 menuSelection();
         }
     }
@@ -190,14 +184,13 @@ public class TestDriver {
                 2. Back to Menu Selection""");
         System.out.print("Enter number: ");
         choice = ansScanner.nextInt();
+        System.out.println();
 
         String[] userCredentials = new String[6];
         int i = 0;
 
         switch (choice) {
             case 0:
-                System.out.println();
-
                 while (fileReader.hasNext()) {
                     userCredentials[i] = fileReader.next();
                     i++;
@@ -218,14 +211,11 @@ public class TestDriver {
                     }
                 }
             case 1:
-                System.out.println();
                 System.out.println(user.printProfitAndLoss());
                 menuSelection();
             case 2:
-                System.out.println();
                 menuSelection();
             default:
-                System.out.println();
                 userMenu();
         }
     }
@@ -242,14 +232,13 @@ public class TestDriver {
                 5. Back to Menu Selection""");
         System.out.print("Enter number: ");
         choice = ansScanner.nextInt();
+        System.out.println();
+
+        String itemName, itemCategory;
+        double itemPrice;
 
         switch (choice) {
             case 0:
-                System.out.println();
-                
-                String itemName;
-                String itemCategory;
-
                 System.out.print("Enter item's name: ");
                 itemName = ansScanner.next().trim();
 
@@ -316,10 +305,6 @@ public class TestDriver {
                     stockMenu();
                 }
             case 1:
-                System.out.println();
-
-                double itemPrice;
-
                 System.out.print("Enter item's name: ");
                 itemName = ansScanner.next().trim();
                 System.out.print("Enter item's new price: $");
@@ -388,10 +373,7 @@ public class TestDriver {
                     stockMenu();
                 }
             case 2:
-                System.out.println();
-
                 String[] stockInfo = new String[2];
-                double stockPrice;
 
                 System.out.print("Enter item's name: ");
                 stockInfo[0] = ansScanner.next().trim();
@@ -400,8 +382,8 @@ public class TestDriver {
 
                 do {
                     System.out.print("Enter item's price: $");
-                    stockPrice = ansScanner.nextDouble();
-                } while (stockPrice == 0.0);
+                    itemPrice = ansScanner.nextDouble();
+                } while (itemPrice == 0.0);
 
                 do {
                     System.out.print("Enter item's category (beer, champagne, juice, soda, spirit, water, wine): ");
@@ -411,64 +393,62 @@ public class TestDriver {
 
                 if (itemCategory.equalsIgnoreCase("beer")) {
                     if (user.checkIfBeerInStock(stockInfo[0])) {
-                        System.out.println("Already in stock.\n");
+                        System.out.println("Already in stock.");
                     } else {
-                        user.addToStockList(new Beer(stockInfo[0], stockInfo[1], stockPrice, user));
-                        System.out.println();
+                        user.addToStockList(new Beer(stockInfo[0], stockInfo[1], itemPrice, user));
                     }
+                    System.out.println();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("spirit")) {
                     if (user.checkIfSpiritInStock(stockInfo[0])) {
-                        System.out.println("Already in stock.\n");
+                        System.out.println("Already in stock.");
                     } else {
-                        user.addToStockList(new Spirit(stockInfo[0], stockInfo[1], stockPrice, user));
-                        System.out.println();
+                        user.addToStockList(new Spirit(stockInfo[0], stockInfo[1], itemPrice, user));
                     }
+                    System.out.println();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("juice")) {
                     if (user.checkIfJuiceInStock(stockInfo[0])) {
-                        System.out.println("Already in stock.\n");
+                        System.out.println("Already in stock.");
                     } else {
-                        user.addToStockList(new Juice(stockInfo[0], stockInfo[1], stockPrice, user));
-                        System.out.println();
+                        user.addToStockList(new Juice(stockInfo[0], stockInfo[1], itemPrice, user));
                     }
+                    System.out.println();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("soda")) {
                     if (user.checkIfSodaInStock(stockInfo[0])) {
-                        System.out.println("Already in stock.\n");
+                        System.out.println("Already in stock.");
                     } else {
-                        user.addToStockList(new Soda(stockInfo[0], stockInfo[1], stockPrice, user));
-                        System.out.println();
+                        user.addToStockList(new Soda(stockInfo[0], stockInfo[1], itemPrice, user));
                     }
+                    System.out.println();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("water")) {
                     if (user.checkIfWaterInStock(stockInfo[0])) {
-                        System.out.println("Already in stock.\n");
+                        System.out.println("Already in stock.");
                     } else {
-                        user.addToStockList(new Water(stockInfo[0], stockInfo[1], stockPrice, user));
-                        System.out.println();
+                        user.addToStockList(new Water(stockInfo[0], stockInfo[1], itemPrice, user));
                     }
+                    System.out.println();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("wine")) {
                     if (user.checkIfWineInStock(stockInfo[0])) {
-                        System.out.println("Already in stock.\n");
+                        System.out.println("Already in stock.");
                     } else {
-                        user.addToStockList(new Wine(stockInfo[0], stockInfo[1], stockPrice, user));
-                        System.out.println();
+                        user.addToStockList(new Wine(stockInfo[0], stockInfo[1], itemPrice, user));
                     }
+                    System.out.println();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("champagne")) {
                     if (user.checkIfChampagneInStock(stockInfo[0])) {
-                        System.out.println("Already in stock.\n");
+                        System.out.println("Already in stock.");
                     } else {
-                        user.addToStockList(new Champagne(stockInfo[0], stockInfo[1], stockPrice, user));
-                        System.out.println();
+                        user.addToStockList(new Champagne(stockInfo[0], stockInfo[1], itemPrice, user));
                     }
+                    System.out.println();
                     stockMenu();
                 }
             case 3:
-                System.out.println();
-
                 System.out.print("Enter the item's name: ");
                 itemName = ansScanner.next().trim();
 
@@ -481,7 +461,7 @@ public class TestDriver {
                     if (user.checkIfBeerInStock(itemName)) {
                         user.removeFromBeerList(itemName);
                     } else {
-                        System.out.println("Not in stock");
+                        System.out.println("Not in stock.");
                     }
                     System.out.println();
                     stockMenu();
@@ -489,7 +469,7 @@ public class TestDriver {
                     if (user.checkIfSpiritInStock(itemName)) {
                         user.removeFromSpiritList(itemName);
                     } else {
-                        System.out.println("Not in stock");
+                        System.out.println("Not in stock.");
                     }
                     System.out.println();
                     stockMenu();
@@ -497,7 +477,7 @@ public class TestDriver {
                     if (user.checkIfJuiceInStock(itemName)) {
                         user.removeFromJuiceList(itemName);
                     } else {
-                        System.out.println("Not in stock");
+                        System.out.println("Not in stock.");
                     }
                     System.out.println();
                     stockMenu();
@@ -505,7 +485,7 @@ public class TestDriver {
                     if (user.checkIfSodaInStock(itemName)) {
                         user.removeFromSodaList(itemName);
                     } else {
-                        System.out.println("Not in stock");
+                        System.out.println("Not in stock.");
                     }
                     System.out.println();
                     stockMenu();
@@ -513,7 +493,7 @@ public class TestDriver {
                     if (user.checkIfWaterInStock(itemName)) {
                         user.removeFromWaterList(itemName);
                     } else {
-                        System.out.println("Not in stock");
+                        System.out.println("Not in stock.");
                     }
                     System.out.println();
                     stockMenu();
@@ -521,7 +501,7 @@ public class TestDriver {
                     if (user.checkIfWineInStock(itemName)) {
                         user.removeFromWineList(itemName);
                     } else {
-                        System.out.println("Not in stock");
+                        System.out.println("Not in stock.");
                     }
                     System.out.println();
                     stockMenu();
@@ -529,14 +509,12 @@ public class TestDriver {
                     if (user.checkIfChampagneInStock(itemName)) {
                         user.removeFromChampagneList(itemName);
                     } else {
-                        System.out.println("Not in stock");
+                        System.out.println("Not in stock.");
                     }
                     System.out.println();
                     stockMenu();
                 }
             case 4:
-                System.out.println();
-
                 do {
                     System.out.print("Enter list category (beer, champagne, juice, soda, spirit, water, wine): ");
                     itemCategory = ansScanner.next().trim();
@@ -565,30 +543,263 @@ public class TestDriver {
                     stockMenu();
                 }
             case 5:
-                System.out.println();
                 menuSelection();
             default:
-                System.out.println();
                 stockMenu();
         }
     }
 
     static void supplierMenu() throws IOException {
         System.out.println("""
-                Stock Menu
+                Supplier Menu
                 What would you like to do:
-                0. View Supplier Information
-                1. Edit Supplier Information
-                2. Add Item To Supplier's Item List
-                3. Remove Item From Supplier's Item List
-                4. View Supplier's Item List
-                5. Buy From Supplier
-                6. Back to Menu Selection""");
+                0. Add Supplier
+                1. View Supplier Information
+                2. Edit Supplier Information
+                3. Add Item To Supplier's Item List
+                4. Remove Item From Supplier's Item List
+                5. View Supplier's Item List
+                6. View Suppliers
+                7. Buy From Supplier
+                8. Back to Menu Selection""");
         System.out.print("Enter number: ");
         choice = ansScanner.nextInt();
+        System.out.println();
+
+        String supplierName, supplierEmail, supplierContactNumber, itemName;
+
+        switch (choice) {
+            case 0:
+                System.out.print("Enter supplier's name: ");
+                supplierName = ansScanner.next().trim();
+                System.out.print("Enter supplier's email: ");
+                supplierEmail = ansScanner.next().trim();
+                System.out.print("Enter supplier's contact number: ");
+                supplierContactNumber = ansScanner.next().trim();
+                
+                if (user.checkIfPersonInSuppliers(supplierName)) {
+                    System.out.println("Supplier exists.");
+                } else {
+                    user.addToSuppliers(new Supplier(supplierName, supplierEmail, supplierContactNumber, user));
+                }
+                System.out.println();
+                supplierMenu();
+            case 1:
+                System.out.print("Enter supplier's name: ");
+                supplierName = ansScanner.next().trim();
+
+                if (user.checkIfPersonInSuppliers(supplierName)) {
+                    System.out.println(user.getSupplier(supplierName));
+                } else {
+                    System.out.println("Not a supplier.");
+                }
+                System.out.println();
+                supplierMenu();
+            case 2:
+                String newName, newEmail, newContactNumber;
+
+                System.out.print("Enter the name of the supplier whose information is being changed: ");
+                supplierName = ansScanner.next().trim();
+                System.out.print("Enter the new/same name: ");
+                newName = ansScanner.next().trim();
+                System.out.print("Enter the new/same email: ");
+                newEmail = ansScanner.next().trim();
+                System.out.print("Enter the new/same contact number: ");
+                newContactNumber = ansScanner.next().trim();
+
+                if (user.checkIfPersonInSuppliers(supplierName)) {
+                    user.getSupplier(supplierName).editSupplierInformation(newName, newEmail, newContactNumber, user);
+                } else {
+                    System.out.println("Not a supplier.");
+                }
+                System.out.println();
+                supplierMenu();
+            case 3:
+                double itemPrice;
+
+                System.out.print("Enter the supplier you want to add the item to: ");
+                supplierName = ansScanner.next().trim();
+                System.out.print("Enter item's name: ");
+                itemName = ansScanner.next().trim();
+                System.out.print("Enter item's price: $");
+                itemPrice = ansScanner.nextDouble();
+
+                if (user.checkIfPersonInSuppliers(supplierName)) {
+                    user.getSupplier(supplierName).addPurchasableItem(itemName, itemPrice, user);
+                } else {
+                    System.out.println("Not a supplier.");
+                }
+                System.out.println();
+                supplierMenu();
+            case 4:
+                System.out.print("Enter the supplier you want to remove the item to: ");
+                supplierName = ansScanner.next().trim();
+                System.out.print("Enter item's name: ");
+                itemName = ansScanner.next().trim();
+
+                if (user.checkIfPersonInSuppliers(supplierName)) {
+                    user.getSupplier(supplierName).removePurchasableItem(itemName, user);
+                } else {
+                    System.out.println("Not a supplier.");
+                }
+                System.out.println();
+                supplierMenu();
+            case 5:
+                System.out.print("Enter the supplier whose item list you want to see: ");
+                supplierName = ansScanner.next().trim();
+
+                if (user.checkIfPersonInSuppliers(supplierName)) {
+                    user.getSupplier(supplierName).printPurchasableItems();
+                } else {
+                    System.out.println("Not a supplier.");
+                }
+                System.out.println();
+                supplierMenu();
+            case 6:
+                user.viewSuppliers();
+                supplierMenu();
+            case 7:
+                int itemQuantity;
+
+                System.out.print("Enter the supplier who you want to buy from: ");
+                supplierName = ansScanner.next().trim();
+                System.out.print("Enter item's name: ");
+                itemName = ansScanner.next().trim();
+                System.out.print("Enter the amount you want to buy: ");
+                itemQuantity = ansScanner.nextInt();
+
+                if (user.checkIfPersonInSuppliers(supplierName)) {
+                    user.getSupplier(supplierName).createAndPrintInvoice(itemName, itemQuantity, user);
+                } else {
+                    System.out.println("Not a supplier.");
+                }
+                System.out.println();
+                supplierMenu();
+            case 8:
+                System.out.println();
+                menuSelection();
+            default:
+                supplierMenu();
+        }
     }
 
-    static void customerMenu() throws IOException {}
+    static void customerMenu() throws IOException {
+        System.out.println("""
+                Customer Menu
+                What would you like to do:
+                0. Add Customer
+                1. View Customer Information
+                2. Edit Customer Information
+                3. Remove Item From Customer's Purchases
+                4. View Customer's Purchases
+                5. View Customers
+                6. Sell To Customer
+                7. Back to Menu Selection""");
+        System.out.print("Enter number: ");
+        choice = ansScanner.nextInt();
+        System.out.println();
+
+        String customerName, customerEmail, customerContactNumber, itemName;
+
+        switch (choice) {
+            case 0:
+                System.out.print("Enter customer's name: ");
+                customerName = ansScanner.next().trim();
+                System.out.print("Enter customer's email: ");
+                customerEmail = ansScanner.next().trim();
+                System.out.print("Enter customer's contact number: ");
+                customerContactNumber = ansScanner.next().trim();
+
+                if (user.checkIfPersonInCustomers(customerName)) {
+                    System.out.println("Customer exists.");
+                } else {
+                    user.addToCustomers(new Customer(customerName, customerEmail, customerContactNumber, user));
+                }
+                System.out.println();
+                customerMenu();
+            case 1:
+                System.out.print("Enter customer's name: ");
+                customerName = ansScanner.next().trim();
+
+                if (user.checkIfPersonInCustomers(customerName)) {
+                    System.out.println(user.getCustomer(customerName));
+                } else {
+                    System.out.println("Not a customer.");
+                }
+                System.out.println();
+                customerMenu();
+            case 2:
+                String newName, newEmail, newContactNumber;
+
+                System.out.print("Enter the name of the customer whose information is being changed: ");
+                customerName = ansScanner.next().trim();
+                System.out.print("Enter the new/same name: ");
+                newName = ansScanner.next().trim();
+                System.out.print("Enter the new/same email: ");
+                newEmail = ansScanner.next().trim();
+                System.out.print("Enter the new/same contact number: ");
+                newContactNumber = ansScanner.next().trim();
+
+                if (user.checkIfPersonInCustomers(customerName)) {
+                    user.getCustomer(customerName).editCustomerInformation(newName, newEmail, newContactNumber, user);
+                } else {
+                    System.out.println("Not a customer.");
+                }
+                System.out.println();
+                customerMenu();
+            case 3:
+                int itemQuantity;
+
+                System.out.print("Enter the customer you want to remove the item to: ");
+                customerName = ansScanner.next().trim();
+                System.out.print("Enter item's name: ");
+                itemName = ansScanner.next().trim();
+                System.out.print("Enter the amount bought: ");
+                itemQuantity = ansScanner.nextInt();
+
+                if (user.checkIfPersonInCustomers(customerName)) {
+                    user.getCustomer(customerName).removePurchasedItem(itemName, itemQuantity, user);
+                } else {
+                    System.out.println("Not a customer.");
+                }
+                System.out.println();
+                customerMenu();
+            case 4:
+                System.out.print("Enter the customer whose item list you want to see: ");
+                customerName = ansScanner.next().trim();
+
+                if (user.checkIfPersonInCustomers(customerName)) {
+                    user.getCustomer(customerName).printPurchasedItems();
+                } else {
+                    System.out.println("Not a customer.");
+                }
+                System.out.println();
+                customerMenu();
+            case 5:
+                user.viewCustomers();
+                customerMenu();
+            case 6:
+                System.out.print("Enter the customer who you want to buy from: ");
+                customerName = ansScanner.next().trim();
+                System.out.print("Enter item's name: ");
+                itemName = ansScanner.next().trim();
+                System.out.print("Enter the amount you want to buy: ");
+                itemQuantity = ansScanner.nextInt();
+
+                if (user.checkIfPersonInCustomers(customerName)) {
+                    user.getCustomer(customerName).createAndPrintSalesReceipt(itemName, itemQuantity, user);
+                } else {
+                    System.out.println("Not a customer.");
+                }
+                System.out.println();
+                customerMenu();
+            case 7:
+                System.out.println();
+                menuSelection();
+            default:
+                customerMenu();
+        }
+    }
 
     static void exit() throws IOException {
 
