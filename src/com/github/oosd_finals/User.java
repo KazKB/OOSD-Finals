@@ -5,7 +5,8 @@ import java.util.Arrays;
 import static java.lang.Math.abs;
 
 public class User {
-    private String userID, userType;
+    private static String userID;
+    private static String userType;
     private static Beer[] beerList = new Beer[10];
     private static Spirit[] spiritList = new Spirit[10];
     private static Juice[] juiceList = new Juice[10];
@@ -26,13 +27,13 @@ public class User {
         waterList[0] = new Water();
         wineList[0] = new Wine();
         champagneList[0] = new Champagne();
-        suppliers[0] = new Supplier(this);
-        customers[0] = new Customer(this);
+        suppliers[0] = new Supplier();
+        customers[0] = new Customer();
     }
 
     public User(String type, String id) {
-        this.userType = type;
-        this.userID = id;
+        userType = type;
+        userID = id;
         beerList[0] = new Beer();
         spiritList[0] = new Spirit();
         juiceList[0] = new Juice();
@@ -40,16 +41,16 @@ public class User {
         waterList[0] = new Water();
         wineList[0] = new Wine();
         champagneList[0] = new Champagne();
-        suppliers[0] = new Supplier(this);
-        customers[0] = new Customer(this);
+        suppliers[0] = new Supplier();
+        customers[0] = new Customer();
     }
 
     //Getters and Setters will be used to edit this Class
-    public String getUserID() {
+    public static String getUserID() {
         return userID;
     }
 
-    public String getUserType() {
+    public static String getUserType() {
         return userType;
     }
 
@@ -61,7 +62,7 @@ public class User {
         return wallet;
     }
 
-    public String printProfitAndLoss() {
+    public static String printProfitAndLoss() {
         String s = null;
 
         if(wallet > 0) {
@@ -75,8 +76,8 @@ public class User {
         return s;
     }
 
-    public void addToSuppliers(Supplier person) {
-         if(this.getUserType().equalsIgnoreCase("a")) {
+    public static void addToSuppliers(Supplier person) {
+         if(getUserType().equalsIgnoreCase("a")) {
             //Increases list's max size when capacity is reached
             if (supplier >= suppliers.length) {
                 suppliers = Arrays.copyOf(suppliers, suppliers.length + 1);
@@ -89,8 +90,8 @@ public class User {
         }
     }
 
-    public void addToCustomers(Customer person) {
-         if(this.getUserType().equalsIgnoreCase("a")) {
+    public static void addToCustomers(Customer person) {
+         if(getUserType().equalsIgnoreCase("a")) {
             //Increases list's max size when capacity is reached
             if (customer >= customers.length) {
                 customers = Arrays.copyOf(customers, customers.length + 1);
@@ -103,8 +104,8 @@ public class User {
         }
     }
 
-    public void addToStockList(Beer stock) {
-        if(this.getUserType().equalsIgnoreCase("a")) {
+    public static void addToStockList(Beer stock) {
+        if(getUserType().equalsIgnoreCase("a")) {
             //Increases list's max size when capacity is reached
             if (beer >= beerList.length) {
                 beerList = Arrays.copyOf(beerList, beerList.length + 1);
@@ -117,8 +118,8 @@ public class User {
         }
     }
 
-    public void addToStockList(Spirit stock) {
-         if(this.getUserType().equalsIgnoreCase("a")) {
+    public static void addToStockList(Spirit stock) {
+         if(getUserType().equalsIgnoreCase("a")) {
             //Increases list's max size when capacity is reached
             if (spirit >= spiritList.length) {
                 spiritList = Arrays.copyOf(spiritList, spiritList.length + 1);
@@ -131,8 +132,8 @@ public class User {
         }
     }
 
-    public void addToStockList(Juice stock) {
-         if(this.getUserType().equalsIgnoreCase("a")) {
+    public static void addToStockList(Juice stock) {
+         if(getUserType().equalsIgnoreCase("a")) {
             //Increases list's max size when capacity is reached
             if (juice >= juiceList.length) {
                 juiceList = Arrays.copyOf(juiceList, juiceList.length + 1);
@@ -145,8 +146,8 @@ public class User {
         }
     }
 
-    public void addToStockList(Soda stock) {
-         if(this.getUserType().equalsIgnoreCase("a")) {
+    public static void addToStockList(Soda stock) {
+         if(getUserType().equalsIgnoreCase("a")) {
             //Increases list's max size when capacity is reached
             if (soda >= sodaList.length) {
                 sodaList = Arrays.copyOf(sodaList, sodaList.length + 1);
@@ -159,8 +160,8 @@ public class User {
         }
     }
 
-    public void addToStockList(Water stock) {
-         if(this.getUserType().equalsIgnoreCase("a")) {
+    public static void addToStockList(Water stock) {
+         if(getUserType().equalsIgnoreCase("a")) {
             //Increases list's max size when capacity is reached
             if (water >= waterList.length) {
                 waterList = Arrays.copyOf(waterList, waterList.length + 1);
@@ -173,8 +174,8 @@ public class User {
         }
     }
 
-    public void addToStockList(Wine stock) {
-         if(this.getUserType().equalsIgnoreCase("a")) {
+    public static void addToStockList(Wine stock) {
+         if(getUserType().equalsIgnoreCase("a")) {
             //Increases list's max size when capacity is reached
             if (wine >= wineList.length) {
                 wineList = Arrays.copyOf(wineList, wineList.length + 1);
@@ -187,8 +188,8 @@ public class User {
         }
     }
 
-    public void addToStockList(Champagne stock) {
-         if(this.getUserType().equalsIgnoreCase("a")) {
+    public static void addToStockList(Champagne stock) {
+         if(getUserType().equalsIgnoreCase("a")) {
             //Increases list's max size when capacity is reached
             if (champagne >= champagneList.length) {
                 champagneList = Arrays.copyOf(champagneList, champagneList.length + 1);
@@ -201,10 +202,10 @@ public class User {
         }
     }
 
-    public void removeFromSuppliers(String person) {
+    public static void removeFromSuppliers(String person) {
         int k = 0;
 
-         if(this.getUserType().equalsIgnoreCase("a")) {
+         if(getUserType().equalsIgnoreCase("a")) {
             if (suppliers[0] != null) {
                 //Cycles through until the end of the array or until the target is found
                 while (!suppliers[k].getSupplierName().equalsIgnoreCase(person) && k < supplier && suppliers[k + 1] != null) {
@@ -227,10 +228,10 @@ public class User {
         }
     }
 
-    public void removeFromCustomers(String person) {
+    public static void removeFromCustomers(String person) {
         int k = 0;
 
-         if(this.getUserType().equalsIgnoreCase("a")) {
+         if(getUserType().equalsIgnoreCase("a")) {
             if (customers[0] != null) {
                 //Cycles through until the end of the array or until the target is found
                 while (!customers[k].getCustomerName().equalsIgnoreCase(person) && k < customer && customers[k + 1] != null) {
@@ -253,10 +254,10 @@ public class User {
         }
     }
 
-    public void removeFromBeerList(String stock) {
+    public static void removeFromBeerList(String stock) {
         int k = 0;
 
-         if(this.getUserType().equalsIgnoreCase("a")) {
+         if(getUserType().equalsIgnoreCase("a")) {
             if (beerList[0] != null) {
                 //Cycles through until the end of the array or until the target is found
                 while (!beerList[k].getItemName().equalsIgnoreCase(stock) && k < beer && beerList[k + 1] != null) {
@@ -279,10 +280,10 @@ public class User {
         }
     }
 
-    public void removeFromSpiritList(String stock) {
+    public static void removeFromSpiritList(String stock) {
         int k = 0;
 
-         if(this.getUserType().equalsIgnoreCase("a")) {
+         if(getUserType().equalsIgnoreCase("a")) {
             if (spiritList[0] != null) {
                 //Cycles through until the end of the array or until the target is found
                 while (!spiritList[k].getItemName().equalsIgnoreCase(stock) && k < spirit && spiritList[k + 1] != null) {
@@ -305,10 +306,10 @@ public class User {
         }
     }
 
-    public void removeFromJuiceList(String stock) {
+    public static void removeFromJuiceList(String stock) {
         int k = 0;
 
-         if(this.getUserType().equalsIgnoreCase("a")) {
+         if(getUserType().equalsIgnoreCase("a")) {
             if (juiceList[0] != null) {
                 //Cycles through until the end of the array or until the target is found
                 while (!juiceList[k].getItemName().equalsIgnoreCase(stock) && k < juice && juiceList[k + 1] != null) {
@@ -331,10 +332,10 @@ public class User {
         }
     }
 
-    public void removeFromSodaList(String stock) {
+    public static void removeFromSodaList(String stock) {
         int k = 0;
 
-         if(this.getUserType().equalsIgnoreCase("a")) {
+         if(getUserType().equalsIgnoreCase("a")) {
             if (sodaList[0] != null) {
                 //Cycles through until the end of the array or until the target is found
                 while (!sodaList[k].getItemName().equalsIgnoreCase(stock) && k < soda && sodaList[k + 1] != null) {
@@ -357,10 +358,10 @@ public class User {
         }
     }
 
-    public void removeFromWaterList(String stock) {
+    public static void removeFromWaterList(String stock) {
         int k = 0;
 
-         if(this.getUserType().equalsIgnoreCase("a")) {
+         if(getUserType().equalsIgnoreCase("a")) {
             if (waterList[0] != null) {
                 //Cycles through until the end of the array or until the target is found
                 while (!waterList[k].getItemName().equalsIgnoreCase(stock) && k < water && waterList[k + 1] != null) {
@@ -383,10 +384,10 @@ public class User {
         }
     }
 
-    public void removeFromWineList(String stock) {
+    public static void removeFromWineList(String stock) {
         int k = 0;
 
-         if(this.getUserType().equalsIgnoreCase("a")) {
+         if(getUserType().equalsIgnoreCase("a")) {
             if (wineList[0] != null) {
                 //Cycles through until the end of the array or until the target is found
                 while (!wineList[k].getItemName().equalsIgnoreCase(stock) && k < wine && wineList[k + 1] != null) {
@@ -409,10 +410,10 @@ public class User {
         }
     }
 
-    public void removeFromChampagneList(String stock) {
+    public static void removeFromChampagneList(String stock) {
         int k = 0;
 
-         if(this.getUserType().equalsIgnoreCase("a")) {
+         if(getUserType().equalsIgnoreCase("a")) {
             if (champagneList[0] != null) {
                 //Cycles through until the end of the array or until the target is found
                 while (!champagneList[k].getItemName().equalsIgnoreCase(stock) && k < champagne && champagneList[k + 1] != null) {
@@ -435,7 +436,7 @@ public class User {
         }
     }
 
-    public void viewSuppliers() {
+    public static void viewSuppliers() {
         //Checks if list is empty
         if (suppliers[0].getSupplierName().equals("")) {
             System.out.println("No suppliers available.");
@@ -448,7 +449,7 @@ public class User {
         }
     }
 
-    public void viewCustomers() {
+    public static void viewCustomers() {
         //Checks if list is empty
         if (customers[0].getCustomerName().equals("")) {
             System.out.println("No customers available.");
@@ -461,7 +462,7 @@ public class User {
         }
     }
 
-    public void viewBeerList() {
+    public static void viewBeerList() {
         //Checks if list is empty
         if (beerList[0].getItemName().equals("")) {
             System.out.println("No beer is in stock.");
@@ -474,7 +475,7 @@ public class User {
         }
     }
 
-    public void viewSpiritList() {
+    public static void viewSpiritList() {
         //Checks if list is empty
         if (spiritList[0].getItemName().equals("")) {
             System.out.println("No spirit is in stock.");
@@ -487,7 +488,7 @@ public class User {
         }
     }
 
-    public void viewJuiceList() {
+    public static void viewJuiceList() {
         //Checks if list is empty
         if (juiceList[0].getItemName().equals("")) {
             System.out.println("No juice is in stock.");
@@ -500,7 +501,7 @@ public class User {
         }
     }
 
-    public void viewSodaList() {
+    public static void viewSodaList() {
         //Checks if list is empty
         if (sodaList[0].getItemName().equals("")) {
             System.out.println("No soda is in stock.");
@@ -513,7 +514,7 @@ public class User {
         }
     }
 
-    public void viewWaterList() {
+    public static void viewWaterList() {
         //Checks if list is empty
         if (waterList[0].getItemName().equals("")) {
             System.out.println("No water is in stock.");
@@ -526,7 +527,7 @@ public class User {
         }
     }
 
-    public void viewWineList() {
+    public static void viewWineList() {
         //Checks if list is empty
         if (wineList[0].getItemName().equals("")) {
             System.out.println("No wine is in stock.");
@@ -539,7 +540,7 @@ public class User {
         }
     }
 
-    public void viewChampagneList() {
+    public static void viewChampagneList() {
         //Checks if list is empty
         if (champagneList[0].getItemName().equals("")) {
             System.out.println("No champagne is in stock.");
@@ -552,7 +553,7 @@ public class User {
         }
     }
 
-    public boolean checkIfPersonInSuppliers(String person) {
+    public static boolean checkIfPersonInSuppliers(String person) {
         int k = 0;
 
         //Cycles through array until target is found, end was reached or the next item is null
@@ -564,7 +565,7 @@ public class User {
         return suppliers[k].getSupplierName().equalsIgnoreCase(person);
     }
 
-    public boolean checkIfPersonInCustomers(String person) {
+    public static boolean checkIfPersonInCustomers(String person) {
         int k = 0;
 
         //Cycles through array until target is found, end was reached or the next item is null
@@ -576,7 +577,7 @@ public class User {
         return customers[k].getCustomerName().equalsIgnoreCase(person);
     }
 
-    public boolean checkIfBeerInStock(String stock) {
+    public static boolean checkIfBeerInStock(String stock) {
         int k = 0;
 
         //Cycles through array until target is found, end was reached or the next item is null
@@ -588,7 +589,7 @@ public class User {
         return beerList[k].getItemName().equalsIgnoreCase(stock);
     }
 
-    public boolean checkIfSpiritInStock(String stock) {
+    public static boolean checkIfSpiritInStock(String stock) {
         int k = 0;
 
         //Cycles through array until target is found, end was reached or the next item is null
@@ -600,7 +601,7 @@ public class User {
         return spiritList[k].getItemName().equalsIgnoreCase(stock);
     }
 
-    public boolean checkIfJuiceInStock(String stock) {
+    public static boolean checkIfJuiceInStock(String stock) {
         int k = 0;
 
         //Cycles through array until target is found, end was reached or the next item is null
@@ -612,7 +613,7 @@ public class User {
         return juiceList[k].getItemName().equalsIgnoreCase(stock);
     }
 
-    public boolean checkIfSodaInStock(String stock) {
+    public static boolean checkIfSodaInStock(String stock) {
         int k = 0;
 
         //Cycles through array until target is found, end was reached or the next item is null
@@ -624,7 +625,7 @@ public class User {
         return sodaList[k].getItemName().equalsIgnoreCase(stock);
     }
 
-    public boolean checkIfWaterInStock(String stock) {
+    public static boolean checkIfWaterInStock(String stock) {
         int k = 0;
 
         //Cycles through array until target is found, end was reached or the next item is null
@@ -636,7 +637,7 @@ public class User {
         return waterList[k].getItemName().equalsIgnoreCase(stock);
     }
 
-    public boolean checkIfWineInStock(String stock) {
+    public static boolean checkIfWineInStock(String stock) {
         int k = 0;
 
         //Cycles through array until target is found, end was reached or the next item is null
@@ -648,7 +649,7 @@ public class User {
         return wineList[k].getItemName().equalsIgnoreCase(stock);
     }
 
-    public boolean checkIfChampagneInStock(String stock) {
+    public static boolean checkIfChampagneInStock(String stock) {
         int k = 0;
 
         //Cycles through array until target is found, end was reached or the next item is null
@@ -660,7 +661,7 @@ public class User {
         return champagneList[k].getItemName().equalsIgnoreCase(stock);
     }
 
-    public void addQuantityToBeerStock(String stock, int quantity) {
+    public static void addQuantityToBeerStock(String stock, int quantity) {
         int k = 0;
 
         //Cycles through array until target is found, end has reached or the next item is null
@@ -672,7 +673,7 @@ public class User {
         beerList[k].addToStock(quantity);
     }
 
-    public void addQuantityToSpiritStock(String stock, int quantity) {
+    public static void addQuantityToSpiritStock(String stock, int quantity) {
         int k = 0;
 
         //Cycles through array until target is found, end has reached or the next item is null
@@ -684,7 +685,7 @@ public class User {
         spiritList[k].addToStock(quantity);
     }
 
-    public void addQuantityToJuiceStock(String stock, int quantity) {
+    public static void addQuantityToJuiceStock(String stock, int quantity) {
         int k = 0;
 
         //Cycles through array until target is found, end has reached or the next item is null
@@ -696,7 +697,7 @@ public class User {
         juiceList[k].addToStock(quantity);
     }
 
-    public void addQuantityToSodaStock(String stock, int quantity) {
+    public static void addQuantityToSodaStock(String stock, int quantity) {
         int k = 0;
 
         //Cycles through array until target is found, end has reached or the next item is null
@@ -708,7 +709,7 @@ public class User {
         sodaList[k].addToStock(quantity);
     }
 
-    public void addQuantityToWaterStock(String stock, int quantity) {
+    public static void addQuantityToWaterStock(String stock, int quantity) {
         int k = 0;
 
         //Cycles through array until target is found, end has reached or the next item is null
@@ -720,7 +721,7 @@ public class User {
         waterList[k].addToStock(quantity);
     }
 
-    public void addQuantityToWineStock(String stock, int quantity) {
+    public static void addQuantityToWineStock(String stock, int quantity) {
         int k = 0;
 
         //Cycles through array until target is found, end has reached or the next item is null
@@ -732,7 +733,7 @@ public class User {
         wineList[k].addToStock(quantity);
     }
 
-    public void addQuantityToChampagneStock(String stock, int quantity) {
+    public static void addQuantityToChampagneStock(String stock, int quantity) {
         int k = 0;
 
         //Cycles through array until target is found, end has reached or the next item is null
@@ -744,7 +745,7 @@ public class User {
         champagneList[k].addToStock(quantity);
     }
 
-    public void removeQuantityFromBeerStock(String stock, int quantity) {
+    public static void removeQuantityFromBeerStock(String stock, int quantity) {
         int k = 0;
 
         //Cycles through array until target is found, end was reached or the next item is null
@@ -756,7 +757,7 @@ public class User {
         beerList[k].removeFromStock(quantity);
     }
 
-    public void removeQuantityFromSpiritStock(String stock, int quantity) {
+    public static void removeQuantityFromSpiritStock(String stock, int quantity) {
         int k = 0;
 
         //Cycles through array until target is found, end was reached or the next item is null
@@ -768,7 +769,7 @@ public class User {
         spiritList[k].removeFromStock(quantity);
     }
 
-    public void removeQuantityFromJuiceStock(String stock, int quantity) {
+    public static void removeQuantityFromJuiceStock(String stock, int quantity) {
         int k = 0;
 
         //Cycles through array until target is found, end was reached or the next item is null
@@ -780,7 +781,7 @@ public class User {
         juiceList[k].removeFromStock(quantity);
     }
 
-    public void removeQuantityFromSodaStock(String stock, int quantity) {
+    public static void removeQuantityFromSodaStock(String stock, int quantity) {
         int k = 0;
 
         //Cycles through array until target is found, end was reached or the next item is null
@@ -792,7 +793,7 @@ public class User {
         sodaList[k].removeFromStock(quantity);
     }
 
-    public void removeQuantityFromWaterStock(String stock, int quantity) {
+    public static void removeQuantityFromWaterStock(String stock, int quantity) {
         int k = 0;
 
         //Cycles through array until target is found, end was reached or the next item is null
@@ -804,7 +805,7 @@ public class User {
         waterList[k].removeFromStock(quantity);
     }
 
-    public void removeQuantityFromWineStock(String stock, int quantity) {
+    public static void removeQuantityFromWineStock(String stock, int quantity) {
         int k = 0;
 
         //Cycles through array until target is found, end was reached or the next item is null
@@ -816,7 +817,7 @@ public class User {
         wineList[k].removeFromStock(quantity);
     }
 
-    public void removeQuantityFromChampagneStock(String stock, int quantity) {
+    public static void removeQuantityFromChampagneStock(String stock, int quantity) {
         int k = 0;
 
         //Cycles through array until target is found, end was reached or the next item is null
@@ -828,7 +829,7 @@ public class User {
         champagneList[k].removeFromStock(quantity);
     }
 
-    public Supplier getSupplier(String person) {
+    public static Supplier getSupplier(String person) {
         int k = 0;
 
         //Cycles through array until target is found, end has reached or the next item is null
@@ -840,7 +841,7 @@ public class User {
         return suppliers[k];
     }
 
-    public Customer getCustomer(String person) {
+    public static Customer getCustomer(String person) {
         int k = 0;
 
         //Cycles through array until target is found, end has reached or the next item is null
@@ -852,7 +853,7 @@ public class User {
         return customers[k];
     }
 
-    public Beer getBeerStock(String stock) {
+    public static Beer getBeerStock(String stock) {
         int k = 0;
 
         //Cycles through array until target is found, end has reached or the next item is null
@@ -864,7 +865,7 @@ public class User {
         return beerList[k];
     }
 
-    public Spirit getSpiritStock(String stock) {
+    public static Spirit getSpiritStock(String stock) {
         int k = 0;
 
         //Cycles through array until target is found, end has reached or the next item is null
@@ -876,7 +877,7 @@ public class User {
         return spiritList[k];
     }
 
-    public Juice getJuiceStock(String stock) {
+    public static Juice getJuiceStock(String stock) {
         int k = 0;
 
         //Cycles through array until target is found, end has reached or the next item is null
@@ -888,7 +889,7 @@ public class User {
         return juiceList[k];
     }
 
-    public Soda getSodaStock(String stock) {
+    public static Soda getSodaStock(String stock) {
         int k = 0;
 
         //Cycles through array until target is found, end has reached or the next item is null
@@ -900,7 +901,7 @@ public class User {
         return sodaList[k];
     }
 
-    public Water getWaterStock(String stock) {
+    public static Water getWaterStock(String stock) {
         int k = 0;
 
         //Cycles through array until target is found, end has reached or the next item is null
@@ -912,7 +913,7 @@ public class User {
         return waterList[k];
     }
 
-    public Wine getWineStock(String stock) {
+    public static Wine getWineStock(String stock) {
         int k = 0;
 
         //Cycles through array until target is found, end has reached or the next item is null
@@ -924,7 +925,7 @@ public class User {
         return wineList[k];
     }
 
-    public Champagne getChampagneStock(String stock) {
+    public static Champagne getChampagneStock(String stock) {
         int k = 0;
 
         //Cycles through array until target is found, end has reached or the next item is null

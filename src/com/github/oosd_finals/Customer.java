@@ -1,7 +1,5 @@
 package com.github.oosd_finals;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -11,16 +9,16 @@ public class Customer {
     private String[][] purchasedItemsList = new String[10][3];
     private int salesReceiptNumber = 0, i = 0;
 
-    public Customer(@NotNull User user) {
-         if(user.getUserType().equalsIgnoreCase("a")) {
+    public Customer() {
+         if(User.getUserType().equalsIgnoreCase("a")) {
              this.customerName = "";
         } else {
              System.out.println("You do not have admin privileges.\n");
          }
     }
 
-    public Customer(String name, String email, String contactNumber, @NotNull User user) {
-         if(user.getUserType().equalsIgnoreCase("a")) {
+    public Customer(String name, String email, String contactNumber) {
+         if(User.getUserType().equalsIgnoreCase("a")) {
             this.customerName = name;
             this.customerEmail = email;
             this.customerContactNumber = contactNumber;
@@ -29,8 +27,8 @@ public class Customer {
          }
     }
 
-    public Customer(String firstName, String lastName, String email, String contactNumber, @NotNull User user) {
-         if(user.getUserType().equalsIgnoreCase("a")) {
+    public Customer(String firstName, String lastName, String email, String contactNumber) {
+         if(User.getUserType().equalsIgnoreCase("a")) {
             this.customerName = firstName + " " + lastName;
             this.customerEmail = email;
             this.customerContactNumber = contactNumber;
@@ -43,8 +41,8 @@ public class Customer {
         return customerName;
     }
 
-    public void setCustomerName(String customerName, @NotNull User user) {
-         if(user.getUserType().equalsIgnoreCase("a")) {
+    public void setCustomerName(String customerName) {
+         if(User.getUserType().equalsIgnoreCase("a")) {
             this.customerName = customerName;
         }
         else {
@@ -56,8 +54,8 @@ public class Customer {
         return customerEmail;
     }
 
-    public void setCustomerEmail(String customerEmail, @NotNull User user) {
-         if(user.getUserType().equalsIgnoreCase("a")) {
+    public void setCustomerEmail(String customerEmail) {
+         if(User.getUserType().equalsIgnoreCase("a")) {
             this.customerEmail = customerEmail;
         }
         else {
@@ -69,8 +67,8 @@ public class Customer {
         return customerContactNumber;
     }
 
-    public void setCustomerContactNumber(String customerContactNumber, @NotNull User user) {
-         if(user.getUserType().equalsIgnoreCase("a")) {
+    public void setCustomerContactNumber(String customerContactNumber) {
+         if(User.getUserType().equalsIgnoreCase("a")) {
             this.customerContactNumber = customerContactNumber;
         }
         else {
@@ -79,8 +77,8 @@ public class Customer {
     }
 
     //Basically the constructor but as a method
-    public void editCustomerInformation(String name, String email, String contactNumber, @NotNull User user) {
-         if(user.getUserType().equalsIgnoreCase("a")) {
+    public void editCustomerInformation(String name, String email, String contactNumber) {
+         if(User.getUserType().equalsIgnoreCase("a")) {
             this.customerName = name;
             this.customerEmail = email;
             this.customerContactNumber = contactNumber;
@@ -116,8 +114,8 @@ public class Customer {
     }
 
     //Removes and item from the purchased item list
-    public void removePurchasedItem(String item, int quantity, @NotNull User user) {
-         if(user.getUserType().equalsIgnoreCase("a")) {
+    public void removePurchasedItem(String item, int quantity) {
+         if(User.getUserType().equalsIgnoreCase("a")) {
             if (this.purchasedItemsList[0][0] != null) {
                 int j = 0;
 
@@ -128,32 +126,32 @@ public class Customer {
                 }
 
                 //Adds back the subtracted quantity from stock
-                if (user.checkIfBeerInStock(item)) {
-                    user.addQuantityToBeerStock(item, quantity);
+                if (User.checkIfBeerInStock(item)) {
+                    User.addQuantityToBeerStock(item, quantity);
                     User.setWallet(User.getWallet() - Double.parseDouble(this.purchasedItemsList[j][1]) * Double.parseDouble(this.purchasedItemsList[j][2]));
                 }
-                else if (user.checkIfSpiritInStock(item)) {
-                    user.addQuantityToSpiritStock(item, quantity);
+                else if (User.checkIfSpiritInStock(item)) {
+                    User.addQuantityToSpiritStock(item, quantity);
                     User.setWallet(User.getWallet() - Double.parseDouble(this.purchasedItemsList[j][1]) * Double.parseDouble(this.purchasedItemsList[j][2]));
                 }
-                else if (user.checkIfJuiceInStock(item)) {
-                    user.addQuantityToJuiceStock(item, quantity);
+                else if (User.checkIfJuiceInStock(item)) {
+                    User.addQuantityToJuiceStock(item, quantity);
                     User.setWallet(User.getWallet() - Double.parseDouble(this.purchasedItemsList[j][1]) * Double.parseDouble(this.purchasedItemsList[j][2]));
                 }
-                else if (user.checkIfSodaInStock(item)) {
-                    user.addQuantityToSodaStock(item, quantity);
+                else if (User.checkIfSodaInStock(item)) {
+                    User.addQuantityToSodaStock(item, quantity);
                     User.setWallet(User.getWallet() - Double.parseDouble(this.purchasedItemsList[j][1]) * Double.parseDouble(this.purchasedItemsList[j][2]));
                 }
-                else if (user.checkIfWaterInStock(item)) {
-                    user.addQuantityToWaterStock(item, quantity);
+                else if (User.checkIfWaterInStock(item)) {
+                    User.addQuantityToWaterStock(item, quantity);
                     User.setWallet(User.getWallet() - Double.parseDouble(this.purchasedItemsList[j][1]) * Double.parseDouble(this.purchasedItemsList[j][2]));
                 }
-                else if (user.checkIfWineInStock(item)) {
-                    user.addQuantityToWineStock(item, quantity);
+                else if (User.checkIfWineInStock(item)) {
+                    User.addQuantityToWineStock(item, quantity);
                     User.setWallet(User.getWallet() - Double.parseDouble(this.purchasedItemsList[j][1]) * Double.parseDouble(this.purchasedItemsList[j][2]));
                 }
-                else if (user.checkIfChampagneInStock(item)) {
-                    user.addQuantityToChampagneStock(item, quantity);
+                else if (User.checkIfChampagneInStock(item)) {
+                    User.addQuantityToChampagneStock(item, quantity);
                     User.setWallet(User.getWallet() - Double.parseDouble(this.purchasedItemsList[j][1]) * Double.parseDouble(this.purchasedItemsList[j][2]));
                 }
 
@@ -219,19 +217,19 @@ public class Customer {
         }
     }
 
-    public void createAndPrintSalesReceipt (String item, int quantity, @NotNull User user) {
+    public void createAndPrintSalesReceipt (String item, int quantity) {
         double salesReceiptTotal;
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
         //Checks if item is in stock
-        if (user.checkIfBeerInStock(item)) {
+        if (User.checkIfBeerInStock(item)) {
             this.salesReceiptNumber += 1;
 
             //Removes from the amount owned
             //Adds item to the purchased item list
-            user.removeQuantityFromBeerStock(item, quantity);
-            addPurchasedItem(item, user.getBeerStock(item).getItemPrice(), quantity);
+            User.removeQuantityFromBeerStock(item, quantity);
+            addPurchasedItem(item, User.getBeerStock(item).getItemPrice(), quantity);
             salesReceiptTotal = Double.parseDouble(this.purchasedItemsList[i - 1][1]) * quantity;
 
             User.setWallet(User.getWallet() + salesReceiptTotal);
@@ -249,13 +247,13 @@ public class Customer {
                     """,
                     this.salesReceiptNumber, formatter.format(date), this.customerName, item.toUpperCase(), Double.parseDouble(this.purchasedItemsList[i - 1][1]), quantity, salesReceiptTotal);
         }
-        else if (user.checkIfSpiritInStock(item)) {
+        else if (User.checkIfSpiritInStock(item)) {
             this.salesReceiptNumber += 1;
 
             //Removes from the amount owned
             //Adds item to the purchased item list
-            user.removeQuantityFromSpiritStock(item, quantity);
-            addPurchasedItem(item, user.getSpiritStock(item).getItemPrice(), quantity);
+            User.removeQuantityFromSpiritStock(item, quantity);
+            addPurchasedItem(item, User.getSpiritStock(item).getItemPrice(), quantity);
             salesReceiptTotal = Double.parseDouble(this.purchasedItemsList[i - 1][1]) * quantity;
 
             User.setWallet(User.getWallet() + salesReceiptTotal);
@@ -273,13 +271,13 @@ public class Customer {
                     """,
                     this.salesReceiptNumber, formatter.format(date), this.customerName, item.toUpperCase(), Double.parseDouble(this.purchasedItemsList[i - 1][1]), quantity, salesReceiptTotal);
         }
-        else if (user.checkIfJuiceInStock(item)) {
+        else if (User.checkIfJuiceInStock(item)) {
             this.salesReceiptNumber += 1;
 
             //Removes from the amount owned
             //Adds item to the purchased item list
-            user.removeQuantityFromJuiceStock(item, quantity);
-            addPurchasedItem(item, user.getJuiceStock(item).getItemPrice(), quantity);
+            User.removeQuantityFromJuiceStock(item, quantity);
+            addPurchasedItem(item, User.getJuiceStock(item).getItemPrice(), quantity);
             salesReceiptTotal = Double.parseDouble(this.purchasedItemsList[i - 1][1]) * quantity;
 
             User.setWallet(User.getWallet() + salesReceiptTotal);
@@ -297,13 +295,13 @@ public class Customer {
                     """,
                     this.salesReceiptNumber, formatter.format(date), this.customerName, item.toUpperCase(), Double.parseDouble(this.purchasedItemsList[i - 1][1]), quantity, salesReceiptTotal);
         }
-        else if (user.checkIfSodaInStock(item)) {
+        else if (User.checkIfSodaInStock(item)) {
             this.salesReceiptNumber += 1;
 
             //Removes from the amount owned
             //Adds item to the purchased item list
-            user.removeQuantityFromSodaStock(item, quantity);
-            addPurchasedItem(item, user.getSodaStock(item).getItemPrice(), quantity);
+            User.removeQuantityFromSodaStock(item, quantity);
+            addPurchasedItem(item, User.getSodaStock(item).getItemPrice(), quantity);
             salesReceiptTotal = Double.parseDouble(this.purchasedItemsList[i - 1][1]) * quantity;
 
             User.setWallet(User.getWallet() + salesReceiptTotal);
@@ -321,13 +319,13 @@ public class Customer {
                     """,
                     this.salesReceiptNumber, formatter.format(date), this.customerName, item.toUpperCase(), Double.parseDouble(this.purchasedItemsList[i - 1][1]), quantity, salesReceiptTotal);
         }
-        else if (user.checkIfWaterInStock(item)) {
+        else if (User.checkIfWaterInStock(item)) {
             this.salesReceiptNumber += 1;
 
             //Removes from the amount owned
             //Adds item to the purchased item list
-            user.removeQuantityFromWaterStock(item, quantity);
-            addPurchasedItem(item, user.getWaterStock(item).getItemPrice(), quantity);
+            User.removeQuantityFromWaterStock(item, quantity);
+            addPurchasedItem(item, User.getWaterStock(item).getItemPrice(), quantity);
             salesReceiptTotal = Double.parseDouble(this.purchasedItemsList[i - 1][1]) * quantity;
 
             User.setWallet(User.getWallet() + salesReceiptTotal);
@@ -345,13 +343,13 @@ public class Customer {
                     """,
                     this.salesReceiptNumber, formatter.format(date), this.customerName, item.toUpperCase(), Double.parseDouble(this.purchasedItemsList[i - 1][1]), quantity, salesReceiptTotal);
         }
-        else if (user.checkIfWineInStock(item)) {
+        else if (User.checkIfWineInStock(item)) {
             this.salesReceiptNumber += 1;
 
             //Removes from the amount owned
             //Adds item to the purchased item list
-            user.removeQuantityFromWineStock(item, quantity);
-            addPurchasedItem(item, user.getWineStock(item).getItemPrice(), quantity);
+            User.removeQuantityFromWineStock(item, quantity);
+            addPurchasedItem(item, User.getWineStock(item).getItemPrice(), quantity);
             salesReceiptTotal = Double.parseDouble(this.purchasedItemsList[i - 1][1]) * quantity;
 
             User.setWallet(User.getWallet() + salesReceiptTotal);
@@ -369,13 +367,13 @@ public class Customer {
                     """,
                     this.salesReceiptNumber, formatter.format(date), this.customerName, item.toUpperCase(), Double.parseDouble(this.purchasedItemsList[i - 1][1]), quantity, salesReceiptTotal);
         }
-        else if (user.checkIfChampagneInStock(item)) {
+        else if (User.checkIfChampagneInStock(item)) {
             this.salesReceiptNumber += 1;
 
             //Removes from the amount owned
             //Adds item to the purchased item list
-            user.removeQuantityFromChampagneStock(item, quantity);
-            addPurchasedItem(item, user.getChampagneStock(item).getItemPrice(), quantity);
+            User.removeQuantityFromChampagneStock(item, quantity);
+            addPurchasedItem(item, User.getChampagneStock(item).getItemPrice(), quantity);
             salesReceiptTotal = Double.parseDouble(this.purchasedItemsList[i - 1][1]) * quantity;
 
             User.setWallet(User.getWallet() + salesReceiptTotal);
