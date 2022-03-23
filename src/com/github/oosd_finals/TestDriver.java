@@ -10,9 +10,8 @@ public class TestDriver {
     public static Scanner ansScanner = new Scanner(System.in);
     public static String ans = "";
     public static int choice = 0;
-    public static File file = new File("user.txt");
+    public static File file = new File("User.txt");
     public static Scanner fileReader;
-    public static User user;
 
     static {
         try {
@@ -92,7 +91,7 @@ public class TestDriver {
         writer.append("\n");
         writer.close();
         System.out.println();
-        user = new User(signInCredentials[3], signInCredentials[4]);
+        new User(signInCredentials[3], signInCredentials[4]);
         menuSelection();
     }
 
@@ -121,7 +120,7 @@ public class TestDriver {
                     i = 0;
 
                     if (loginCredentials[4].equals(login[0]) && loginCredentials[5].equals(login[1])) {
-                        user = new User(loginCredentials[3], loginCredentials[4]);
+                        new User(loginCredentials[3], loginCredentials[4]);
                         System.out.println();
                         menuSelection();
                     }
@@ -161,7 +160,7 @@ public class TestDriver {
 
         switch (choice) {
             case 0:
-                userMenu();
+                UserMenu();
             case 1:
                 stockMenu();
             case 2:
@@ -175,7 +174,7 @@ public class TestDriver {
         }
     }
 
-    static void userMenu() throws IOException {
+    static void UserMenu() throws IOException {
         System.out.println("""
                 User Menu
                 What would you like to do:
@@ -186,37 +185,37 @@ public class TestDriver {
         choice = ansScanner.nextInt();
         System.out.println();
 
-        String[] userCredentials = new String[6];
+        String[] UserCredentials = new String[6];
         int i = 0;
 
         switch (choice) {
             case 0:
                 while (fileReader.hasNext()) {
-                    userCredentials[i] = fileReader.next();
+                    UserCredentials[i] = fileReader.next();
                     i++;
 
                     if (i == 6) {
-                        if (userCredentials[4].equals(user.getUserID())) {
+                        if (UserCredentials[4].equals(User.getUserID())) {
                             System.out.println("User Information");
 
-                            for (String s : userCredentials) {
+                            for (String s : UserCredentials) {
                                 System.out.println(s);
                             }
 
                             System.out.println();
-                            userMenu();
+                            UserMenu();
                         } else {
                             i = 0;
                         }
                     }
                 }
             case 1:
-                System.out.println(user.printProfitAndLoss());
+                System.out.println(User.printProfitAndLoss());
                 menuSelection();
             case 2:
                 menuSelection();
             default:
-                userMenu();
+                UserMenu();
         }
     }
 
@@ -248,56 +247,56 @@ public class TestDriver {
                 } while (!(itemCategory.equalsIgnoreCase("beer") || itemCategory.equalsIgnoreCase("champagne") || itemCategory.equalsIgnoreCase("juice") || itemCategory.equalsIgnoreCase("soda") || itemCategory.equalsIgnoreCase("spirit") || itemCategory.equalsIgnoreCase("water") || itemCategory.equalsIgnoreCase("wine")));
 
                 if (itemCategory.equalsIgnoreCase("beer")) {
-                    if (user.checkIfBeerInStock(itemName)) {
-                        System.out.println(user.getBeerStock(itemName));
+                    if (User.checkIfBeerInStock(itemName)) {
+                        System.out.println(User.getBeerStock(itemName));
                     } else {
                         System.out.println(itemName.toUpperCase() + " doesn't exist.");
                     }
                     System.out.println();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("spirit")) {
-                    if (user.checkIfSpiritInStock(itemName)) {
-                        System.out.println(user.getSpiritStock(itemName));
+                    if (User.checkIfSpiritInStock(itemName)) {
+                        System.out.println(User.getSpiritStock(itemName));
                     } else {
                         System.out.println(itemName.toUpperCase() + " doesn't exist.");
                     }
                     System.out.println();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("juice")) {
-                    if (user.checkIfJuiceInStock(itemName)) {
-                        System.out.println(user.getJuiceStock(itemName));
+                    if (User.checkIfJuiceInStock(itemName)) {
+                        System.out.println(User.getJuiceStock(itemName));
                     } else {
                         System.out.println(itemName.toUpperCase() + " doesn't exist.");
                     }
                     System.out.println();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("soda")) {
-                    if (user.checkIfSodaInStock(itemName)) {
-                        System.out.println(user.getSodaStock(itemName));
+                    if (User.checkIfSodaInStock(itemName)) {
+                        System.out.println(User.getSodaStock(itemName));
                     } else {
                         System.out.println(itemName.toUpperCase() + " doesn't exist.");
                     }
                     System.out.println();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("water")) {
-                    if (user.checkIfWaterInStock(itemName)) {
-                        System.out.println(user.getWaterStock(itemName));
+                    if (User.checkIfWaterInStock(itemName)) {
+                        System.out.println(User.getWaterStock(itemName));
                     } else {
                         System.out.println(itemName.toUpperCase() + " doesn't exist.");
                     }
                     System.out.println();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("wine")) {
-                    if (user.checkIfWineInStock(itemName)) {
-                        System.out.println(user.getWineStock(itemName));
+                    if (User.checkIfWineInStock(itemName)) {
+                        System.out.println(User.getWineStock(itemName));
                     } else {
                         System.out.println(itemName.toUpperCase() + " doesn't exist.");
                     }
                     System.out.println();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("champagne")) {
-                    if (user.checkIfChampagneInStock(itemName)) {
-                        System.out.println(user.getChampagneStock(itemName));
+                    if (User.checkIfChampagneInStock(itemName)) {
+                        System.out.println(User.getChampagneStock(itemName));
                     } else {
                         System.out.println(itemName.toUpperCase() + " doesn't exist.");
                     }
@@ -316,56 +315,56 @@ public class TestDriver {
                 } while (!(itemCategory.equalsIgnoreCase("beer") || itemCategory.equalsIgnoreCase("champagne") || itemCategory.equalsIgnoreCase("juice") || itemCategory.equalsIgnoreCase("soda") || itemCategory.equalsIgnoreCase("spirit") || itemCategory.equalsIgnoreCase("water") || itemCategory.equalsIgnoreCase("wine")));
 
                 if (itemCategory.equalsIgnoreCase("beer")) {
-                    if (user.checkIfBeerInStock(itemName)) {
-                        user.getBeerStock(itemName).setItemPrice(itemPrice, user);
+                    if (User.checkIfBeerInStock(itemName)) {
+                        User.getBeerStock(itemName).setItemPrice(itemPrice);
                     } else {
                         System.out.println(itemName.toUpperCase() + " doesn't exist.");
                     }
                     System.out.println();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("spirit")) {
-                    if (user.checkIfSpiritInStock(itemName)) {
-                        user.getSpiritStock(itemName).setItemPrice(itemPrice, user);
+                    if (User.checkIfSpiritInStock(itemName)) {
+                        User.getSpiritStock(itemName).setItemPrice(itemPrice);
                     } else {
                         System.out.println(itemName.toUpperCase() + " doesn't exist.");
                     }
                     System.out.println();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("juice")) {
-                    if (user.checkIfJuiceInStock(itemName)) {
-                        user.getJuiceStock(itemName).setItemPrice(itemPrice, user);
+                    if (User.checkIfJuiceInStock(itemName)) {
+                        User.getJuiceStock(itemName).setItemPrice(itemPrice);
                     } else {
                         System.out.println(itemName.toUpperCase() + " doesn't exist.");
                     }
                     System.out.println();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("soda")) {
-                    if (user.checkIfSodaInStock(itemName)) {
-                        user.getSodaStock(itemName).setItemPrice(itemPrice, user);
+                    if (User.checkIfSodaInStock(itemName)) {
+                        User.getSodaStock(itemName).setItemPrice(itemPrice);
                     } else {
                         System.out.println(itemName.toUpperCase() + " doesn't exist.");
                     }
                     System.out.println();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("water")) {
-                    if (user.checkIfWaterInStock(itemName)) {
-                        user.getWaterStock(itemName).setItemPrice(itemPrice, user);
+                    if (User.checkIfWaterInStock(itemName)) {
+                        User.getWaterStock(itemName).setItemPrice(itemPrice);
                     } else {
                         System.out.println(itemName.toUpperCase() + " doesn't exist.");
                     }
                     System.out.println();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("wine")) {
-                    if (user.checkIfWineInStock(itemName)) {
-                        user.getWineStock(itemName).setItemPrice(itemPrice, user);
+                    if (User.checkIfWineInStock(itemName)) {
+                        User.getWineStock(itemName).setItemPrice(itemPrice);
                     } else {
                         System.out.println(itemName.toUpperCase() + " doesn't exist.");
                     }
                     System.out.println();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("champagne")) {
-                    if (user.checkIfChampagneInStock(itemName)) {
-                        user.getChampagneStock(itemName).setItemPrice(itemPrice, user);
+                    if (User.checkIfChampagneInStock(itemName)) {
+                        User.getChampagneStock(itemName).setItemPrice(itemPrice);
                     } else {
                         System.out.println(itemName.toUpperCase() + " doesn't exist.");
                     }
@@ -392,58 +391,58 @@ public class TestDriver {
 
 
                 if (itemCategory.equalsIgnoreCase("beer")) {
-                    if (user.checkIfBeerInStock(stockInfo[0])) {
+                    if (User.checkIfBeerInStock(stockInfo[0])) {
                         System.out.println("Already in stock.");
                     } else {
-                        user.addToStockList(new Beer(stockInfo[0], stockInfo[1], itemPrice, user));
+                        User.addToStockList(new Beer(stockInfo[0], stockInfo[1], itemPrice));
                     }
                     System.out.println();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("spirit")) {
-                    if (user.checkIfSpiritInStock(stockInfo[0])) {
+                    if (User.checkIfSpiritInStock(stockInfo[0])) {
                         System.out.println("Already in stock.");
                     } else {
-                        user.addToStockList(new Spirit(stockInfo[0], stockInfo[1], itemPrice, user));
+                        User.addToStockList(new Spirit(stockInfo[0], stockInfo[1], itemPrice));
                     }
                     System.out.println();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("juice")) {
-                    if (user.checkIfJuiceInStock(stockInfo[0])) {
+                    if (User.checkIfJuiceInStock(stockInfo[0])) {
                         System.out.println("Already in stock.");
                     } else {
-                        user.addToStockList(new Juice(stockInfo[0], stockInfo[1], itemPrice, user));
+                        User.addToStockList(new Juice(stockInfo[0], stockInfo[1], itemPrice));
                     }
                     System.out.println();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("soda")) {
-                    if (user.checkIfSodaInStock(stockInfo[0])) {
+                    if (User.checkIfSodaInStock(stockInfo[0])) {
                         System.out.println("Already in stock.");
                     } else {
-                        user.addToStockList(new Soda(stockInfo[0], stockInfo[1], itemPrice, user));
+                        User.addToStockList(new Soda(stockInfo[0], stockInfo[1], itemPrice));
                     }
                     System.out.println();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("water")) {
-                    if (user.checkIfWaterInStock(stockInfo[0])) {
+                    if (User.checkIfWaterInStock(stockInfo[0])) {
                         System.out.println("Already in stock.");
                     } else {
-                        user.addToStockList(new Water(stockInfo[0], stockInfo[1], itemPrice, user));
+                        User.addToStockList(new Water(stockInfo[0], stockInfo[1], itemPrice));
                     }
                     System.out.println();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("wine")) {
-                    if (user.checkIfWineInStock(stockInfo[0])) {
+                    if (User.checkIfWineInStock(stockInfo[0])) {
                         System.out.println("Already in stock.");
                     } else {
-                        user.addToStockList(new Wine(stockInfo[0], stockInfo[1], itemPrice, user));
+                        User.addToStockList(new Wine(stockInfo[0], stockInfo[1], itemPrice));
                     }
                     System.out.println();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("champagne")) {
-                    if (user.checkIfChampagneInStock(stockInfo[0])) {
+                    if (User.checkIfChampagneInStock(stockInfo[0])) {
                         System.out.println("Already in stock.");
                     } else {
-                        user.addToStockList(new Champagne(stockInfo[0], stockInfo[1], itemPrice, user));
+                        User.addToStockList(new Champagne(stockInfo[0], stockInfo[1], itemPrice));
                     }
                     System.out.println();
                     stockMenu();
@@ -458,56 +457,56 @@ public class TestDriver {
                 } while (!(itemCategory.equalsIgnoreCase("beer") || itemCategory.equalsIgnoreCase("champagne") || itemCategory.equalsIgnoreCase("juice") || itemCategory.equalsIgnoreCase("soda") || itemCategory.equalsIgnoreCase("spirit") || itemCategory.equalsIgnoreCase("water") || itemCategory.equalsIgnoreCase("wine")));
 
                 if (itemCategory.equalsIgnoreCase("beer")) {
-                    if (user.checkIfBeerInStock(itemName)) {
-                        user.removeFromBeerList(itemName);
+                    if (User.checkIfBeerInStock(itemName)) {
+                        User.removeFromBeerList(itemName);
                     } else {
                         System.out.println("Not in stock.");
                     }
                     System.out.println();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("spirit")) {
-                    if (user.checkIfSpiritInStock(itemName)) {
-                        user.removeFromSpiritList(itemName);
+                    if (User.checkIfSpiritInStock(itemName)) {
+                        User.removeFromSpiritList(itemName);
                     } else {
                         System.out.println("Not in stock.");
                     }
                     System.out.println();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("juice")) {
-                    if (user.checkIfJuiceInStock(itemName)) {
-                        user.removeFromJuiceList(itemName);
+                    if (User.checkIfJuiceInStock(itemName)) {
+                        User.removeFromJuiceList(itemName);
                     } else {
                         System.out.println("Not in stock.");
                     }
                     System.out.println();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("soda")) {
-                    if (user.checkIfSodaInStock(itemName)) {
-                        user.removeFromSodaList(itemName);
+                    if (User.checkIfSodaInStock(itemName)) {
+                        User.removeFromSodaList(itemName);
                     } else {
                         System.out.println("Not in stock.");
                     }
                     System.out.println();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("water")) {
-                    if (user.checkIfWaterInStock(itemName)) {
-                        user.removeFromWaterList(itemName);
+                    if (User.checkIfWaterInStock(itemName)) {
+                        User.removeFromWaterList(itemName);
                     } else {
                         System.out.println("Not in stock.");
                     }
                     System.out.println();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("wine")) {
-                    if (user.checkIfWineInStock(itemName)) {
-                        user.removeFromWineList(itemName);
+                    if (User.checkIfWineInStock(itemName)) {
+                        User.removeFromWineList(itemName);
                     } else {
                         System.out.println("Not in stock.");
                     }
                     System.out.println();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("champagne")) {
-                    if (user.checkIfChampagneInStock(itemName)) {
-                        user.removeFromChampagneList(itemName);
+                    if (User.checkIfChampagneInStock(itemName)) {
+                        User.removeFromChampagneList(itemName);
                     } else {
                         System.out.println("Not in stock.");
                     }
@@ -521,25 +520,25 @@ public class TestDriver {
                 } while (!(itemCategory.equalsIgnoreCase("beer") || itemCategory.equalsIgnoreCase("champagne") || itemCategory.equalsIgnoreCase("juice") || itemCategory.equalsIgnoreCase("soda") || itemCategory.equalsIgnoreCase("spirit") || itemCategory.equalsIgnoreCase("water") || itemCategory.equalsIgnoreCase("wine")));
 
                 if (itemCategory.equalsIgnoreCase("beer")) {
-                    user.viewBeerList();
+                    User.viewBeerList();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("spirit")) {
-                    user.viewSpiritList();
+                    User.viewSpiritList();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("juice")) {
-                    user.viewJuiceList();
+                    User.viewJuiceList();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("soda")) {
-                    user.viewSodaList();
+                    User.viewSodaList();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("water")) {
-                    user.viewWaterList();
+                    User.viewWaterList();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("wine")) {
-                    user.viewWineList();
+                    User.viewWineList();
                     stockMenu();
                 } else if (itemCategory.equalsIgnoreCase("champagne")) {
-                    user.viewChampagneList();
+                    User.viewChampagneList();
                     stockMenu();
                 }
             case 5:
@@ -576,11 +575,11 @@ public class TestDriver {
                 supplierEmail = ansScanner.next().trim();
                 System.out.print("Enter supplier's contact number: ");
                 supplierContactNumber = ansScanner.next().trim();
-                
-                if (user.checkIfPersonInSuppliers(supplierName)) {
+
+                if (User.checkIfPersonInSuppliers(supplierName)) {
                     System.out.println("Supplier exists.");
                 } else {
-                    user.addToSuppliers(new Supplier(supplierName, supplierEmail, supplierContactNumber, user));
+                    User.addToSuppliers(new Supplier(supplierName, supplierEmail, supplierContactNumber));
                 }
                 System.out.println();
                 supplierMenu();
@@ -588,8 +587,8 @@ public class TestDriver {
                 System.out.print("Enter supplier's name: ");
                 supplierName = ansScanner.next().trim();
 
-                if (user.checkIfPersonInSuppliers(supplierName)) {
-                    System.out.println(user.getSupplier(supplierName));
+                if (User.checkIfPersonInSuppliers(supplierName)) {
+                    System.out.println(User.getSupplier(supplierName));
                 } else {
                     System.out.println("Not a supplier.");
                 }
@@ -607,8 +606,8 @@ public class TestDriver {
                 System.out.print("Enter the new/same contact number: ");
                 newContactNumber = ansScanner.next().trim();
 
-                if (user.checkIfPersonInSuppliers(supplierName)) {
-                    user.getSupplier(supplierName).editSupplierInformation(newName, newEmail, newContactNumber, user);
+                if (User.checkIfPersonInSuppliers(supplierName)) {
+                    User.getSupplier(supplierName).editSupplierInformation(newName, newEmail, newContactNumber);
                 } else {
                     System.out.println("Not a supplier.");
                 }
@@ -624,8 +623,8 @@ public class TestDriver {
                 System.out.print("Enter item's price: $");
                 itemPrice = ansScanner.nextDouble();
 
-                if (user.checkIfPersonInSuppliers(supplierName)) {
-                    user.getSupplier(supplierName).addPurchasableItem(itemName, itemPrice, user);
+                if (User.checkIfPersonInSuppliers(supplierName)) {
+                    User.getSupplier(supplierName).addPurchasableItem(itemName, itemPrice);
                 } else {
                     System.out.println("Not a supplier.");
                 }
@@ -637,8 +636,8 @@ public class TestDriver {
                 System.out.print("Enter item's name: ");
                 itemName = ansScanner.next().trim();
 
-                if (user.checkIfPersonInSuppliers(supplierName)) {
-                    user.getSupplier(supplierName).removePurchasableItem(itemName, user);
+                if (User.checkIfPersonInSuppliers(supplierName)) {
+                    User.getSupplier(supplierName).removePurchasableItem(itemName);
                 } else {
                     System.out.println("Not a supplier.");
                 }
@@ -648,15 +647,15 @@ public class TestDriver {
                 System.out.print("Enter the supplier whose item list you want to see: ");
                 supplierName = ansScanner.next().trim();
 
-                if (user.checkIfPersonInSuppliers(supplierName)) {
-                    user.getSupplier(supplierName).printPurchasableItems();
+                if (User.checkIfPersonInSuppliers(supplierName)) {
+                    User.getSupplier(supplierName).printPurchasableItems();
                 } else {
                     System.out.println("Not a supplier.");
                 }
                 System.out.println();
                 supplierMenu();
             case 6:
-                user.viewSuppliers();
+                User.viewSuppliers();
                 supplierMenu();
             case 7:
                 int itemQuantity;
@@ -668,8 +667,8 @@ public class TestDriver {
                 System.out.print("Enter the amount you want to buy: ");
                 itemQuantity = ansScanner.nextInt();
 
-                if (user.checkIfPersonInSuppliers(supplierName)) {
-                    user.getSupplier(supplierName).createAndPrintInvoice(itemName, itemQuantity, user);
+                if (User.checkIfPersonInSuppliers(supplierName)) {
+                    User.getSupplier(supplierName).createAndPrintInvoice(itemName, itemQuantity);
                 } else {
                     System.out.println("Not a supplier.");
                 }
@@ -710,10 +709,10 @@ public class TestDriver {
                 System.out.print("Enter customer's contact number: ");
                 customerContactNumber = ansScanner.next().trim();
 
-                if (user.checkIfPersonInCustomers(customerName)) {
+                if (User.checkIfPersonInCustomers(customerName)) {
                     System.out.println("Customer exists.");
                 } else {
-                    user.addToCustomers(new Customer(customerName, customerEmail, customerContactNumber, user));
+                    User.addToCustomers(new Customer(customerName, customerEmail, customerContactNumber));
                 }
                 System.out.println();
                 customerMenu();
@@ -721,8 +720,8 @@ public class TestDriver {
                 System.out.print("Enter customer's name: ");
                 customerName = ansScanner.next().trim();
 
-                if (user.checkIfPersonInCustomers(customerName)) {
-                    System.out.println(user.getCustomer(customerName));
+                if (User.checkIfPersonInCustomers(customerName)) {
+                    System.out.println(User.getCustomer(customerName));
                 } else {
                     System.out.println("Not a customer.");
                 }
@@ -740,8 +739,8 @@ public class TestDriver {
                 System.out.print("Enter the new/same contact number: ");
                 newContactNumber = ansScanner.next().trim();
 
-                if (user.checkIfPersonInCustomers(customerName)) {
-                    user.getCustomer(customerName).editCustomerInformation(newName, newEmail, newContactNumber, user);
+                if (User.checkIfPersonInCustomers(customerName)) {
+                    User.getCustomer(customerName).editCustomerInformation(newName, newEmail, newContactNumber);
                 } else {
                     System.out.println("Not a customer.");
                 }
@@ -757,8 +756,8 @@ public class TestDriver {
                 System.out.print("Enter the amount bought: ");
                 itemQuantity = ansScanner.nextInt();
 
-                if (user.checkIfPersonInCustomers(customerName)) {
-                    user.getCustomer(customerName).removePurchasedItem(itemName, itemQuantity, user);
+                if (User.checkIfPersonInCustomers(customerName)) {
+                    User.getCustomer(customerName).removePurchasedItem(itemName, itemQuantity);
                 } else {
                     System.out.println("Not a customer.");
                 }
@@ -768,15 +767,15 @@ public class TestDriver {
                 System.out.print("Enter the customer whose item list you want to see: ");
                 customerName = ansScanner.next().trim();
 
-                if (user.checkIfPersonInCustomers(customerName)) {
-                    user.getCustomer(customerName).printPurchasedItems();
+                if (User.checkIfPersonInCustomers(customerName)) {
+                    User.getCustomer(customerName).printPurchasedItems();
                 } else {
                     System.out.println("Not a customer.");
                 }
                 System.out.println();
                 customerMenu();
             case 5:
-                user.viewCustomers();
+                User.viewCustomers();
                 customerMenu();
             case 6:
                 System.out.print("Enter the customer who you want to buy from: ");
@@ -786,8 +785,8 @@ public class TestDriver {
                 System.out.print("Enter the amount you want to buy: ");
                 itemQuantity = ansScanner.nextInt();
 
-                if (user.checkIfPersonInCustomers(customerName)) {
-                    user.getCustomer(customerName).createAndPrintSalesReceipt(itemName, itemQuantity, user);
+                if (User.checkIfPersonInCustomers(customerName)) {
+                    User.getCustomer(customerName).createAndPrintSalesReceipt(itemName, itemQuantity);
                 } else {
                     System.out.println("Not a customer.");
                 }

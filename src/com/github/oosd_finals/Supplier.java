@@ -1,7 +1,5 @@
 package com.github.oosd_finals;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -11,16 +9,16 @@ public class Supplier {
     private int invoiceNumber = 0, i = 0;
     private String[][] supplierItemList = new String[10][2];
 
-    public Supplier(@NotNull User user) {
-        if(user.getUserType().equalsIgnoreCase("a")) {
+    public Supplier() {
+        if(User.getUserType().equalsIgnoreCase("a")) {
             this.supplierName = "";
         } else {
             System.out.println("You do not have admin privileges.\n");
         }
     }
 
-    public Supplier(String name, String email, String contactNumber, @NotNull User user) {
-        if(user.getUserType().equalsIgnoreCase("a")) {
+    public Supplier(String name, String email, String contactNumber) {
+        if(User.getUserType().equalsIgnoreCase("a")) {
             this.supplierName = name;
             this.supplierEmail = email;
             this.supplierContactNumber = contactNumber;
@@ -33,8 +31,8 @@ public class Supplier {
         return supplierName;
     }
 
-    public void setSupplierName(String supplierName, @NotNull User user) {
-        if (user.getUserType().equalsIgnoreCase("a")) {
+    public void setSupplierName(String supplierName) {
+        if (User.getUserType().equalsIgnoreCase("a")) {
             this.supplierName = supplierName;
         } else {
             System.out.println("You do not have admin privileges.\n");
@@ -45,8 +43,8 @@ public class Supplier {
         return supplierEmail;
     }
 
-    public void setSupplierEmail(String supplierEmail, @NotNull User user) {
-        if (user.getUserType().equalsIgnoreCase("a")) {
+    public void setSupplierEmail(String supplierEmail) {
+        if (User.getUserType().equalsIgnoreCase("a")) {
             this.supplierEmail = supplierEmail;
         }
         else {
@@ -58,8 +56,8 @@ public class Supplier {
         return supplierContactNumber;
     }
 
-    public void setSupplierContactNumber(String supplierContactNumber, @NotNull User user) {
-        if (user.getUserType().equalsIgnoreCase("a")) {
+    public void setSupplierContactNumber(String supplierContactNumber) {
+        if (User.getUserType().equalsIgnoreCase("a")) {
             this.supplierContactNumber = supplierContactNumber;
         }
         else {
@@ -68,8 +66,8 @@ public class Supplier {
     }
 
     //Basically the constructor but as a method
-    public void editSupplierInformation(String name, String email, String contactNumber, @NotNull User user) {
-        if(user.getUserType().equalsIgnoreCase("a")) {
+    public void editSupplierInformation(String name, String email, String contactNumber) {
+        if(User.getUserType().equalsIgnoreCase("a")) {
             this.supplierName = name;
             this.supplierEmail = email;
             this.supplierContactNumber = contactNumber;
@@ -78,11 +76,11 @@ public class Supplier {
 
     //Adds an item and its price to a list that contains what is sold by the supplier
     //Only admins have access to this action
-    public void addPurchasableItem(String item, double price, @NotNull User user) {
+    public void addPurchasableItem(String item, double price) {
         //Temporary array that is 10 spaces bigger than original
         String[][] temp = new String[this.supplierItemList.length + 10][2];
 
-        if(user.getUserType().equalsIgnoreCase("a")) {
+        if(User.getUserType().equalsIgnoreCase("a")) {
             if (i >= this.supplierItemList.length) {
                 //Loops through rows of the original 2d array and copies the columns to the temporary 2d array
                 for (int j = 0; j < this.supplierItemList.length; j++) {
@@ -107,8 +105,8 @@ public class Supplier {
 
     //Removes an item and its price to a list that contains what is sold by the supplier
     //Only admins have access to this action
-    public void removePurchasableItem(String item, @NotNull User user) {
-        if (user.getUserType().equalsIgnoreCase("a")) {
+    public void removePurchasableItem(String item) {
+        if (User.getUserType().equalsIgnoreCase("a")) {
             if (this.supplierItemList[0][0] != null) {
                 int j = 0;
 
@@ -176,7 +174,7 @@ public class Supplier {
         }
     }
 
-    public void createAndPrintInvoice (String item, int quantity, User user) {
+    public void createAndPrintInvoice (String item, int quantity) {
         double invoiceTotal;
         int j = 0;
         Date date = new Date();
@@ -194,15 +192,15 @@ public class Supplier {
         //Check if the stock list has the item in it
         //Otherwise print the corresponding error
         if (this.supplierItemList[j][0].equalsIgnoreCase(item)) {
-            if(user.getUserType().equalsIgnoreCase("a")) {
-                if (user.checkIfBeerInStock(item)) {
+            if(User.getUserType().equalsIgnoreCase("a")) {
+                if (User.checkIfBeerInStock(item)) {
                     this.invoiceNumber += 1;
                     invoiceTotal = Double.parseDouble(this.supplierItemList[j][1]) * quantity;
 
                     User.setWallet(User.getWallet() - invoiceTotal);
 
                     //Add to the amount of stock owned
-                    user.addQuantityToBeerStock(item, quantity);
+                    User.addQuantityToBeerStock(item, quantity);
 
                     System.out.printf(
                             """
@@ -217,14 +215,14 @@ public class Supplier {
                                     """,
                             this.invoiceNumber, formatter.format(date), this.supplierName, item.toUpperCase(), Double.parseDouble(this.supplierItemList[j][1]), quantity, invoiceTotal);
                 }
-                else if (user.checkIfSpiritInStock(item)) {
+                else if (User.checkIfSpiritInStock(item)) {
                     this.invoiceNumber += 1;
                     invoiceTotal = Double.parseDouble(this.supplierItemList[j][1]) * quantity;
 
                     User.setWallet(User.getWallet() - invoiceTotal);
 
                     //Add to the amount of stock owned
-                    user.addQuantityToSpiritStock(item, quantity);
+                    User.addQuantityToSpiritStock(item, quantity);
 
                     System.out.printf(
                             """
@@ -239,14 +237,14 @@ public class Supplier {
                                     """,
                             this.invoiceNumber, formatter.format(date), this.supplierName, item.toUpperCase(), Double.parseDouble(this.supplierItemList[j][1]), quantity, invoiceTotal);
                 }
-                else if (user.checkIfJuiceInStock(item)) {
+                else if (User.checkIfJuiceInStock(item)) {
                     this.invoiceNumber += 1;
                     invoiceTotal = Double.parseDouble(this.supplierItemList[j][1]) * quantity;
 
                     User.setWallet(User.getWallet() - invoiceTotal);
 
                     //Add to the amount of stock owned
-                    user.addQuantityToJuiceStock(item, quantity);
+                    User.addQuantityToJuiceStock(item, quantity);
 
                     System.out.printf(
                             """
@@ -261,14 +259,14 @@ public class Supplier {
                                     """,
                             this.invoiceNumber, formatter.format(date), this.supplierName, item.toUpperCase(), Double.parseDouble(this.supplierItemList[j][1]), quantity, invoiceTotal);
                 }
-                else if (user.checkIfSodaInStock(item)) {
+                else if (User.checkIfSodaInStock(item)) {
                     this.invoiceNumber += 1;
                     invoiceTotal = Double.parseDouble(this.supplierItemList[j][1]) * quantity;
 
                     User.setWallet(User.getWallet() - invoiceTotal);
 
                     //Add to the amount of stock owned
-                    user.addQuantityToSodaStock(item, quantity);
+                    User.addQuantityToSodaStock(item, quantity);
 
                     System.out.printf(
                             """
@@ -283,14 +281,14 @@ public class Supplier {
                                     """,
                             this.invoiceNumber, formatter.format(date), this.supplierName, item.toUpperCase(), Double.parseDouble(this.supplierItemList[j][1]), quantity, invoiceTotal);
                 }
-                else if (user.checkIfWaterInStock(item)) {
+                else if (User.checkIfWaterInStock(item)) {
                     this.invoiceNumber += 1;
                     invoiceTotal = Double.parseDouble(this.supplierItemList[j][1]) * quantity;
 
                     User.setWallet(User.getWallet() - invoiceTotal);
 
                     //Add to the amount of stock owned
-                    user.addQuantityToWaterStock(item, quantity);
+                    User.addQuantityToWaterStock(item, quantity);
 
                     System.out.printf(
                             """
@@ -305,14 +303,14 @@ public class Supplier {
                                     """,
                             this.invoiceNumber, formatter.format(date), this.supplierName, item.toUpperCase(), Double.parseDouble(this.supplierItemList[j][1]), quantity, invoiceTotal);
                 }
-                else if (user.checkIfWineInStock(item)) {
+                else if (User.checkIfWineInStock(item)) {
                     this.invoiceNumber += 1;
                     invoiceTotal = Double.parseDouble(this.supplierItemList[j][1]) * quantity;
 
                     User.setWallet(User.getWallet() - invoiceTotal);
 
                     //Add to the amount of stock owned
-                    user.addQuantityToWineStock(item, quantity);
+                    User.addQuantityToWineStock(item, quantity);
 
                     System.out.printf(
                             """
@@ -327,14 +325,14 @@ public class Supplier {
                                     """,
                             this.invoiceNumber, formatter.format(date), this.supplierName, item.toUpperCase(), Double.parseDouble(this.supplierItemList[j][1]), quantity, invoiceTotal);
                 }
-                else if (user.checkIfChampagneInStock(item)) {
+                else if (User.checkIfChampagneInStock(item)) {
                     this.invoiceNumber += 1;
                     invoiceTotal = Double.parseDouble(this.supplierItemList[j][1]) * quantity;
 
                     User.setWallet(User.getWallet() - invoiceTotal);
 
                     //Add to the amount of stock owned
-                    user.addQuantityToChampagneStock(item, quantity);
+                    User.addQuantityToChampagneStock(item, quantity);
 
                     System.out.printf(
                             """

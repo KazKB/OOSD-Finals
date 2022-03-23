@@ -1,7 +1,5 @@
 package com.github.oosd_finals;
 
-import org.jetbrains.annotations.NotNull;
-
 public class Soda extends Stock {
     private final String ITEM_CATEGORY = "Soda";
 
@@ -9,12 +7,12 @@ public class Soda extends Stock {
         this.setItemName();
     }
 
-    public Soda(String name, double price, @NotNull User user) {
-        super(name, price, user);
+    public Soda(String name, double price) {
+        super(name, price);
     }
 
-    public Soda(String name, String id, double price, @NotNull User user) {
-        super(name, id, price, user);
+    public Soda(String name, String id, double price) {
+        super(name, id, price);
     }
 
     public String getITEM_CATEGORY() {

@@ -1,7 +1,5 @@
 package com.github.oosd_finals;
 
-import org.jetbrains.annotations.NotNull;
-
 import static java.lang.Math.abs;
 
 public abstract class Stock {
@@ -12,15 +10,15 @@ public abstract class Stock {
     protected Stock() {
     }
 
-    protected Stock(String name, double price, @NotNull User user) {
-        if(user.getUserType().equalsIgnoreCase("a")) {
+    protected Stock(String name, double price) {
+        if(User.getUserType().equalsIgnoreCase("a")) {
             this.itemName = name;
             this.itemPrice = price;
         }
     }
 
-    protected Stock(String name, String id, double price, @NotNull User user) {
-        if(user.getUserType().equalsIgnoreCase("a")) {
+    protected Stock(String name, String id, double price) {
+        if(User.getUserType().equalsIgnoreCase("a")) {
             this.itemName = name;
             this.itemID = id;
             this.itemPrice = price;
@@ -40,8 +38,8 @@ public abstract class Stock {
         return itemID;
     }
 
-    protected void setItemID(String itemID, @NotNull User user) {
-        if(user.getUserType().equalsIgnoreCase("a"))
+    protected void setItemID(String itemID) {
+        if(User.getUserType().equalsIgnoreCase("a"))
             this.itemID = itemID;
         else
             System.out.println("You do not have admin privileges.");
@@ -51,8 +49,8 @@ public abstract class Stock {
         return itemPrice;
     }
 
-    protected void setItemPrice(double itemPrice, @NotNull User user) {
-        if(user.getUserType().equalsIgnoreCase("a"))
+    protected void setItemPrice(double itemPrice) {
+        if(User.getUserType().equalsIgnoreCase("a"))
             this.itemPrice = itemPrice;
         else
             System.out.println("You do not have admin privileges.");
