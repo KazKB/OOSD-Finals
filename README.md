@@ -24,4 +24,5 @@ As one buys from suppliers the quantity in stock will change, and the wallet wil
 - Then one can add customers and sell to them.
 As one sells to customers, quantity in stock will change, and the wallet will reflect the sales.
 
-It is a simple system that only uses one file for the loggings. No database yet.
+It is a simple system that only uses one file for the loggings, while everything is a dynamic array or dynamic 2d array.
+NO database were used.
