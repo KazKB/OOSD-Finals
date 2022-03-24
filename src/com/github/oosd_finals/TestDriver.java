@@ -553,14 +553,15 @@ public class TestDriver {
                 Supplier Menu
                 What would you like to do:
                 0. Add Supplier
-                1. View Supplier Information
-                2. Edit Supplier Information
-                3. Add Item To Supplier's Item List
-                4. Remove Item From Supplier's Item List
-                5. View Supplier's Item List
-                6. View Suppliers
-                7. Buy From Supplier
-                8. Back to Menu Selection""");
+                1. Remove Supplier
+                2. View Supplier Information
+                3. Edit Supplier Information
+                4. Add Item To Supplier's Item List
+                5. Remove Item From Supplier's Item List
+                6. View Supplier's Item List
+                7. View Suppliers
+                8. Buy From Supplier
+                9. Back to Menu Selection""");
         System.out.print("Enter number: ");
         choice = ansScanner.nextInt();
         System.out.println();
@@ -588,13 +589,24 @@ public class TestDriver {
                 supplierName = ansScanner.next().trim();
 
                 if (User.checkIfPersonInSuppliers(supplierName)) {
-                    System.out.println(User.getSupplier(supplierName));
+                    User.removeFromSuppliers(supplierName);
                 } else {
                     System.out.println("Not a supplier.");
                 }
                 System.out.println();
                 supplierMenu();
             case 2:
+                System.out.print("Enter supplier's name: ");
+                supplierName = ansScanner.next().trim();
+
+                if (User.checkIfPersonInSuppliers(supplierName)) {
+                    System.out.println(User.getSupplier(supplierName));
+                } else {
+                    System.out.println("Not a supplier.");
+                }
+                System.out.println();
+                supplierMenu();
+            case 3:
                 String newName, newEmail, newContactNumber;
 
                 System.out.print("Enter the name of the supplier whose information is being changed: ");
@@ -613,7 +625,7 @@ public class TestDriver {
                 }
                 System.out.println();
                 supplierMenu();
-            case 3:
+            case 4:
                 double itemPrice;
 
                 System.out.print("Enter the supplier you want to add the item to: ");
@@ -630,7 +642,7 @@ public class TestDriver {
                 }
                 System.out.println();
                 supplierMenu();
-            case 4:
+            case 5:
                 System.out.print("Enter the supplier you want to remove the item to: ");
                 supplierName = ansScanner.next().trim();
                 System.out.print("Enter item's name: ");
@@ -643,7 +655,7 @@ public class TestDriver {
                 }
                 System.out.println();
                 supplierMenu();
-            case 5:
+            case 6:
                 System.out.print("Enter the supplier whose item list you want to see: ");
                 supplierName = ansScanner.next().trim();
 
@@ -654,10 +666,10 @@ public class TestDriver {
                 }
                 System.out.println();
                 supplierMenu();
-            case 6:
+            case 7:
                 User.viewSuppliers();
                 supplierMenu();
-            case 7:
+            case 8:
                 int itemQuantity;
 
                 System.out.print("Enter the supplier who you want to buy from: ");
@@ -674,7 +686,7 @@ public class TestDriver {
                 }
                 System.out.println();
                 supplierMenu();
-            case 8:
+            case 9:
                 System.out.println();
                 menuSelection();
             default:
@@ -687,13 +699,14 @@ public class TestDriver {
                 Customer Menu
                 What would you like to do:
                 0. Add Customer
-                1. View Customer Information
-                2. Edit Customer Information
-                3. Remove Item From Customer's Purchases
-                4. View Customer's Purchases
-                5. View Customers
-                6. Sell To Customer
-                7. Back to Menu Selection""");
+                1. Remove Customer
+                2. View Customer Information
+                3. Edit Customer Information
+                4. Remove Item From Customer's Purchases
+                5. View Customer's Purchases
+                6. View Customers
+                7. Sell To Customer
+                8. Back to Menu Selection""");
         System.out.print("Enter number: ");
         choice = ansScanner.nextInt();
         System.out.println();
@@ -721,13 +734,24 @@ public class TestDriver {
                 customerName = ansScanner.next().trim();
 
                 if (User.checkIfPersonInCustomers(customerName)) {
-                    System.out.println(User.getCustomer(customerName));
+                    User.removeFromCustomers(customerName);
                 } else {
                     System.out.println("Not a customer.");
                 }
                 System.out.println();
                 customerMenu();
             case 2:
+                System.out.print("Enter customer's name: ");
+                customerName = ansScanner.next().trim();
+
+                if (User.checkIfPersonInCustomers(customerName)) {
+                    System.out.println(User.getCustomer(customerName));
+                } else {
+                    System.out.println("Not a customer.");
+                }
+                System.out.println();
+                customerMenu();
+            case 3:
                 String newName, newEmail, newContactNumber;
 
                 System.out.print("Enter the name of the customer whose information is being changed: ");
@@ -746,7 +770,7 @@ public class TestDriver {
                 }
                 System.out.println();
                 customerMenu();
-            case 3:
+            case 4:
                 int itemQuantity;
 
                 System.out.print("Enter the customer you want to remove the item to: ");
@@ -763,7 +787,7 @@ public class TestDriver {
                 }
                 System.out.println();
                 customerMenu();
-            case 4:
+            case 5:
                 System.out.print("Enter the customer whose item list you want to see: ");
                 customerName = ansScanner.next().trim();
 
@@ -774,10 +798,10 @@ public class TestDriver {
                 }
                 System.out.println();
                 customerMenu();
-            case 5:
+            case 6:
                 User.viewCustomers();
                 customerMenu();
-            case 6:
+            case 7:
                 System.out.print("Enter the customer who you want to buy from: ");
                 customerName = ansScanner.next().trim();
                 System.out.print("Enter item's name: ");
@@ -792,7 +816,7 @@ public class TestDriver {
                 }
                 System.out.println();
                 customerMenu();
-            case 7:
+            case 8:
                 System.out.println();
                 menuSelection();
             default:
