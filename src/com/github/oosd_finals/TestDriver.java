@@ -12,7 +12,6 @@ public class TestDriver {
     public static int choice = 0;
     public static File file = new File("User.txt");
     public static Scanner fileReader;
-    public static Scanner reader;
 
     static {
         try {
