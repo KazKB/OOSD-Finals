@@ -10,31 +10,19 @@ public class Customer {
     private int salesReceiptNumber = 0, i = 0;
 
     public Customer() {
-         if(User.getUserType().equalsIgnoreCase("a")) {
-             this.customerName = "";
-        } else {
-             System.out.println("You do not have admin privileges.\n");
-         }
+         this.customerName = "";
     }
 
     public Customer(String name, String email, String contactNumber) {
-         if(User.getUserType().equalsIgnoreCase("a")) {
-            this.customerName = name;
-            this.customerEmail = email;
-            this.customerContactNumber = contactNumber;
-        } else {
-             System.out.println("You do not have admin privileges.\n");
-         }
+        this.customerName = name;
+        this.customerEmail = email;
+        this.customerContactNumber = contactNumber;
     }
 
     public Customer(String firstName, String lastName, String email, String contactNumber) {
-         if(User.getUserType().equalsIgnoreCase("a")) {
-            this.customerName = firstName + " " + lastName;
-            this.customerEmail = email;
-            this.customerContactNumber = contactNumber;
-        } else {
-            System.out.println("You do not have admin privileges.\n");
-        }
+        this.customerName = firstName + " " + lastName;
+        this.customerEmail = email;
+        this.customerContactNumber = contactNumber;
     }
 
     public String getCustomerName() {
@@ -42,12 +30,7 @@ public class Customer {
     }
 
     public void setCustomerName(String customerName) {
-         if(User.getUserType().equalsIgnoreCase("a")) {
-            this.customerName = customerName;
-        }
-        else {
-            System.out.println("You do not have admin privileges.\n");
-        }
+        this.customerName = customerName;
     }
 
     public String getCustomerEmail() {
@@ -55,12 +38,7 @@ public class Customer {
     }
 
     public void setCustomerEmail(String customerEmail) {
-         if(User.getUserType().equalsIgnoreCase("a")) {
-            this.customerEmail = customerEmail;
-        }
-        else {
-            System.out.println("You do not have admin privileges.\n");
-        }
+        this.customerEmail = customerEmail;
     }
 
     public String getCustomerContactNumber() {
@@ -68,24 +46,14 @@ public class Customer {
     }
 
     public void setCustomerContactNumber(String customerContactNumber) {
-         if(User.getUserType().equalsIgnoreCase("a")) {
-            this.customerContactNumber = customerContactNumber;
-        }
-        else {
-            System.out.println("You do not have admin privileges.\n");
-        }
+        this.customerContactNumber = customerContactNumber;
     }
 
     //Basically the constructor but as a method
     public void editCustomerInformation(String name, String email, String contactNumber) {
-         if(User.getUserType().equalsIgnoreCase("a")) {
-            this.customerName = name;
-            this.customerEmail = email;
-            this.customerContactNumber = contactNumber;
-        }
-        else {
-            System.out.println("You do not have admin privileges.\n");
-        }
+        this.customerName = name;
+        this.customerEmail = email;
+        this.customerContactNumber = contactNumber;
     }
 
     //Adds an item, its price and quantity to list of items purchased by the customer
