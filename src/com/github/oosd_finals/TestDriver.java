@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class TestDriver {
@@ -154,8 +155,15 @@ public class TestDriver {
                 2. Supplier
                 3. Customer
                 4. Log Out""");
-        System.out.print("Enter number: ");
-        choice = ansScanner.nextInt();
+        try {
+            System.out.print("Enter number: ");
+            choice = ansScanner.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.print("Enter number: ");
+            ansScanner = new Scanner(System.in);
+            choice = ansScanner.nextInt();
+        }
+
         System.out.println();
 
         switch (choice) {
@@ -181,8 +189,15 @@ public class TestDriver {
                 0. View User Information
                 1. View Profit/Loss
                 2. Back to Menu Selection""");
-        System.out.print("Enter number: ");
-        choice = ansScanner.nextInt();
+        try {
+            System.out.print("Enter number: ");
+            choice = ansScanner.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.print("Enter number: ");
+            ansScanner = new Scanner(System.in);
+            choice = ansScanner.nextInt();
+        }
+
         System.out.println();
 
         String[] UserCredentials = new String[6];
@@ -229,8 +244,15 @@ public class TestDriver {
                 3. Remove Item From Stock List
                 4. View Stock Lists
                 5. Back to Menu Selection""");
-        System.out.print("Enter number: ");
-        choice = ansScanner.nextInt();
+        try {
+            System.out.print("Enter number: ");
+            choice = ansScanner.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.print("Enter number: ");
+            ansScanner = new Scanner(System.in);
+            choice = ansScanner.nextInt();
+        }
+
         System.out.println();
 
         String itemName, itemCategory;
@@ -380,8 +402,15 @@ public class TestDriver {
                 stockInfo[1] = ansScanner.next().trim();
 
                 do {
-                    System.out.print("Enter item's price: $");
-                    itemPrice = ansScanner.nextDouble();
+                    try {
+                        System.out.print("Enter item's price: $");
+                        itemPrice = ansScanner.nextDouble();
+                    } catch (InputMismatchException e) {
+                        System.out.print("Enter item's price: $");
+                        ansScanner = new Scanner(System.in);
+                        itemPrice = ansScanner.nextDouble();
+                    }
+
                 } while (itemPrice == 0.0);
 
                 do {
@@ -562,8 +591,15 @@ public class TestDriver {
                 7. View Suppliers
                 8. Buy From Supplier
                 9. Back to Menu Selection""");
-        System.out.print("Enter number: ");
-        choice = ansScanner.nextInt();
+        try {
+            System.out.print("Enter number: ");
+            choice = ansScanner.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.print("Enter number: ");
+            ansScanner = new Scanner(System.in);
+            choice = ansScanner.nextInt();
+        }
+
         System.out.println();
 
         String supplierName, supplierEmail, supplierContactNumber, itemName;
@@ -632,8 +668,14 @@ public class TestDriver {
                 supplierName = ansScanner.next().trim();
                 System.out.print("Enter item's name: ");
                 itemName = ansScanner.next().trim();
-                System.out.print("Enter item's price: $");
-                itemPrice = ansScanner.nextDouble();
+                try {
+                    System.out.print("Enter item's price: $");
+                    itemPrice = ansScanner.nextDouble();
+                } catch (InputMismatchException e) {
+                    System.out.print("Enter item's price: $");
+                    ansScanner = new Scanner(System.in);
+                    itemPrice = ansScanner.nextDouble();
+                }
 
                 if (User.checkIfPersonInSuppliers(supplierName)) {
                     User.getSupplier(supplierName).addPurchasableItem(itemName, itemPrice);
@@ -676,8 +718,14 @@ public class TestDriver {
                 supplierName = ansScanner.next().trim();
                 System.out.print("Enter item's name: ");
                 itemName = ansScanner.next().trim();
-                System.out.print("Enter the amount you want to buy: ");
-                itemQuantity = ansScanner.nextInt();
+                try {
+                    System.out.print("Enter the amount you want to buy: ");
+                    itemQuantity = ansScanner.nextInt();
+                } catch (InputMismatchException e) {
+                    System.out.print("Enter the amount you want to buy: ");
+                    ansScanner = new Scanner(System.in);
+                    itemQuantity = ansScanner.nextInt();
+                }
 
                 if (User.checkIfPersonInSuppliers(supplierName)) {
                     User.getSupplier(supplierName).createAndPrintInvoice(itemName, itemQuantity);
@@ -707,8 +755,15 @@ public class TestDriver {
                 6. View Customers
                 7. Sell To Customer
                 8. Back to Menu Selection""");
-        System.out.print("Enter number: ");
-        choice = ansScanner.nextInt();
+        try {
+            System.out.print("Enter number: ");
+            choice = ansScanner.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.print("Enter number: ");
+            ansScanner = new Scanner(System.in);
+            choice = ansScanner.nextInt();
+        }
+
         System.out.println();
 
         String customerName, customerEmail, customerContactNumber, itemName;
@@ -777,8 +832,14 @@ public class TestDriver {
                 customerName = ansScanner.next().trim();
                 System.out.print("Enter item's name: ");
                 itemName = ansScanner.next().trim();
-                System.out.print("Enter the amount bought: ");
-                itemQuantity = ansScanner.nextInt();
+                try {
+                    System.out.print("Enter the amount bought: ");
+                    itemQuantity = ansScanner.nextInt();
+                } catch (InputMismatchException e) {
+                    System.out.print("Enter the amount bought: ");
+                    ansScanner = new Scanner(System.in);
+                    itemQuantity = ansScanner.nextInt();
+                }
 
                 if (User.checkIfPersonInCustomers(customerName)) {
                     User.getCustomer(customerName).removePurchasedItem(itemName, itemQuantity);
@@ -806,8 +867,14 @@ public class TestDriver {
                 customerName = ansScanner.next().trim();
                 System.out.print("Enter item's name: ");
                 itemName = ansScanner.next().trim();
-                System.out.print("Enter the amount you want to buy: ");
-                itemQuantity = ansScanner.nextInt();
+                try {
+                    System.out.print("Enter the amount you want to buy: ");
+                    itemQuantity = ansScanner.nextInt();
+                } catch (InputMismatchException e) {
+                    System.out.print("Enter the amount you want to buy: ");
+                    ansScanner = new Scanner(System.in);
+                    itemQuantity = ansScanner.nextInt();
+                }
 
                 if (User.checkIfPersonInCustomers(customerName)) {
                     User.getCustomer(customerName).createAndPrintSalesReceipt(itemName, itemQuantity);
@@ -825,7 +892,6 @@ public class TestDriver {
     }
 
     static void exit() throws IOException {
-
         System.out.print("Do you want to re-login or sign-up (y/n): ");
         ans = ansScanner.next();
 
