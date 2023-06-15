@@ -1,5 +1,8 @@
 # OOSD-Finals
-Done in Intellij. It is a basic point of sale terminal where one can track purchases from suppliers and the suppliers themselves, sales to customers and customers themselves as well as the stock. It is for a drinks (non-alcoholic and alcoholic) seller. Thus beers, champagnes, juices, sodas, spirit, waters and wines can be tracked. Further improvements can be made.
+
+<img src="OOSD-Finals-Terminal.png" alt="Preview" height="500px">
+
+A basic point of sale terminal where one can track purchases from suppliers and the suppliers themselves, sales to customers and customers themselves as well as the stock. It is for a drinks (non-alcoholic and alcoholic) seller. Thus beers, champagnes, juices, sodas, spirit, waters and wines can be tracked. Further improvements can be made.
 
 Upon start one has to either login in or sign-up.
 
